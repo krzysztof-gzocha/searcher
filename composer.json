@@ -1,0 +1,26 @@
+{
+    "name": "krzysztof-gzocha/searcher",
+    "description": "Library which allows to construct complex queries basing on models",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Krzysztof Gzocha",
+            "email": "kgzocha@gmail.com"
+        }
+    ],
+    "config": {
+        "bin-dir": "bin",
+        "vendor-dir": "vendor"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.10",
+        "phing/phing": "^2.13@dev",
+        "phpmd/phpmd": "dev-master"
+    }
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<project name="KGzocha\Searcher" default="run-tests">
+
+    <target name="cs-fix">
+        <exec command="./bin/php-cs-fixer fix src/"/>
+    </target>
+
+    <target name="run-tests">
+        <exec executable="bin/phpunit" checkreturn="true" passthru="true">
+            <arg value="src/KGzocha/Searcher/Test/"/>
+        </exec>
+    </target>
+
+    <target name="coverage-html">
+        <exec executable="./bin/phpunit" checkreturn="false" passthru="false">
+            <arg value="src/KGzocha/Searcher/Test"/>
+            <arg value="--coverage-html=coverage"/>
+        </exec>
+    </target>
+
+    <target name="coverage-clover">
+        <exec executable="./bin/phpunit" checkreturn="false" passthru="false">
+            <arg value="src/KGzocha/Searcher/Test"/>
+            <arg value="--coverage-clover=coverage.clover"/>
+        </exec>
+    </target>
+
+    <target name="phpmd">
+        <exec executable="./bin/phpmd" checkreturn="true" passthru="true">
+            <arg value="src/"/>
+            <arg value="text"/>
+            <arg value="cleancode,codesize,controversial,design,unusedcode"/>
+            <arg value="--exclude"/>
+            <arg value="src/KGzocha/Searcher/Test"/>
+        </exec>
+    </target>
+
+</project>

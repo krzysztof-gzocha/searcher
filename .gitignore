@@ -1,0 +1,5 @@
+bin/
+vendor/
+.idea/
+coverage/
+coverage.clover
