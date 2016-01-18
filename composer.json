@@ -4,10 +4,13 @@
     "type": "library",
     "authors": [
         {
-            "name": "Krzysztof Gzocha",
-            "email": "kgzocha@gmail.com"
+            "name": "Krzysztof Gzocha"
         }
     ],
+    "suggest": {
+        "doctrine/orm": "to use with Doctrine's ORM",
+        "doctrine/mongodb-odm": "to use with Doctrine's ODM"
+    },
     "config": {
         "bin-dir": "bin",
         "vendor-dir": "vendor"
@@ -21,6 +24,8 @@
     "require-dev": {
         "phpunit/phpunit": "4.8.10",
         "phing/phing": "^2.13@dev",
-        "phpmd/phpmd": "dev-master"
+        "phpmd/phpmd": "dev-master",
+        "doctrine/orm": "^2.0",
+        "doctrine/mongodb-odm": "^1.0"
     }
 }
