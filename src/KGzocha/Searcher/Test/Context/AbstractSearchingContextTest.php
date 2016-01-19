@@ -26,7 +26,7 @@ class AbstractSearchingContextTest extends \PHPUnit_Framework_TestCase
     private function getSearchingContext($queryBuilder)
     {
         return $this
-            ->getMockBuilder(AbstractSearchingContext::class)
+            ->getMockBuilder('\KGzocha\Searcher\Context\AbstractSearchingContext')
             ->setConstructorArgs([$queryBuilder])
             ->getMockForAbstractClass();
     }

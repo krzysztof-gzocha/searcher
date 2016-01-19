@@ -45,7 +45,7 @@ class EventDispatcherTest extends \PHPUnit_Framework_TestCase
     private function getListener($supports, $handleCalledTimes = 0)
     {
         $listener = $this
-            ->getMock(ListenerInterface::class);
+            ->getMock('\KGzocha\Searcher\Event\Listener\ListenerInterface');
 
         $listener
             ->expects($this->any())
@@ -64,6 +64,8 @@ class EventDispatcherTest extends \PHPUnit_Framework_TestCase
      */
     private function getEvent()
     {
-        return $this->getMockForAbstractClass(SearcherEventInterface::class);
+        return $this->getMockForAbstractClass(
+            '\KGzocha\Searcher\Event\SearcherEventInterface'
+        );
     }
 }

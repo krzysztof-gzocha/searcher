@@ -46,7 +46,9 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
     private function getFilterImposer($supportsModel, $numberOfModels)
     {
         $imposer = $this
-            ->getMockBuilder(FilterImposerInterface::class)
+            ->getMockBuilder(
+                '\KGzocha\Searcher\FilterImposer\FilterImposerInterface'
+            )
             ->getMock();
 
         $imposer
@@ -60,7 +62,11 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
             ->willReturn(true);
 
         $imposer
-            ->expects($supportsModel ? $this->exactly($numberOfModels) : $this->never())
+            ->expects(
+                $supportsModel
+                    ? $this->exactly($numberOfModels)
+                    : $this->never()
+            )
             ->method('imposeFilter');
 
         return $imposer;
@@ -87,7 +93,7 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
     private function getSearchingContext($result)
     {
         $context = $this
-            ->getMock(SearchingContextInterface::class);
+            ->getMock('\KGzocha\Searcher\Context\SearchingContextInterface');
 
         $context
             ->expects($this->once())
@@ -100,7 +106,9 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
     private function getImposedFilterModel()
     {
         $model = $this
-            ->getMockBuilder(FilterModelInterface::class)
+            ->getMockBuilder(
+                '\KGzocha\Searcher\Model\FilterModel\FilterModelInterface'
+            )
             ->getMock();
 
         $model

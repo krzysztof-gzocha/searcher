@@ -30,7 +30,6 @@ class DateTimeFilterModelTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [new \DateTime(), true],
-            [new \DateTimeImmutable(), true],
             [new CustomDateTime(), true],
         ];
     }

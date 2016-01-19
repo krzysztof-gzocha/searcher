@@ -34,7 +34,6 @@ class DateTimeRangeFilterModelTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [new \DateTime(), new \DateTime(), true],
-            [new \DateTimeImmutable(), new \DateTimeImmutable(), true],
             [new CustomDateTime(), new CustomDateTime(), true],
         ];
     }

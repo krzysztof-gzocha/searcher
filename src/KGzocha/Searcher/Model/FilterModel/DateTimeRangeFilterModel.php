@@ -9,17 +9,17 @@ namespace KGzocha\Searcher\Model\FilterModel;
 class DateTimeRangeFilterModel implements FilterModelInterface
 {
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      */
     private $startingDateTime;
 
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      */
     private $endingDateTime;
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTime
      */
     public function getStartingDateTime()
     {
@@ -27,11 +27,11 @@ class DateTimeRangeFilterModel implements FilterModelInterface
     }
 
     /**
-     * @param \DateTimeInterface $startingDateTime
+     * @param \DateTime $startingDateTime
      *
      * @return DateTimeRangeFilterModel
      */
-    public function setStartingDateTime(\DateTimeInterface $startingDateTime)
+    public function setStartingDateTime(\DateTime $startingDateTime)
     {
         $this->startingDateTime = $startingDateTime;
 
@@ -39,7 +39,7 @@ class DateTimeRangeFilterModel implements FilterModelInterface
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTime
      */
     public function getEndingDateTime()
     {
@@ -47,11 +47,11 @@ class DateTimeRangeFilterModel implements FilterModelInterface
     }
 
     /**
-     * @param \DateTimeInterface $endingDateTime
+     * @param \DateTime $endingDateTime
      *
      * @return DateTimeRangeFilterModel
      */
-    public function setEndingDateTime(\DateTimeInterface $endingDateTime)
+    public function setEndingDateTime(\DateTime $endingDateTime)
     {
         $this->endingDateTime = $endingDateTime;
 
@@ -63,7 +63,7 @@ class DateTimeRangeFilterModel implements FilterModelInterface
      */
     public function isImposed()
     {
-        return $this->startingDateTime instanceof \DateTimeInterface
-            || $this->endingDateTime instanceof \DateTimeInterface;
+        return $this->startingDateTime instanceof \DateTime
+            || $this->endingDateTime instanceof \DateTime;
     }
 }

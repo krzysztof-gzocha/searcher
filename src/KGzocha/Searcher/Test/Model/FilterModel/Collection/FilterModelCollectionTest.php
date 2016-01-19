@@ -38,16 +38,19 @@ class FilterModelCollectionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return \KGzocha\Searcher\Model\FilterModel\FilterModelInterface
+     * @return FilterModelInterface
      */
     private function getFilterModel()
     {
         return $this
-            ->getMockBuilder(FilterModelInterface::class)
+            ->getMockBuilder('\KGzocha\Searcher\Model\FilterModel\FilterModelInterface')
             ->disableOriginalConstructor()
             ->getMock();
     }
 
+    /**
+     * @return FilterModelInterface
+     */
     private function getImposedFilterModel()
     {
         $model = $this->getFilterModel();

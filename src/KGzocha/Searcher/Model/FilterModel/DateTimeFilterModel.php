@@ -9,12 +9,12 @@ namespace KGzocha\Searcher\Model\FilterModel;
 class DateTimeFilterModel implements FilterModelInterface
 {
     /**
-     * @var \DateTimeInterface
+     * @var \DateTime
      */
     private $dateTime;
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTime
      */
     public function getDateTime()
     {
@@ -22,11 +22,11 @@ class DateTimeFilterModel implements FilterModelInterface
     }
 
     /**
-     * @param \DateTimeInterface $dateTime
+     * @param \DateTime $dateTime
      *
      * @return DateTimeFilterModel
      */
-    public function setDateTime(\DateTimeInterface $dateTime)
+    public function setDateTime(\DateTime $dateTime)
     {
         $this->dateTime = $dateTime;
 
@@ -38,6 +38,6 @@ class DateTimeFilterModel implements FilterModelInterface
      */
     public function isImposed()
     {
-        return $this->dateTime instanceof \DateTimeInterface;
+        return $this->dateTime instanceof \DateTime;
     }
 }

@@ -72,7 +72,9 @@ class FilterImposerCollectionTest extends \PHPUnit_Framework_TestCase
     private function getSearchingContext()
     {
         return $this
-            ->getMockBuilder(SearchingContextInterface::class)
+            ->getMockBuilder(
+                '\KGzocha\Searcher\Context\SearchingContextInterface'
+            )
             ->getMock();
     }
 }
