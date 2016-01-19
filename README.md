@@ -1,5 +1,5 @@
 # Searcher
-This needs to be updated.
+[![Build Status](https://travis-ci.org/krzysztof-gzocha/searcher.svg?branch=master)](https://travis-ci.org/krzysztof-gzocha/searcher)
 
 ## Running tests:
 ```
