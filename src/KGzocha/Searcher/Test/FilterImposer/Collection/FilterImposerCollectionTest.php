@@ -39,7 +39,7 @@ class FilterImposerCollectionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return \KGzocha\Searcher\FilterImposer\FilterImposerInterface
+     * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getFilterImposer()
     {
@@ -50,9 +50,9 @@ class FilterImposerCollectionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param bool $result
+     * @param $result
      *
-     * @return \KGzocha\Searcher\FilterImposer\FilterImposerInterface
+     * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getFilterImposerSupportingContext($result)
     {
@@ -67,7 +67,7 @@ class FilterImposerCollectionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return SearchingContextInterface
+     * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getSearchingContext()
     {

@@ -29,7 +29,7 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
             $this->getFilterImposer(false, $numberOfModels),
         ]), new EventDispatcher());
 
-        $results = [1,2,3,4];
+        $results = [1, 2, 3, 4];
         $result = $searcher->search(
             $this->getFilterModelCollection($numberOfModels),
             $this->getSearchingContext($results)
@@ -40,8 +40,9 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param bool $supportsModel
-     * @param int  $numberOfModels
-     * @return FilterImposerInterface
+     * @param int $numberOfModels
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getFilterImposer($supportsModel, $numberOfModels)
     {
@@ -87,8 +88,9 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param mixed $result
-     * @return SearchingContextInterface
+     * @param $result
+     *
+     * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getSearchingContext($result)
     {
@@ -103,6 +105,9 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
         return $context;
     }
 
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject
+     */
     private function getImposedFilterModel()
     {
         $model = $this
