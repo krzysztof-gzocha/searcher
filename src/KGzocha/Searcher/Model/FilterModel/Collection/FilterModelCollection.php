@@ -9,12 +9,12 @@ class FilterModelCollection implements FilterModelCollectionInterface
     /**
      * @var FilterModelInterface[]
      */
-    private $filterModels;
+    protected $filterModels;
 
     /**
      * @param FilterModelInterface[] $filterModels
      */
-    public function __construct(array $filterModels)
+    public function __construct(array $filterModels = array())
     {
         $this->filterModels = [];
         foreach ($filterModels as $filterModel) {
