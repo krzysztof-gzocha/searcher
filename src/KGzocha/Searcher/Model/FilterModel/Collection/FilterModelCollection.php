@@ -14,7 +14,7 @@ class FilterModelCollection implements FilterModelCollectionInterface
     /**
      * @param FilterModelInterface[] $filterModels
      */
-    public function __construct(array $filterModels = array())
+    public function __construct(array $filterModels = [])
     {
         $this->filterModels = [];
         foreach ($filterModels as $filterModel) {

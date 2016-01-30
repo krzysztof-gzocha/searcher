@@ -15,7 +15,7 @@ class FilterImposerCollection implements FilterImposerCollectionInterface
     /**
      * @param FilterImposerInterface[] $filterImposers
      */
-    public function __construct(array $filterImposers)
+    public function __construct(array $filterImposers = [])
     {
         $this->filterImposers = [];
         foreach ($filterImposers as $filterImposer) {
