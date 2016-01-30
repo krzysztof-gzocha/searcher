@@ -1,6 +1,6 @@
 <?php
 
-namespace KGzocha\DoctrineSearcher\FilterImposer;
+namespace KGzocha\Searcher\FilterImposer;
 
 use KGzocha\DoctrineSearcher\QueryBuilderSearchingContext;
 use KGzocha\Searcher\Context\SearchingContextInterface;
