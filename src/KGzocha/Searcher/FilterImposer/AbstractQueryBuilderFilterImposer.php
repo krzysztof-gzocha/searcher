@@ -2,9 +2,8 @@
 
 namespace KGzocha\Searcher\FilterImposer;
 
-use KGzocha\DoctrineSearcher\QueryBuilderSearchingContext;
+use KGzocha\Searcher\Context\QueryBuilderSearchingContext;
 use KGzocha\Searcher\Context\SearchingContextInterface;
-use KGzocha\Searcher\FilterImposer\FilterImposerInterface;
 
 /**
  * Filter imposers that requires {@link QueryBuilderSearchingContext}
