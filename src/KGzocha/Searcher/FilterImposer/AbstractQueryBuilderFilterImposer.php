@@ -2,6 +2,8 @@
 
 namespace KGzocha\Searcher\FilterImposer;
 
+use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\QueryBuilder;
 use KGzocha\Searcher\Context\QueryBuilderSearchingContext;
 use KGzocha\Searcher\Context\SearchingContextInterface;
 
@@ -22,5 +24,39 @@ abstract class AbstractQueryBuilderFilterImposer implements
         SearchingContextInterface $searchingContext
     ) {
         return $searchingContext instanceof QueryBuilderSearchingContext;
+    }
+
+    /**
+     * Will do JOIN only if there is no such join already.
+     *
+     * @param QueryBuilder $queryBuilder
+     * @param string $join
+     * @param string $alias
+     *
+     * @return QueryBuilder
+     */
+    protected function join(QueryBuilder $queryBuilder, $join, $alias)
+    {
+        list($entity) = explode('.', $join);
+
+        $joinParts = $queryBuilder->getDQLPart('join');
+        if (!array_key_exists($entity, $joinParts)) {
+            return $queryBuilder->join($join, $alias);
+        }
+
+        $joinParts = $joinParts[$entity];
+        $existingJoin = array_filter(
+            $joinParts,
+            function (Join $joinObj) use ($alias, $join) {
+                return $joinObj->getAlias() == $alias
+                && $joinObj->getJoin() == $join;
+            }
+        );
+
+        if ([] != $existingJoin) {
+            return $queryBuilder;
+        }
+
+        return $queryBuilder->join($join, $alias);
     }
 }
