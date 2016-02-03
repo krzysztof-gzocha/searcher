@@ -4,8 +4,15 @@ namespace KGzocha\Searcher\Test\Model\FilterModel;
 
 use KGzocha\Searcher\Model\FilterModel\TextFilterModel;
 
-class TextFilterModelTest extends \PHPUnit_Framework_TestCase
+class TextFilterModelTest extends AbstractFilterModelTestCase
 {
+    public function testIfImplementsInterface()
+    {
+        $this->checkIfImplementsInterface(
+            $this->getTextFilterModel()
+        );
+    }
+
     public function testImposedMethodWithoutValue()
     {
         $this->assertFalse($this->getTextFilterModel()->isImposed());
@@ -32,11 +39,9 @@ class TextFilterModelTest extends \PHPUnit_Framework_TestCase
             ['ab', true],
             ['some longer text', true],
             ['1', true],
-            ['[]', true],
-
+            [1.23, true],
             ['', false],
             [null, false],
-            [new \stdClass, false],
         ];
     }
 

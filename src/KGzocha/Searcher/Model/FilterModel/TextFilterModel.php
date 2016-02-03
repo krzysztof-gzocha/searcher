@@ -24,7 +24,7 @@ class TextFilterModel implements FilterModelInterface
      */
     public function setText($text)
     {
-        $this->text = $text;
+        $this->text = (string) $text;
 
         return $this;
     }
@@ -34,6 +34,6 @@ class TextFilterModel implements FilterModelInterface
      */
     public function isImposed()
     {
-        return is_string($this->text) && 0 < mb_strlen($this->text);
+        return $this->text !== null && 0 < mb_strlen($this->text);
     }
 }
