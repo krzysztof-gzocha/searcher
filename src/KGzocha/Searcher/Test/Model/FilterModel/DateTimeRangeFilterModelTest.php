@@ -5,37 +5,28 @@ namespace KGzocha\Searcher\Test\Model\FilterModel;
 
 use KGzocha\Searcher\Model\FilterModel\DateTimeRangeFilterModel;
 
-class DateTimeRangeFilterModelTest extends \PHPUnit_Framework_TestCase
+class DateTimeRangeFilterModelTest extends AbstractFilterModelTestCase
 {
     public function testImposedMethodWithoutValues()
     {
         $this->assertFalse($this->getDateTimeRangeFilterModel()->isImposed());
     }
 
-    /**
-     * @dataProvider dateTimeProvider
-     */
-    public function testImposedMethod($startingValue, $endingValue, $expectedResult)
-    {
-        $this->assertEquals(
+    public function testImposedMethod() {
+        $this->assertTrue(
             $this
                 ->getDateTimeRangeFilterModel()
-                ->setStartingDateTime($startingValue)
-                ->setEndingDateTime($endingValue)
-                ->isImposed(),
-            $expectedResult
+                ->setStartingDateTime(new \DateTime())
+                ->setEndingDateTime(new \DateTime())
+                ->isImposed()
         );
     }
 
-    /**
-     * @return array
-     */
-    public function dateTimeProvider()
+    public function testIfImplementsInterface()
     {
-        return [
-            [new \DateTime(), new \DateTime(), true],
-            [new CustomDateTime(), new CustomDateTime(), true],
-        ];
+        $this->checkIfImplementsInterface(
+            $this->getDateTimeRangeFilterModel()
+        );
     }
 
     /**
