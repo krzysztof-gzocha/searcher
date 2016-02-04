@@ -2,12 +2,8 @@
 
 namespace KGzocha\Searcher\Test\Searcher;
 
-use KGzocha\Searcher\Context\SearchingContextInterface;
-use KGzocha\Searcher\Event\Dispatcher\EventDispatcher;
 use KGzocha\Searcher\FilterImposer\Collection\FilterImposerCollection;
-use KGzocha\Searcher\FilterImposer\FilterImposerInterface;
 use KGzocha\Searcher\Model\FilterModel\Collection\FilterModelCollection;
-use KGzocha\Searcher\Model\FilterModel\FilterModelInterface;
 use KGzocha\Searcher\Searcher\Searcher;
 
 /**
@@ -27,7 +23,7 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
             $this->getFilterImposer(false, $numberOfModels),
             $this->getFilterImposer(true, $numberOfModels),
             $this->getFilterImposer(false, $numberOfModels),
-        ]), new EventDispatcher());
+        ]));
 
         $results = [1, 2, 3, 4];
         $result = $searcher->search(
