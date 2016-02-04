@@ -27,12 +27,13 @@ class DateTimeRangeFilterModel implements FilterModelInterface
     }
 
     /**
-     * @param \DateTime $startingDateTime
+     * @param \DateTime|null $startingDateTime
      *
      * @return DateTimeRangeFilterModel
      */
-    public function setStartingDateTime(\DateTime $startingDateTime)
-    {
+    public function setStartingDateTime(
+        \DateTime $startingDateTime = null
+    ) {
         $this->startingDateTime = $startingDateTime;
 
         return $this;
@@ -47,12 +48,13 @@ class DateTimeRangeFilterModel implements FilterModelInterface
     }
 
     /**
-     * @param \DateTime $endingDateTime
+     * @param \DateTime|null $endingDateTime
      *
      * @return DateTimeRangeFilterModel
      */
-    public function setEndingDateTime(\DateTime $endingDateTime)
-    {
+    public function setEndingDateTime(
+        \DateTime $endingDateTime = null
+    ) {
         $this->endingDateTime = $endingDateTime;
 
         return $this;

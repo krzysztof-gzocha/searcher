@@ -22,11 +22,11 @@ class DateTimeFilterModel implements FilterModelInterface
     }
 
     /**
-     * @param \DateTime $dateTime
+     * @param \DateTime|null $dateTime
      *
      * @return DateTimeFilterModel
      */
-    public function setDateTime(\DateTime $dateTime)
+    public function setDateTime(\DateTime $dateTime = null)
     {
         $this->dateTime = $dateTime;
 
