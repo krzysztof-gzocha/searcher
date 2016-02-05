@@ -5,6 +5,13 @@
 It's basic idea is to split each searching *filter* to separate class.
 Supported PHP versions: >=5.4, 7 and HHVM.
 
+### Why?
+Did you ever seen code responsible for searching some entities basing on many different criteria? It can be quite a mess!
+Imagine that you have a form with 20 fields and all of them have their impact on searching conditions.
+It's maybe not a great idea to pass whole form to some service at let it parse everything in one place. 
+Thanks to this library you can split the responsibility of imposing conditions to several smaller classes. One class per model (field). In this way in one `FilterImposer` you only care for one `FilterModel`, which makes it a lot more readable.
+You can later use exactly the same `FilterModel` for different search, with different `FilterImposer` and different `SearchingContext` which will use different database.
+
 ### Installation
 You can install the library via composer by typing:
 ```
