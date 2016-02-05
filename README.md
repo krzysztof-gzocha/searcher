@@ -5,6 +5,12 @@
 It's basic idea is to split each searching *filter* to separate class.
 Supported PHP versions: >=5.4, 7 and HHVM.
 
+### Installation
+You can install the library via composer by typing:
+```
+composer require krzysztof-gzocha/searcher
+```
+
 ### Integration
 Integration with Symfony is done in [SearcherBundle](https://github.com/krzysztof-gzocha/searcher-bundle)
 
