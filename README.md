@@ -75,7 +75,7 @@ class AgeRangeFilterImposer implements FilterImposerInterface
     }
 
     /**
-    * You can skip this method if you will extends from QueryBuilderFilterImposer.
+    * You can skip this method if you will extend from QueryBuilderFilterImposer.
     */
     public function supportsSearchingContext(
         SearchingContextInterface $searchingContext
