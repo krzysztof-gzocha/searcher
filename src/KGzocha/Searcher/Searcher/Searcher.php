@@ -34,9 +34,7 @@ class Searcher implements SearcherInterface
             $this->searchForModel($filterModel, $searchingContext);
         }
 
-        $searchingResults = $searchingContext->getResults();
-
-        return $searchingResults;
+        return $searchingContext->getResults();
     }
 
     /**
