@@ -35,4 +35,5 @@
         </exec>
     </target>
 
+    <target name="ci" depends="run-tests,phpmd" />
 </project>

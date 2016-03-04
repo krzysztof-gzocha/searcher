@@ -1,8 +1,9 @@
 <?php
 
-namespace KGzocha\Searcher\Context;
+namespace KGzocha\Searcher\Context\Doctrine;
 
 use Doctrine\ODM\MongoDB\Query\Builder;
+use KGzocha\Searcher\Context\AbstractSearchingContext;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
