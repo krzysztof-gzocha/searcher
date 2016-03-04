@@ -1,6 +1,6 @@
 <?php
 
-namespace KGzocha\Searcher\Context;
+namespace KGzocha\Searcher\Context\Doctrine;
 
 use Doctrine\ORM\QueryBuilder;
 use KGzocha\Searcher\Context\AbstractSearchingContext;
