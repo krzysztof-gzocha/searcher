@@ -1,11 +1,12 @@
 <?php
 
-namespace KGzocha\Searcher\FilterImposer;
+namespace KGzocha\Searcher\FilterImposer\Doctrine;
 
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
-use KGzocha\Searcher\Context\QueryBuilderSearchingContext;
+use KGzocha\Searcher\Context\Doctrine\QueryBuilderSearchingContext;
 use KGzocha\Searcher\Context\SearchingContextInterface;
+use KGzocha\Searcher\FilterImposer\FilterImposerInterface;
 
 /**
  * Filter imposers that requires {@link QueryBuilderSearchingContext}
