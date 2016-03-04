@@ -9,7 +9,8 @@ php:
   - nightly
 
 before_script:
-  - composer install --ignore-platform-reqs --dev --prefer-source --no-interaction
+  - composer self-update
+  - composer install --ignore-platform-reqs --dev --prefer-dist --no-interaction
 
 script:
   - bin/phing ci
