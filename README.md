@@ -115,3 +115,10 @@ All ideas and pull requests are welcomed and appreciated :)
 
 ### Development
 Command to run test: `bin/phing`
+
+### Thanks to
+In alphabetical order
+- https://github.com/chkris 
+- https://github.com/pawelhertman 
+- https://github.com/ustrugany 
+- https://github.com/wojciech-olszewski
