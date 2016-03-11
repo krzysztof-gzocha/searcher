@@ -8,8 +8,11 @@ php:
   - hhvm
   - nightly
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+
 before_script:
-  - composer self-update
   - composer install --ignore-platform-reqs --dev --prefer-dist --no-interaction
 
 script:
