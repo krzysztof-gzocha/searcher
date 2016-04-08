@@ -3,7 +3,6 @@
 namespace KGzocha\Searcher\Test\Context\Elastica;
 
 use Elastica\Query;
-use Elastica\ResultSet;
 use Elastica\Search;
 use KGzocha\Searcher\Context\Elastica\QuerySearchingContext;
 
@@ -21,12 +20,12 @@ class QuerySearchingContextTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertInstanceOf(
-            Query::class,
+            '\Elastica\Query',
             $context->getQueryBuilder()
         );
 
         $this->assertInstanceOf(
-            ResultSet::class,
+            '\Elastica\ResultSet',
             $context->getResults()
         );
 
@@ -47,12 +46,12 @@ class QuerySearchingContextTest extends \PHPUnit_Framework_TestCase
     private function getSearchMock()
     {
         $search = $this
-            ->getMockBuilder(Search::class)
+            ->getMockBuilder('\Elastica\Search')
             ->disableOriginalConstructor()
             ->getMock();
 
         $resultSet = $this
-            ->getMockBuilder(ResultSet::class)
+            ->getMockBuilder('\Elastica\ResultSet')
             ->disableOriginalConstructor()
             ->getMock();
 
