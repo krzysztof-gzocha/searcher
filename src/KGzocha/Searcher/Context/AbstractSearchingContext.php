@@ -35,6 +35,9 @@ abstract class AbstractSearchingContext implements SearchingContextInterface
     abstract public function getResults();
 
     /**
+     * Please be noticed that this method can return not only QueryBuilder, but different
+     * classes depending on SearchingContext implementation.
+     *
      * @return mixed
      */
     public function getQueryBuilder()

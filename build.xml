@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="KGzocha\Searcher" default="run-tests">
+<project name="KGzocha\Searcher" default="ci">
 
     <target name="cs-fix">
         <exec command="./bin/php-cs-fixer fix src/"/>

@@ -6,6 +6,8 @@ use Doctrine\ODM\MongoDB\Query\Builder;
 use KGzocha\Searcher\Context\AbstractSearchingContext;
 
 /**
+ * Use this searching context to search through records using Doctrine's ODM
+ *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  * @package KGzocha\Searcher\Context
  */

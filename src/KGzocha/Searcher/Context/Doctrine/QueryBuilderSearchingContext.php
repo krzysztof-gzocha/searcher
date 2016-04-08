@@ -15,14 +15,6 @@ use KGzocha\Searcher\Context\AbstractSearchingContext;
 class QueryBuilderSearchingContext extends AbstractSearchingContext
 {
     /**
-     * @inheritDoc
-     */
-    public function __construct(QueryBuilder $queryBuilder)
-    {
-        parent::__construct($queryBuilder);
-    }
-
-    /**
      * @return QueryBuilder
      */
     public function getQueryBuilder()
