@@ -9,7 +9,8 @@
     ],
     "suggest": {
         "doctrine/orm": "to use with Doctrine's ORM",
-        "doctrine/mongodb-odm": "to use with Doctrine's ODM"
+        "doctrine/mongodb-odm": "to use with Doctrine's ODM",
+        "ruflin/elastica": "to use with ruflin/elastica"
     },
     "config": {
         "bin-dir": "bin",
@@ -29,6 +30,7 @@
         "phing/phing": "^2.13@dev",
         "phpmd/phpmd": "dev-master",
         "doctrine/orm": "^2.0",
-        "doctrine/mongodb-odm": "^1.0"
+        "doctrine/mongodb-odm": "^1.0",
+        "ruflin/elastica": "^3.1"
     }
 }
