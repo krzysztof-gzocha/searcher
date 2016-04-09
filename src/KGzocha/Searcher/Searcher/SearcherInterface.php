@@ -8,10 +8,8 @@ interface SearcherInterface
 {
     /**
      * @param FilterModelCollectionInterface $filterCollection
-     * @param SearchingContextInterface $searchingContext
      */
     public function search(
-        FilterModelCollectionInterface $filterCollection,
-        SearchingContextInterface $searchingContext
+        FilterModelCollectionInterface $filterCollection
     );
 }

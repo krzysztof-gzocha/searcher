@@ -15,6 +15,8 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
     public function testSearchMethod()
     {
         $numberOfModels = 1;
+        $results = [1, 2, 3, 4];
+
         $searcher = new Searcher(new FilterImposerCollection([
             $this->getFilterImposer(false, $numberOfModels),
             $this->getFilterImposer(false, $numberOfModels),
@@ -23,12 +25,10 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
             $this->getFilterImposer(false, $numberOfModels),
             $this->getFilterImposer(true, $numberOfModels),
             $this->getFilterImposer(false, $numberOfModels),
-        ]));
+        ]), $this->getSearchingContext($results));
 
-        $results = [1, 2, 3, 4];
         $result = $searcher->search(
-            $this->getFilterModelCollection($numberOfModels),
-            $this->getSearchingContext($results)
+            $this->getFilterModelCollection($numberOfModels)
         );
 
         $this->assertEquals($results, $result);
@@ -86,7 +86,7 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
     /**
      * @param $result
      *
-     * @return \PHPUnit_Framework_MockObject_MockObject
+     * @return \KGzocha\Searcher\Context\SearchingContextInterface|\PHPUnit_Framework_MockObject_MockObject
      */
     private function getSearchingContext($result)
     {

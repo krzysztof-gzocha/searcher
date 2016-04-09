@@ -106,8 +106,8 @@ Now we would like to create our `SearchingContext` and populate it with QueryBui
 ```php
 $context  = new QueryBuilderSearchingContext($queryBuilder);
 
-$searcher = new Searcher($imposers);
-$searcher->results($models, $context); // Yay, we have our results!
+$searcher = new Searcher($imposers, $context);
+$searcher->results($models); // Yay, we have our results!
 ```
 
 ### Contributing
