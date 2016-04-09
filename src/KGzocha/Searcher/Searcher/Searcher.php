@@ -15,26 +15,33 @@ class Searcher implements SearcherInterface
     private $imposerCollection;
 
     /**
+     * @var SearchingContextInterface
+     */
+    private $searchingContext;
+
+    /**
      * @param FilterImposerCollectionInterface $imposerCollection
+     * @param SearchingContextInterface $searchingContext
      */
     public function __construct(
-        FilterImposerCollectionInterface $imposerCollection
+        FilterImposerCollectionInterface $imposerCollection,
+        SearchingContextInterface $searchingContext
     ) {
         $this->imposerCollection = $imposerCollection;
+        $this->searchingContext = $searchingContext;
     }
 
     /**
      * @inheritdoc
      */
     public function search(
-        FilterModelCollectionInterface $filterCollection,
-        SearchingContextInterface $searchingContext
+        FilterModelCollectionInterface $filterCollection
     ) {
         foreach ($filterCollection->getImposedModels() as $filterModel) {
-            $this->searchForModel($filterModel, $searchingContext);
+            $this->searchForModel($filterModel, $this->searchingContext);
         }
 
-        return $searchingContext->getResults();
+        return $this->searchingContext->getResults();
     }
 
     /**
