@@ -1,6 +1,7 @@
 {
     "name": "krzysztof-gzocha/searcher",
     "description": "Library which allows to construct complex queries basing on models",
+    "license": "MIT",
     "type": "library",
     "authors": [
         {
