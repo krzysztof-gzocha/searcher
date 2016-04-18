@@ -7,7 +7,7 @@
 
     <target name="run-tests">
         <exec executable="bin/phpunit" checkreturn="true" passthru="true">
-            <arg value="src/KGzocha/Searcher/Test/"/>
+            <arg value="tests/"/>
         </exec>
     </target>
 

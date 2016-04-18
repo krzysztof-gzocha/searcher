@@ -20,7 +20,8 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "KGzocha\\Searcher\\": "src/KGzocha/Searcher",
+            "KGzocha\\Searcher\\Test\\": "tests"
         }
     },
     "require":{
