@@ -7,20 +7,20 @@
 
     <target name="run-tests">
         <exec executable="bin/phpunit" checkreturn="true" passthru="true">
-            <arg value="src/KGzocha/Searcher/Test/"/>
+            <arg value="tests/"/>
         </exec>
     </target>
 
     <target name="coverage-html">
         <exec executable="./bin/phpunit" checkreturn="false" passthru="false">
-            <arg value="src/KGzocha/Searcher/Test"/>
+            <arg value="tests/"/>
             <arg value="--coverage-html=coverage"/>
         </exec>
     </target>
 
     <target name="coverage-clover">
         <exec executable="./bin/phpunit" checkreturn="false" passthru="false">
-            <arg value="src/KGzocha/Searcher/Test"/>
+            <arg value="tests/"/>
             <arg value="--coverage-clover=coverage.clover"/>
         </exec>
     </target>
@@ -31,7 +31,7 @@
             <arg value="text"/>
             <arg value="cleancode,codesize,controversial,design,unusedcode"/>
             <arg value="--exclude"/>
-            <arg value="src/KGzocha/Searcher/Test"/>
+            <arg value="tests/"/>
         </exec>
     </target>
 
