@@ -2,6 +2,7 @@
 
 namespace KGzocha\Searcher\Test\Model\Result;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use KGzocha\Searcher\Model\Result\ResultCollection;
 
 /**
@@ -31,7 +32,9 @@ class ResultCollectionTest extends \PHPUnit_Framework_TestCase
             [[1, 2, 3], 3],
             [[1, 2, 3, 4, 5], 5],
             [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10],
-            [[], 0]
+            [[], 0],
+            [new ArrayCollection([]), 0],
+            [new ArrayCollection([1, 2, 3]), 3],
         ];
     }
 
@@ -75,5 +78,13 @@ class ResultCollectionTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertEquals(3, $i);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testWrongArguments()
+    {
+        new ResultCollection(new \stdClass());
     }
 }
