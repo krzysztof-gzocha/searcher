@@ -6,6 +6,7 @@ use KGzocha\Searcher\Context\SearchingContextInterface;
 use KGzocha\Searcher\FilterImposer\Collection\FilterImposerCollectionInterface;
 use KGzocha\Searcher\Model\FilterModel\Collection\FilterModelCollectionInterface;
 use KGzocha\Searcher\Model\FilterModel\FilterModelInterface;
+use KGzocha\Searcher\Model\Result\ResultCollection;
 
 class Searcher implements SearcherInterface
 {
@@ -41,7 +42,17 @@ class Searcher implements SearcherInterface
             $this->searchForModel($filterModel, $this->searchingContext);
         }
 
-        return $this->searchingContext->getResults();
+        return $this->wrapResults($this->searchingContext->getResults());
+    }
+
+    /**
+     * @param mixed $results
+     *
+     * @return ResultCollection
+     */
+    protected function wrapResults($results)
+    {
+        return new ResultCollection($results);
     }
 
     /**

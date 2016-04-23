@@ -31,7 +31,7 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
             $this->getFilterModelCollection($numberOfModels)
         );
 
-        $this->assertEquals($results, $result);
+        $this->assertEquals($results, $result->getResults());
     }
 
     /**
