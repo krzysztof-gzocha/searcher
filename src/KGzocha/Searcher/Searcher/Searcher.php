@@ -42,7 +42,17 @@ class Searcher implements SearcherInterface
             $this->searchForModel($filterModel, $this->searchingContext);
         }
 
-        return new ResultCollection($this->searchingContext->getResults());
+        return $this->wrapResults($this->searchingContext->getResults());
+    }
+
+    /**
+     * @param mixed $results
+     *
+     * @return ResultCollection
+     */
+    protected function wrapResults($results)
+    {
+        return new ResultCollection($results);
     }
 
     /**
