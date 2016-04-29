@@ -31,7 +31,7 @@ Integration with Symfony is done in **[SearcherBundle](https://github.com/krzysz
 Let's say we want to search for **people** whose **age** is in some filterd range.
 In this example we will use Doctrine's QueryBuilder, so we will use `QueryBuilderSearchingContext` and will specify in `FilterImposer` that it should interact only with `Doctrine\ORM\QueryBuilder`, but we do **not** have to use only Doctrine.
 
-First of all we would need to create `AgeRangeFilterModel` - the class that will holds values of minimal and maximal age.
+First of all we would need to create `AgeRangeFilterModel` - the class that will holds values of minimal and maximal age. There are already implemented default FilterModels in [here](https://github.com/krzysztof-gzocha/searcher/tree/master/src/KGzocha/Searcher/Model/FilterModel).
 ```php
 class AgeRangeFilterModel implements FilterModelInterface
 {
@@ -109,6 +109,32 @@ $context  = new QueryBuilderSearchingContext($queryBuilder);
 $searcher = new Searcher($imposers, $context);
 $searcher->results($models); // Yay, we have our results!
 ```
+### Order
+In order to sort your results you can make use of already implemented FilterModel. You don't need to implement it from scratch. Keep in mind that you still need to implement your FilterImposer for it (this feature is still under development).  Let's say you want to order your results and you need value `p.id` in your FilterImposer to do it, but you would like to show it as `pid` to end-user. Nothing simpler!
+This is how you can create FilterModel:
+```php
+$mappedFields = ['pid' => 'p.id', 'valueForUser' => 'valueForImposer'];
+$model = new MappedOrderByAdapter(
+    new OrderByFilterModel('pid'),
+    $mappedFields
+);
+// $model->getMappedOrderBy() = 'p.id'
+// $model->getOrderBy() = 'pid'
+```
+Of course you don't need to use `MappedOrderByAdapter` - you can use just `OrderByFilterModel`, but then user will know exactly what fields are beeing used to sort.
+### Pagination
+FilterModel for pagination is also implemented and you don't need to do it, but keep in mind that you still need to implement FilterImposer that will make use of this FilterModel and do actual pagination (this feature is under development).
+Let's say you want to allow your end-user to change pages, but not number of items per page.
+You can use this example code:
+```php
+$model = new ImmutablePaginationAdapter(
+  new PaginationFilterModel($page = 1, $itemsPerPage = 50)
+);
+// $model->setItemsPerPage(250);    <- use can try to change it
+// $model->getItemsPerPage() = 50   <- but he can't actualy do it
+// $model->getPage() = 1
+```
+Of course if you want to allow user to change number of items per page also you can skip the `ImmutablePaginationAdapter` and use just `PaginationFilterModel`.
 
 ### Contributing
 All ideas and pull requests are welcomed and appreciated :)
