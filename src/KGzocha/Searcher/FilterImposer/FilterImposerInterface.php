@@ -3,7 +3,7 @@
 namespace KGzocha\Searcher\FilterImposer;
 
 use KGzocha\Searcher\Context\SearchingContextInterface;
-use KGzocha\Searcher\Model\FilterModel\FilterModelInterface;
+use KGzocha\Searcher\FilterModel\FilterModelInterface;
 
 interface FilterImposerInterface
 {

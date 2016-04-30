@@ -4,9 +4,9 @@ namespace KGzocha\Searcher\Searcher;
 
 use KGzocha\Searcher\Context\SearchingContextInterface;
 use KGzocha\Searcher\FilterImposer\Collection\FilterImposerCollectionInterface;
-use KGzocha\Searcher\Model\FilterModel\Collection\FilterModelCollectionInterface;
-use KGzocha\Searcher\Model\FilterModel\FilterModelInterface;
-use KGzocha\Searcher\Model\Result\ResultCollection;
+use KGzocha\Searcher\FilterModel\Collection\FilterModelCollectionInterface;
+use KGzocha\Searcher\FilterModel\FilterModelInterface;
+use KGzocha\Searcher\Result\ResultCollection;
 
 class Searcher implements SearcherInterface
 {
