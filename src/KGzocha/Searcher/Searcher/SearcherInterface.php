@@ -1,8 +1,8 @@
 <?php
 namespace KGzocha\Searcher\Searcher;
 
-use KGzocha\Searcher\Model\FilterModel\Collection\FilterModelCollectionInterface;
-use KGzocha\Searcher\Model\Result\ResultCollectionInterface;
+use KGzocha\Searcher\FilterModel\Collection\FilterModelCollectionInterface;
+use KGzocha\Searcher\Result\ResultCollectionInterface;
 
 interface SearcherInterface
 {
