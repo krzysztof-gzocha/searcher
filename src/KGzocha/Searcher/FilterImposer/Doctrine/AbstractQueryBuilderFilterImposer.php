@@ -45,7 +45,28 @@ abstract class AbstractQueryBuilderFilterImposer implements
             return $queryBuilder->join($join, $alias);
         }
 
-        $joinParts = $joinParts[$entity];
+        return $this->filterExistingJoins(
+            $queryBuilder,
+            $joinParts[$entity],
+            $alias,
+            $join
+        );
+    }
+
+    /**
+     * @param QueryBuilder $queryBuilder
+     * @param mixed        $joinParts
+     * @param string       $alias
+     * @param string       $join
+     *
+     * @return QueryBuilder|static
+     */
+    protected function filterExistingJoins(
+        QueryBuilder $queryBuilder,
+        $joinParts,
+        $alias,
+        $join
+    ) {
         $existingJoin = array_filter(
             $joinParts,
             function(Join $joinObj) use ($alias, $join) {
