@@ -19,7 +19,7 @@
     </target>
 
     <target name="coverage-clover">
-        <exec executable="./bin/phpunit" checkreturn="false" passthru="false">
+        <exec executable="./bin/phpunit" checkreturn="true" passthru="true">
             <arg value="tests/"/>
             <arg value="--coverage-clover=coverage.clover"/>
         </exec>
@@ -35,5 +35,5 @@
         </exec>
     </target>
 
-    <target name="ci" depends="run-tests,phpmd" />
+    <target name="ci" depends="coverage-clover,phpmd" />
 </project>
