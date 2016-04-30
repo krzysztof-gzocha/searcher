@@ -26,6 +26,19 @@ class MappedOrderByAdapterTest extends OrderByFilterModelTest
         $this->assertEquals('thisIsHiddenFromUser', $model->getMappedOrderBy());
     }
 
+    public function testRawValueOutOfMappedFields()
+    {
+        $model = $this->getFilterModel();
+        $model->setOrderBy('someValueOutOfRange');
+        $this->assertNull($model->getMappedOrderBy());
+    }
+
+    public function testAccessToFieldMap()
+    {
+        $model = $this->getFilterModel();
+        $this->assertEquals($this->getMappedFields(), $model->getFieldsMap());
+    }
+
     /**
      * @inheritDoc
      */
