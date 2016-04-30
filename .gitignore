@@ -3,3 +3,4 @@ vendor/
 .idea/
 coverage/
 coverage.clover
+ocular.phar
