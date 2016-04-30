@@ -51,7 +51,7 @@ class FilterImposerCollection implements FilterImposerCollectionInterface
     ) {
         return array_filter(
             $this->getFilterImposers(),
-            function (FilterImposerInterface $imposer) use ($searchingContext) {
+            function(FilterImposerInterface $imposer) use ($searchingContext) {
                 return $imposer->supportsSearchingContext($searchingContext);
             }
         );

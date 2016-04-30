@@ -48,7 +48,7 @@ abstract class AbstractQueryBuilderFilterImposer implements
         $joinParts = $joinParts[$entity];
         $existingJoin = array_filter(
             $joinParts,
-            function (Join $joinObj) use ($alias, $join) {
+            function(Join $joinObj) use ($alias, $join) {
                 return $joinObj->getAlias() == $alias
                 && $joinObj->getJoin() == $join;
             }

@@ -31,7 +31,7 @@ class FilterModelCollection implements FilterModelCollectionInterface
     {
         return array_filter(
             $this->getFilterModels(),
-            function (FilterModelInterface $filterModel) {
+            function(FilterModelInterface $filterModel) {
                 return $filterModel->isImposed();
             }
         );
