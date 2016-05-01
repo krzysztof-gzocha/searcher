@@ -3,7 +3,7 @@
 namespace KGzocha\Searcher\Test\Searcher;
 
 use KGzocha\Searcher\FilterImposer\Collection\FilterImposerCollection;
-use KGzocha\Searcher\Model\FilterModel\Collection\FilterModelCollection;
+use KGzocha\Searcher\FilterModel\Collection\FilterModelCollection;
 use KGzocha\Searcher\Searcher\Searcher;
 
 /**
@@ -108,7 +108,7 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
     {
         $model = $this
             ->getMockBuilder(
-                '\KGzocha\Searcher\Model\FilterModel\FilterModelInterface'
+                '\KGzocha\Searcher\FilterModel\FilterModelInterface'
             )
             ->getMock();
 

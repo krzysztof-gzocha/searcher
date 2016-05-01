@@ -31,7 +31,7 @@ Integration with Symfony is done in **[SearcherBundle](https://github.com/krzysz
 Let's say we want to search for **people** whose **age** is in some filterd range.
 In this example we will use Doctrine's QueryBuilder, so we will use `QueryBuilderSearchingContext` and will specify in `FilterImposer` that it should interact only with `Doctrine\ORM\QueryBuilder`, but we do **not** have to use only Doctrine.
 
-First of all we would need to create `AgeRangeFilterModel` - the class that will holds values of minimal and maximal age. There are already implemented default FilterModels in [here](https://github.com/krzysztof-gzocha/searcher/tree/master/src/KGzocha/Searcher/Model/FilterModel).
+First of all we would need to create `AgeRangeFilterModel` - the class that will holds values of minimal and maximal age. There are already implemented default FilterModels in [here](https://github.com/krzysztof-gzocha/searcher/tree/master/src/KGzocha/Searcher/FilterModel).
 ```php
 class AgeRangeFilterModel implements FilterModelInterface
 {
