@@ -6,6 +6,7 @@
     </target>
 
     <target name="run-tests">
+        <echo message="If tests are failing due to lack of some class please run install-dev-deps or ci"/>
         <exec executable="bin/phpunit" checkreturn="true" passthru="true">
             <arg value="tests/"/>
         </exec>
@@ -25,6 +26,25 @@
         </exec>
     </target>
 
+    <target name="install-dev-deps">
+        <copy file="composer.json" tofile="composer.json.original" overwrite="true"/>
+        <copy file="composer.lock" tofile="composer.lock.original" overwrite="true"/>
+        <exec executable="composer" checkreturn="true" passthru="true">
+            <arg value="require"/>
+            <arg value="doctrine/orm"/>
+            <arg value="doctrine/mongodb-odm"/>
+            <arg value="ruflin/elastica"/>
+            <arg value="--dev"/>
+            <arg value="--ignore-platform-reqs"/>
+        </exec>
+        <delete file="composer.json"/>
+        <move file="composer.json.original" tofile="composer.json" overwrite="true"/>
+        <delete file="composer.lock"/>
+        <move file="composer.lock.original" tofile="composer.lock" overwrite="true"/>
+        <delete file="composer.json.original" failonerror="false" quiet="true"/>
+        <delete file="composer.lock.original" failonerror="false" quiet="true"/>
+    </target>
+
     <target name="phpmd">
         <exec executable="./bin/phpmd" checkreturn="true" passthru="true">
             <arg value="src/"/>
@@ -35,5 +55,5 @@
         </exec>
     </target>
 
-    <target name="ci" depends="coverage-clover,phpmd" />
+    <target name="ci" depends="install-dev-deps,coverage-clover,phpmd" />
 </project>
