@@ -10,6 +10,11 @@ php:
   - nightly
 
 matrix:
+  include:
+    - php: 5.4
+      env: deps=low
+    - php: 7.0
+      env: deps=low
   fast_finish: true
   allow_failures:
     - php: nightly
@@ -19,7 +24,8 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
-  - composer install --ignore-platform-reqs --dev --prefer-dist --no-interaction
+  - if [ -z "$deps" ]; then composer install --ignore-platform-reqs --dev --prefer-source --no-interaction; fi;
+  - if [ "$deps" == "low" ]; then composer update --ignore-platform-reqs --prefer-lowest --prefer-stable --no-interaction; fi;
 
 script:
   - composer test
