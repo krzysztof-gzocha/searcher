@@ -140,7 +140,7 @@ Of course if you want to allow user to change number of items per page also you 
 All ideas and pull requests are welcomed and appreciated :)
 
 ### Development
-Command to run test: `bin/phing`
+Command to run test: `composer test`
 
 ### Thanks to
 In alphabetical order
