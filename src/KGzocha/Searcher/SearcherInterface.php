@@ -1,5 +1,5 @@
 <?php
-namespace KGzocha\Searcher\Searcher;
+namespace KGzocha\Searcher;
 
 use KGzocha\Searcher\FilterModel\Collection\FilterModelCollectionInterface;
 use KGzocha\Searcher\Result\ResultCollectionInterface;
