@@ -4,3 +4,5 @@ vendor/
 coverage/
 coverage.clover
 ocular.phar
+composer.lock
+
