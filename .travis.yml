@@ -22,10 +22,10 @@ before_script:
   - composer install --ignore-platform-reqs --dev --prefer-dist --no-interaction
 
 script:
-  - bin/phing ci
-  - sh -c 'if [ "${TRAVIS_PHP_VERSION}" == "7.0" ]; then bin/phing phpmd; fi;'
+  - composer test
+  - if [ "${TRAVIS_PHP_VERSION}" == "7.0" ]; then composer phpmd; fi;
 
 after_script:
   - echo $TRAVIS_PHP_VERSION
-  - sh -c 'if [ "${TRAVIS_PHP_VERSION}" == "7.0" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi;'
-  - sh -c 'if [ "${TRAVIS_PHP_VERSION}" == "7.0" ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi;'
+  - if [ "${TRAVIS_PHP_VERSION}" == "7.0" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi;
+  - if [ "${TRAVIS_PHP_VERSION}" == "7.0" ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi;
