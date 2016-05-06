@@ -10,7 +10,7 @@ Did you ever seen code responsible for searching some entities basing on many di
 Imagine that you have a form with 20 fields and all of them have their impact on searching conditions.
 It's maybe not a great idea to pass whole form to some service at let it parse everything in one place. 
 Thanks to this library you can split the responsibility of imposing conditions to several smaller classes. One class per model (field). In this way in one `FilterImposer` you only care for one `FilterModel`, which makes it a lot more readable.
-You can later use exactly the same `FilterModel` for different search, with different `FilterImposer` and different `SearchingContext` which will use different database.
+You can later use exactly the same `FilterModel` for different search, with different `FilterImposer` and different `SearchingContext` which can use different database.
 
 ### Installation
 You can install the library via composer by typing:
@@ -23,9 +23,9 @@ Integration with Symfony is done in **[SearcherBundle](https://github.com/krzysz
 
 ### Idea
  - `FilterImposer` - will *impose* new conditions for single model
- - `FilterModel` - model that will be passed to `FilterImposer`. It will be populated from (for example) user input
- - `SearchingContext` - context of single search. This service holds something called `QueryBuilder`, but it can be anything that works for you. This is an abstraction layer between search and database. There is different context for Doctrine's ORM, ODM, Elastica and so on. This service should know how to fetch results from constructed query,
- - `Searcher` - holds collection of `FilterImposer`'s and will pass `FilterModel`'s to apropriate `FilterImposer`s.
+ - `FilterModel` - model that will be passed to `FilterImposer`. It has to be populated from (for example) user input
+ - `SearchingContext` - context of single search. This service should know how to fetch results from constructed query and it holds something called `QueryBuilder`, but it can be anything that works for you. This is an abstraction layer between search and database. There is different context for Doctrine's ORM, ODM, Elastica and so on,
+ - `Searcher` - holds collection of `FilterImposer` and will pass `FilterModel` to apropriate `FilterImposer`.
 
 ### Example
 Let's say we want to search for **people** whose **age** is in some filterd range.
