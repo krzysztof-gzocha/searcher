@@ -55,5 +55,5 @@
         </exec>
     </target>
 
-    <target name="ci" depends="install-dev-deps,coverage-clover,phpmd" />
+    <target name="ci" depends="install-dev-deps,coverage-clover" />
 </project>
