@@ -109,6 +109,19 @@ $context  = new QueryBuilderSearchingContext($queryBuilder);
 $searcher = new Searcher($imposers, $context);
 $searcher->results($models); // Yay, we have our results!
 ```
+
+If there is even small chance that your QueryBuilder will return `null` when you are expecting traversable object or array then you can use `WrappedResultsSearcher` instead of normal `Searcher` class. It will act exactly the same as `Searcher`, but it will return `ResultCollection`, which will work only with array or `\Traversable` and if result will be just `null` your code will still work. Here is how it will looks like:
+```php
+$searcher = new WrappedResultsSearcher(new Searcher($imposers, $context));
+$results = $searcher->results($model);  // instance of ResultCollection
+foreach ($results as $result) {
+    // will work!
+}
+
+foreach ($results->getResults() as $result) {
+    // Since ResultCollection has method getResults(0 this will also work!
+}
+```
 ### Order
 In order to sort your results you can make use of already implemented FilterModel. You don't need to implement it from scratch. Keep in mind that you still need to implement your FilterImposer for it (this feature is still under development).  Let's say you want to order your results and you need value `p.id` in your FilterImposer to do it, but you would like to show it as `pid` to end-user. Nothing simpler!
 This is how you can create FilterModel:
