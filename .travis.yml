@@ -28,7 +28,7 @@ before_script:
   - if [ "$deps" == "low" ]; then composer update --ignore-platform-reqs --prefer-lowest --prefer-stable --no-interaction; fi;
 
 script:
-  - composer test
+  - composer coverage
   - if [ "${TRAVIS_PHP_VERSION}" == "7.0" ]; then composer phpmd; fi;
 
 after_script:

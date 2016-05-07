@@ -1,10 +1,10 @@
 <?php
 
-namespace KGzocha\Searcher\Test\Searcher;
+namespace KGzocha\Searcher\Test;
 
 use KGzocha\Searcher\FilterImposer\Collection\FilterImposerCollection;
 use KGzocha\Searcher\FilterModel\Collection\FilterModelCollection;
-use KGzocha\Searcher\Searcher\Searcher;
+use KGzocha\Searcher\Searcher;
 
 /**
  * @author Krzysztof Gzocha
@@ -31,7 +31,7 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
             $this->getFilterModelCollection($numberOfModels)
         );
 
-        $this->assertEquals($results, $result->getResults());
+        $this->assertEquals($results, $result);
     }
 
     /**
