@@ -18,8 +18,13 @@ class ResultCollection implements ResultCollectionInterface
      */
     public function __construct($results = [])
     {
-        $this->checkResults($results);
-        $this->results = $results;
+        if ($this->canUseResults($results)) {
+            $this->results = $results;
+
+            return;
+        }
+
+        $this->results = [];
     }
 
     /**
@@ -56,15 +61,10 @@ class ResultCollection implements ResultCollectionInterface
 
     /**
      * @param \Traversable|array $results
-     * @throws \InvalidArgumentException
+     * @return bool
      */
-    private function checkResults($results = [])
+    private function canUseResults($results = [])
     {
-        if (!is_array($results) && !$results instanceof \Traversable) {
-            throw new \InvalidArgumentException(sprintf(
-                'Argument passed to %s should be array of Traversable object',
-                __CLASS__
-            ));
-        }
+        return is_array($results) || $results instanceof \Traversable;
     }
 }

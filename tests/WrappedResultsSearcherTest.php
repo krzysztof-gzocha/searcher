@@ -22,25 +22,6 @@ class WrappedResultsSearcherTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(3, $results);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @dataProvider exceptionDataProvider
-     */
-    public function testException($result)
-    {
-        $searcher = new WrappedResultsSearcher($this->getSearcher($result)); // not array
-        $searcher->search(new FilterModelCollection());
-    }
-
-    public function exceptionDataProvider()
-    {
-        return [
-            [12],
-            [new \stdClass()],
-            [null]
-        ];
-    }
-
     private function getSearcher($results = [])
     {
         $searcher = $this
