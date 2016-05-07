@@ -79,12 +79,4 @@ class ResultCollectionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(3, $i);
     }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testWrongArguments()
-    {
-        new ResultCollection(new \stdClass());
-    }
 }
