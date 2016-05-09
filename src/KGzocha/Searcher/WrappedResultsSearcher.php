@@ -2,7 +2,7 @@
 
 namespace KGzocha\Searcher;
 
-use KGzocha\Searcher\FilterModel\Collection\FilterModelCollectionInterface;
+use KGzocha\Searcher\QueryCriteria\Collection\QueryCriteriaCollectionInterface;
 use KGzocha\Searcher\Result\ResultCollection;
 
 /**
@@ -27,7 +27,7 @@ class WrappedResultsSearcher implements SearcherInterface
      * @inheritDoc
      */
     public function search(
-        FilterModelCollectionInterface $filterCollection
+        QueryCriteriaCollectionInterface $filterCollection
     ) {
         return new ResultCollection(
             $this->searcher->search($filterCollection)
