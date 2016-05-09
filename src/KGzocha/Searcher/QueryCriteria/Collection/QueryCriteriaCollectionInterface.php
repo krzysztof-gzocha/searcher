@@ -5,16 +5,17 @@ namespace KGzocha\Searcher\QueryCriteria\Collection;
 use KGzocha\Searcher\QueryCriteria\QueryCriteriaInterface;
 
 /**
- * Interface FilterModelCollectionInterface
+ * Will hold all QueryCriteria that can be used in search process.
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  * @author Daniel Ribeiro <drgomesp@gmail.com>
- *
- * @package KGzocha\Searcher\FilterModelCollection
  */
 interface QueryCriteriaCollectionInterface
 {
     /**
+     * Will return array of QueryCriteriaInterface
+     * that returns true in shouldBeApplied()
+     *
      * @return QueryCriteriaInterface[]
      */
     public function getApplicableCriteria();

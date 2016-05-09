@@ -9,7 +9,6 @@ use KGzocha\Searcher\Context\AbstractSearchingContext;
  * Use this searching context to search through records using Doctrine's ODM
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\Context
  */
 class ODMBuilderSearchingContext extends AbstractSearchingContext
 {
@@ -30,6 +29,9 @@ class ODMBuilderSearchingContext extends AbstractSearchingContext
     }
 
     /**
+     * If you want to be sure that Searcher will return results as an array or \Traversable
+     * you can use already implemented WrappedResultsSearcher as an adapter.
+     *
      * @return mixed
      * @throws \Doctrine\ODM\MongoDB\MongoDBException
      */

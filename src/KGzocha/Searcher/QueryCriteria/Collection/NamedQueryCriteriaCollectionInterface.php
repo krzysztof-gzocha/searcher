@@ -5,10 +5,11 @@ namespace KGzocha\Searcher\QueryCriteria\Collection;
 use KGzocha\Searcher\QueryCriteria\QueryCriteriaInterface;
 
 /**
+ * Acts like regular QueryCriteriaCollection, but has possibility to specify key under which
+ * given QueryCriteria will be stored. Use it when you want to ensure unique models or to ease hydration.
+ *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  * @author Daniel Ribeiro <drgomesp@gmail.com>
- * 
- * @package KGzocha\Searcher\FilterModel\Collection
  */
 interface NamedQueryCriteriaCollectionInterface extends
     QueryCriteriaCollectionInterface

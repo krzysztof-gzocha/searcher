@@ -8,16 +8,16 @@ use KGzocha\Searcher\QueryCriteria\Collection\QueryCriteriaCollectionInterface;
 use KGzocha\Searcher\QueryCriteria\QueryCriteriaInterface;
 
 /**
- * Class Searcher
+ * Main class responsible for performing actual searching.
  *
- * @package KGzocha\Searcher
+ * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
 class Searcher implements SearcherInterface
 {
     /**
      * @var QueryCriteriaBuilderCollectionInterface
      */
-    private $queryCriteriaBuilderCollection;
+    private $builders;
 
     /**
      * @var SearchingContextInterface
@@ -25,14 +25,14 @@ class Searcher implements SearcherInterface
     private $searchingContext;
 
     /**
-     * @param QueryCriteriaBuilderCollectionInterface $queryCriteriaBuilderCollection
-     * @param SearchingContextInterface $searchingContext
+     * @param QueryCriteriaBuilderCollectionInterface $builders
+     * @param SearchingContextInterface               $searchingContext
      */
     public function __construct(
-        QueryCriteriaBuilderCollectionInterface $queryCriteriaBuilderCollection,
+        QueryCriteriaBuilderCollectionInterface $builders,
         SearchingContextInterface $searchingContext
     ) {
-        $this->queryCriteriaBuilderCollection = $queryCriteriaBuilderCollection;
+        $this->builders = $builders;
         $this->searchingContext = $searchingContext;
     }
 
@@ -40,10 +40,10 @@ class Searcher implements SearcherInterface
      * @inheritdoc
      */
     public function search(
-        QueryCriteriaCollectionInterface $filterCollection
+        QueryCriteriaCollectionInterface $queryCriteriaCollection
     ) {
-        foreach ($filterCollection->getCriteria() as $filterModel) {
-            $this->searchForModel($filterModel, $this->searchingContext);
+        foreach ($queryCriteriaCollection->getCriteria() as $criteria) {
+            $this->searchForModel($criteria, $this->searchingContext);
         }
 
         return $this->searchingContext->getResults();
@@ -58,7 +58,7 @@ class Searcher implements SearcherInterface
         SearchingContextInterface $searchingContext
     ) {
         $builders = $this
-            ->queryCriteriaBuilderCollection
+            ->builders
             ->getQueryCriteriaBuildersForContext($searchingContext);
 
         foreach ($builders as $builder) {

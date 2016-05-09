@@ -5,18 +5,21 @@ use KGzocha\Searcher\Context\SearchingContextInterface;
 use KGzocha\Searcher\QueryCriteriaBuilder\QueryCriteriaBuilderInterface;
 
 /**
- * Interface QueryCriteriaBuilderCollectionInterface
+ * Will hold collection of all QueryCriteriaBuilders that can be used
+ * during single searching process
  *
- * @package KGzocha\Searcher\FilterImposer\Collection
+ * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
 interface QueryCriteriaBuilderCollectionInterface
 {
     /**
-     * @param QueryCriteriaBuilderInterface $filterImposer
+     * @param QueryCriteriaBuilderInterface $queryCriteriaBuilder
      *
      * @return QueryCriteriaBuilderCollectionInterface
      */
-    public function addQueryCriteriaBuilder(QueryCriteriaBuilderInterface $filterImposer);
+    public function addQueryCriteriaBuilder(
+        QueryCriteriaBuilderInterface $queryCriteriaBuilder
+    );
 
     /**
      * @return QueryCriteriaBuilderInterface[]
@@ -25,6 +28,7 @@ interface QueryCriteriaBuilderCollectionInterface
 
     /**
      * @param SearchingContextInterface $searchingContext
+     * 
      * @return QueryCriteriaBuilderInterface[]
      */
     public function getQueryCriteriaBuildersForContext(

@@ -10,12 +10,11 @@ use KGzocha\Searcher\Context\AbstractSearchingContext;
  * to work with Doctrine's QueryBuilder.
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\DoctrineSearcher\ORM
  */
 class QueryBuilderSearchingContext extends AbstractSearchingContext
 {
     /**
-     * @inheritDoc
+     * @param QueryBuilder $queryBuilder
      */
     public function __construct(QueryBuilder $queryBuilder)
     {

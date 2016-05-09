@@ -7,14 +7,13 @@ use KGzocha\Searcher\Context\SearchingContextInterface;
 use KGzocha\Searcher\QueryCriteriaBuilder\QueryCriteriaBuilderInterface;
 
 /**
- * Class AbstractODMBuilderQueryCriteriaBuilder
+ * Abstract QueryCriteriaBuilder that can be used in builders that supports
+ * only ODMBuilderSearchingContext.
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  * @author Daniel Ribeiro <drgomesp@gmail.com>
- *
- * @package KGzocha\Searcher\FilterImposer\Doctrine
  */
-abstract class AbstractODMBuilderQueryCriteriaBuilder implements
+abstract class AbstractODMQueryCriteriaBuilder implements
     QueryCriteriaBuilderInterface
 {
     /**

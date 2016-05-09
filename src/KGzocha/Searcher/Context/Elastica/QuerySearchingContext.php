@@ -10,7 +10,6 @@ use KGzocha\Searcher\Context\AbstractSearchingContext;
  * Use this SearchingContext to search for results using Elastica library.
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\Context\Elastica
  */
 class QuerySearchingContext extends AbstractSearchingContext
 {
