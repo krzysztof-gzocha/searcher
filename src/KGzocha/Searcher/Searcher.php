@@ -3,16 +3,21 @@
 namespace KGzocha\Searcher;
 
 use KGzocha\Searcher\Context\SearchingContextInterface;
-use KGzocha\Searcher\FilterImposer\Collection\FilterImposerCollectionInterface;
-use KGzocha\Searcher\FilterModel\Collection\FilterModelCollectionInterface;
-use KGzocha\Searcher\FilterModel\FilterModelInterface;
+use KGzocha\Searcher\QueryCriteriaBuilder\Collection\QueryCriteriaBuilderCollectionInterface;
+use KGzocha\Searcher\QueryCriteria\Collection\QueryCriteriaCollectionInterface;
+use KGzocha\Searcher\QueryCriteria\QueryCriteriaInterface;
 
+/**
+ * Class Searcher
+ *
+ * @package KGzocha\Searcher
+ */
 class Searcher implements SearcherInterface
 {
     /**
-     * @var FilterImposerCollectionInterface
+     * @var QueryCriteriaBuilderCollectionInterface
      */
-    private $imposerCollection;
+    private $queryCriteriaBuilderCollection;
 
     /**
      * @var SearchingContextInterface
@@ -20,14 +25,14 @@ class Searcher implements SearcherInterface
     private $searchingContext;
 
     /**
-     * @param FilterImposerCollectionInterface $imposerCollection
+     * @param QueryCriteriaBuilderCollectionInterface $queryCriteriaBuilderCollection
      * @param SearchingContextInterface $searchingContext
      */
     public function __construct(
-        FilterImposerCollectionInterface $imposerCollection,
+        QueryCriteriaBuilderCollectionInterface $queryCriteriaBuilderCollection,
         SearchingContextInterface $searchingContext
     ) {
-        $this->imposerCollection = $imposerCollection;
+        $this->queryCriteriaBuilderCollection = $queryCriteriaBuilderCollection;
         $this->searchingContext = $searchingContext;
     }
 
@@ -35,9 +40,9 @@ class Searcher implements SearcherInterface
      * @inheritdoc
      */
     public function search(
-        FilterModelCollectionInterface $filterCollection
+        QueryCriteriaCollectionInterface $filterCollection
     ) {
-        foreach ($filterCollection->getImposedModels() as $filterModel) {
+        foreach ($filterCollection->getCriteria() as $filterModel) {
             $this->searchForModel($filterModel, $this->searchingContext);
         }
 
@@ -45,20 +50,20 @@ class Searcher implements SearcherInterface
     }
 
     /**
-     * @param FilterModelInterface $filterModel
+     * @param QueryCriteriaInterface $queryCriteria
      * @param SearchingContextInterface $searchingContext
      */
     private function searchForModel(
-        FilterModelInterface $filterModel,
+        QueryCriteriaInterface $queryCriteria,
         SearchingContextInterface $searchingContext
     ) {
-        $imposers = $this
-            ->imposerCollection
-            ->getFilterImposersForContext($searchingContext);
+        $builders = $this
+            ->queryCriteriaBuilderCollection
+            ->getQueryCriteriaBuildersForContext($searchingContext);
 
-        foreach ($imposers as $imposer) {
-            if ($imposer->supportsModel($filterModel)) {
-                $imposer->imposeFilter($filterModel, $searchingContext);
+        foreach ($builders as $builder) {
+            if ($builder->allowsCriteria($queryCriteria)) {
+                $builder->buildCriteria($queryCriteria, $searchingContext);
             }
         }
     }
