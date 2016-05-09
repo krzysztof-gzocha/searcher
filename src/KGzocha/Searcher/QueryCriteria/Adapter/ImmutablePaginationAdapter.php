@@ -5,8 +5,9 @@ namespace KGzocha\Searcher\QueryCriteria\Adapter;
 use KGzocha\Searcher\QueryCriteria\PaginationQueryCriteriaInterface;
 
 /**
- * This adapter will not allow to change itemsPerPage parameter in adapter pagination filter model.
- * Every other behaviour will stay as it is.
+ * This adapter will not allow to change itemsPerPage parameter in adapted pagination QueryCriteria.
+ * Every other behaviour will be untouched.
+ *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
 class ImmutablePaginationAdapter implements PaginationQueryCriteriaInterface
@@ -51,6 +52,7 @@ class ImmutablePaginationAdapter implements PaginationQueryCriteriaInterface
     /**
      * This method will not allow to change items per page.
      * On each call it will set the same value
+     *
      * @inheritDoc
      */
     public function setItemsPerPage($itemsPerPage)

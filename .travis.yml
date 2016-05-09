@@ -24,8 +24,8 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
-  - if [ -z "$deps" ]; then composer install --ignore-platform-reqs --dev --prefer-source --no-interaction; fi;
-  - if [ "$deps" == "low" ]; then composer update --ignore-platform-reqs --prefer-lowest --prefer-stable --no-interaction; fi;
+  - if [ -z "$deps" ]; then composer install --ignore-platform-reqs --dev --prefer-dist --no-interaction; fi;
+  - if [ "$deps" == "low" ]; then composer update --ignore-platform-reqs --prefer-lowest --prefer-dist --prefer-stable --no-interaction; fi;
 
 script:
   - composer coverage

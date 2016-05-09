@@ -8,6 +8,30 @@ class QueryCriteriaBuilderCollectionTest extends \PHPUnit_Framework_TestCase
 {
     const NUMBER_OF_FILTER_IMPOSERS = 5;
 
+    /**
+     * @param mixed $params
+     * @expectedException \InvalidArgumentException
+     * @dataProvider wrongParamsDataProvider
+     */
+    public function testConstructorWithWrongParameter($params = null)
+    {
+        new QueryCriteriaBuilderCollection($params);
+    }
+
+    /**
+     * @return array
+     */
+    public function wrongParamsDataProvider()
+    {
+        return [
+            [0],
+            [1.2],
+            [new \stdClass()],
+            [''],
+            []
+        ];
+    }
+
     public function testConstructor()
     {
         $builders = [];

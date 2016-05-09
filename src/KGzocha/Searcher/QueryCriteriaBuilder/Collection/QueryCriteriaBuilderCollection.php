@@ -5,6 +5,9 @@ namespace KGzocha\Searcher\QueryCriteriaBuilder\Collection;
 use KGzocha\Searcher\Context\SearchingContextInterface;
 use KGzocha\Searcher\QueryCriteriaBuilder\QueryCriteriaBuilderInterface;
 
+/**
+ * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
+ */
 class QueryCriteriaBuilderCollection implements QueryCriteriaBuilderCollectionInterface
 {
     /**
@@ -13,11 +16,12 @@ class QueryCriteriaBuilderCollection implements QueryCriteriaBuilderCollectionIn
     private $queryCriteriaBuilders;
 
     /**
-     * @param QueryCriteriaBuilderInterface[] $builders
+     * @param QueryCriteriaBuilderInterface[] $builders array or \Traversable object
      */
-    public function __construct(array $builders = [])
+    public function __construct($builders = [])
     {
         $this->queryCriteriaBuilders = [];
+        $this->checkType($builders);
         foreach ($builders as $builder) {
             // In this way we will ensure that
             // every element in array has correct type
@@ -28,9 +32,9 @@ class QueryCriteriaBuilderCollection implements QueryCriteriaBuilderCollectionIn
     /**
      * @inheritDoc
      */
-    public function addQueryCriteriaBuilder(QueryCriteriaBuilderInterface $filterImposer)
+    public function addQueryCriteriaBuilder(QueryCriteriaBuilderInterface $queryCriteriaBuilder)
     {
-        $this->queryCriteriaBuilders[] = $filterImposer;
+        $this->queryCriteriaBuilders[] = $queryCriteriaBuilder;
 
         return $this;
     }
@@ -55,5 +59,23 @@ class QueryCriteriaBuilderCollection implements QueryCriteriaBuilderCollectionIn
                 return $queryCriteriaBuilder->supportsSearchingContext($searchingContext);
             }
         );
+    }
+
+    /**
+     * Will ensure that provided criteria are array or traversable object
+     *
+     * @param mixed $criteriaBuilders
+     */
+    private function checkType($criteriaBuilders)
+    {
+        if (is_array($criteriaBuilders)
+            || $criteriaBuilders instanceof \Traversable) {
+            return;
+        }
+
+        throw new \InvalidArgumentException(sprintf(
+            'Provided criteria builders should be an array or \Traversable object. Given: %s',
+            is_object($criteriaBuilders) ? get_class($criteriaBuilders) : gettype($criteriaBuilders)
+        ));
     }
 }

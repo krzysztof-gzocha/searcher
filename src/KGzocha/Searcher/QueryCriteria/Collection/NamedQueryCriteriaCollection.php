@@ -6,7 +6,6 @@ use KGzocha\Searcher\QueryCriteria\QueryCriteriaInterface;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\FilterModel\Collection
  */
 class NamedQueryCriteriaCollection extends QueryCriteriaCollection implements
     NamedQueryCriteriaCollectionInterface

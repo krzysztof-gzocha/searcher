@@ -6,7 +6,6 @@ namespace KGzocha\Searcher\ParameterGenerator;
  * across all of the FilterImposers.
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\ParameterGenerator
  */
 interface ParameterGeneratorInterface
 {

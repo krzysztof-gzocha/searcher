@@ -3,8 +3,13 @@
 namespace KGzocha\Searcher\Result;
 
 /**
+ * Can be used to hold results from searching when developer is not 100% sure
+ * if searching process will return array of objects or a number, or null, or whatever.
+ * This class regardless the constructor will always be iteratable, so in worse case scenario
+ * there will be no results inside, but your controllers will still work.
+ * It's not recommended to use it on development environment due to eventual problems with debugging.
+ *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\Result
  */
 class ResultCollection implements ResultCollectionInterface
 {

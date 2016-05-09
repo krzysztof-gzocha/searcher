@@ -9,6 +9,30 @@ class QueryCriteriaCollectionTest extends \PHPUnit_Framework_TestCase
 {
     const NUMBER_OF_QUERY_CRITERIA = 5;
 
+    /**
+     * @param mixed $params
+     * @expectedException \InvalidArgumentException
+     * @dataProvider wrongParamsDataProvider
+     */
+    public function testConstructorWithWrongParams($params = null)
+    {
+        new QueryCriteriaCollection($params);
+    }
+
+    /**
+     * @return array
+     */
+    public function wrongParamsDataProvider()
+    {
+        return [
+            [],
+            [0],
+            [1.2],
+            [new \stdClass()],
+            ['']
+        ];
+    }
+
     public function testConstructor()
     {
         $queryCriteria = [];

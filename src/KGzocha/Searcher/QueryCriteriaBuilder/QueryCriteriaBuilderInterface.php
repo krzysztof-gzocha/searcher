@@ -13,18 +13,19 @@ use KGzocha\Searcher\QueryCriteria\QueryCriteriaInterface;
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  * @author Daniel Ribeiro <drgomesp@gmail.com>
- *
- * @package KGzocha\Searcher\QueryCriteriaBuilder
  */
 interface QueryCriteriaBuilderInterface
 {
     /**
      * Will impose conditions with values taken from the criteria.
      *
-     * @param QueryCriteriaInterface $criteria
+     * @param QueryCriteriaInterface    $criteria
      * @param SearchingContextInterface $searchingContext
      */
-    public function buildCriteria(QueryCriteriaInterface $criteria, SearchingContextInterface $searchingContext);
+    public function buildCriteria(
+        QueryCriteriaInterface $criteria,
+        SearchingContextInterface $searchingContext
+    );
 
     /**
      * Checks if the builder supports the provided criteria.
@@ -40,5 +41,7 @@ interface QueryCriteriaBuilderInterface
      *
      * @return mixed
      */
-    public function supportsSearchingContext(SearchingContextInterface $searchingContext);
+    public function supportsSearchingContext(
+        SearchingContextInterface $searchingContext
+    );
 }
