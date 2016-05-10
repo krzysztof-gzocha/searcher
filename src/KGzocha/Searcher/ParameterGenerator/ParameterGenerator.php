@@ -30,7 +30,7 @@ class ParameterGenerator implements ParameterGeneratorInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getParameterName()
     {

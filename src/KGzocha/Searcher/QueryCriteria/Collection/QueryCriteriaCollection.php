@@ -30,20 +30,20 @@ class QueryCriteriaCollection implements QueryCriteriaCollectionInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getApplicableCriteria()
     {
         return array_filter(
             $this->getCriteria(),
-            function(QueryCriteriaInterface $queryCriteria) {
+            function (QueryCriteriaInterface $queryCriteria) {
                 return $queryCriteria->shouldBeApplied();
             }
         );
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getCriteria()
     {
@@ -51,7 +51,7 @@ class QueryCriteriaCollection implements QueryCriteriaCollectionInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function addQueryCriteria(QueryCriteriaInterface $queryCriteria)
     {
@@ -61,7 +61,7 @@ class QueryCriteriaCollection implements QueryCriteriaCollectionInterface
     }
 
     /**
-     * Will ensure that provided criteria are array or traversable object
+     * Will ensure that provided criteria are array or traversable object.
      *
      * @param mixed $criteria
      */

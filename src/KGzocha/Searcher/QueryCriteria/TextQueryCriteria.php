@@ -30,7 +30,7 @@ class TextQueryCriteria implements QueryCriteriaInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shouldBeApplied()
     {

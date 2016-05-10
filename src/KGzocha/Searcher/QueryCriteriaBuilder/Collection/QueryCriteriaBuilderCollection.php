@@ -30,7 +30,7 @@ class QueryCriteriaBuilderCollection implements QueryCriteriaBuilderCollectionIn
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function addQueryCriteriaBuilder(QueryCriteriaBuilderInterface $queryCriteriaBuilder)
     {
@@ -40,7 +40,7 @@ class QueryCriteriaBuilderCollection implements QueryCriteriaBuilderCollectionIn
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getQueryCriteriaBuilders()
     {
@@ -48,21 +48,21 @@ class QueryCriteriaBuilderCollection implements QueryCriteriaBuilderCollectionIn
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getQueryCriteriaBuildersForContext(
         SearchingContextInterface $searchingContext
     ) {
         return array_filter(
             $this->getQueryCriteriaBuilders(),
-            function(QueryCriteriaBuilderInterface $queryCriteriaBuilder) use ($searchingContext) {
+            function (QueryCriteriaBuilderInterface $queryCriteriaBuilder) use ($searchingContext) {
                 return $queryCriteriaBuilder->supportsSearchingContext($searchingContext);
             }
         );
     }
 
     /**
-     * Will ensure that provided criteria are array or traversable object
+     * Will ensure that provided criteria are array or traversable object.
      *
      * @param mixed $criteriaBuilders
      */

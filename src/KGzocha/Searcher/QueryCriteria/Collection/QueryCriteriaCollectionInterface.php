@@ -14,7 +14,7 @@ interface QueryCriteriaCollectionInterface
 {
     /**
      * Will return array of QueryCriteriaInterface
-     * that returns true in shouldBeApplied()
+     * that returns true in shouldBeApplied().
      *
      * @return QueryCriteriaInterface[]
      */

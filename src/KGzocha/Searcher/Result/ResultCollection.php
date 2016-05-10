@@ -33,7 +33,7 @@ class ResultCollection implements ResultCollectionInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getResults()
     {
@@ -41,7 +41,7 @@ class ResultCollection implements ResultCollectionInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function count()
     {
@@ -49,7 +49,7 @@ class ResultCollection implements ResultCollectionInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function jsonSerialize()
     {
@@ -57,7 +57,7 @@ class ResultCollection implements ResultCollectionInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getIterator()
     {
@@ -66,6 +66,7 @@ class ResultCollection implements ResultCollectionInterface
 
     /**
      * @param \Traversable|array $results
+     *
      * @return bool
      */
     private function canUseResults($results = [])

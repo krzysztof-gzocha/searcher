@@ -4,7 +4,6 @@ namespace KGzocha\Searcher\QueryCriteria;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\FilterModel
  */
 class NumberQueryCriteria implements QueryCriteriaInterface
 {
@@ -30,7 +29,7 @@ class NumberQueryCriteria implements QueryCriteriaInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function shouldBeApplied()
     {

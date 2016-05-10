@@ -3,7 +3,7 @@
 namespace KGzocha\Searcher\Result;
 
 /**
- * Will holds collection of results taken from searching process
+ * Will holds collection of results taken from searching process.
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */

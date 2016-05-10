@@ -28,7 +28,7 @@ class WrappedResultsSearcher implements SearcherInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function search(
         QueryCriteriaCollectionInterface $queryCriteriaCollection

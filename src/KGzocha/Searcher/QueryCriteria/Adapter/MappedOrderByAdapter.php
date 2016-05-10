@@ -10,7 +10,7 @@ use KGzocha\Searcher\QueryCriteria\OrderByQueryCriteriaInterface;
  * Fields map key should be a value that will be visible to end-user.
  * Fields map value will be visible to developer.
  * To get "mapped" value (for end-user) just use getOrderBy()
- * To get "real" value (for developer) use getMappedOrderBy()
+ * To get "real" value (for developer) use getMappedOrderBy().
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
@@ -49,7 +49,7 @@ class MappedOrderByAdapter implements OrderByQueryCriteriaInterface
             return $this->fieldsMap[$this->getOrderBy()];
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -61,7 +61,7 @@ class MappedOrderByAdapter implements OrderByQueryCriteriaInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getOrderBy()
     {
@@ -69,7 +69,7 @@ class MappedOrderByAdapter implements OrderByQueryCriteriaInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function setOrderBy($orderBy)
     {
@@ -77,7 +77,7 @@ class MappedOrderByAdapter implements OrderByQueryCriteriaInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function shouldBeApplied()
     {
@@ -86,6 +86,7 @@ class MappedOrderByAdapter implements OrderByQueryCriteriaInterface
 
     /**
      * @param mixed $fieldsMap
+     *
      * @throws \InvalidArgumentException
      */
     private function checkFieldsMapType($fieldsMap)
@@ -93,7 +94,7 @@ class MappedOrderByAdapter implements OrderByQueryCriteriaInterface
         if (!is_array($fieldsMap) && !$fieldsMap instanceof \ArrayAccess) {
             throw new \InvalidArgumentException(sprintf(
                 'Parameter fieldsMap passed to %s should be an array or \ArrayAccess.'
-                . ' Given: %s',
+                .' Given: %s',
                 __CLASS__,
                 is_object($fieldsMap) ? get_class($fieldsMap) : gettype($fieldsMap)
             ));

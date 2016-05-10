@@ -19,7 +19,7 @@ class QuerySearchingContext extends AbstractSearchingContext
     private $search;
 
     /**
-     * @param Query $query
+     * @param Query  $query
      * @param Search $search
      */
     public function __construct(
@@ -51,7 +51,7 @@ class QuerySearchingContext extends AbstractSearchingContext
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getResults()
     {

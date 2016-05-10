@@ -4,7 +4,6 @@ namespace KGzocha\Searcher\QueryCriteria;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\FilterModel
  */
 class IntegerRangeQueryCriteria implements QueryCriteriaInterface
 {
@@ -51,7 +50,7 @@ class IntegerRangeQueryCriteria implements QueryCriteriaInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function shouldBeApplied()
     {

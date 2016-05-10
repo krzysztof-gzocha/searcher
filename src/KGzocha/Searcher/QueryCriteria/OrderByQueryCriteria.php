@@ -37,7 +37,7 @@ class OrderByQueryCriteria implements OrderByQueryCriteriaInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function shouldBeApplied()
     {

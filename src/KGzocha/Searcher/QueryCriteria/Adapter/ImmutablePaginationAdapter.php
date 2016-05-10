@@ -26,7 +26,7 @@ class ImmutablePaginationAdapter implements PaginationQueryCriteriaInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getPage()
     {
@@ -34,7 +34,7 @@ class ImmutablePaginationAdapter implements PaginationQueryCriteriaInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getItemsPerPage()
     {
@@ -42,7 +42,7 @@ class ImmutablePaginationAdapter implements PaginationQueryCriteriaInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function setPage($page)
     {
@@ -51,9 +51,9 @@ class ImmutablePaginationAdapter implements PaginationQueryCriteriaInterface
 
     /**
      * This method will not allow to change items per page.
-     * On each call it will set the same value
+     * On each call it will set the same value.
      *
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function setItemsPerPage($itemsPerPage)
     {
@@ -65,7 +65,7 @@ class ImmutablePaginationAdapter implements PaginationQueryCriteriaInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function shouldBeApplied()
     {

@@ -12,6 +12,7 @@ class NamedQueryCriteriaCollection extends QueryCriteriaCollection implements
 {
     /**
      * @param string $name
+     *
      * @return null|QueryCriteriaInterface
      */
     public function __get($name)
@@ -20,7 +21,7 @@ class NamedQueryCriteriaCollection extends QueryCriteriaCollection implements
     }
 
     /**
-     * @param string $name
+     * @param string                 $name
      * @param QueryCriteriaInterface $value
      */
     public function __set($name, QueryCriteriaInterface $value)
@@ -29,7 +30,7 @@ class NamedQueryCriteriaCollection extends QueryCriteriaCollection implements
     }
 
     /**
-     * @param string $name
+     * @param string                 $name
      * @param QueryCriteriaInterface $filterModel
      *
      * @return $this

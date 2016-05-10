@@ -1,4 +1,5 @@
 <?php
+
 namespace KGzocha\Searcher\QueryCriteriaBuilder\Collection;
 
 use KGzocha\Searcher\Context\SearchingContextInterface;
@@ -6,7 +7,7 @@ use KGzocha\Searcher\QueryCriteriaBuilder\QueryCriteriaBuilderInterface;
 
 /**
  * Will hold collection of all QueryCriteriaBuilders that can be used
- * during single searching process
+ * during single searching process.
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
