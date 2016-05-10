@@ -6,7 +6,7 @@ use Doctrine\ODM\MongoDB\Query\Builder;
 use KGzocha\Searcher\Context\AbstractSearchingContext;
 
 /**
- * Use this searching context to search through records using Doctrine's ODM
+ * Use this searching context to search through records using Doctrine's ODM.
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
@@ -33,6 +33,7 @@ class ODMBuilderSearchingContext extends AbstractSearchingContext
      * you can use already implemented WrappedResultsSearcher as an adapter.
      *
      * @return mixed
+     *
      * @throws \Doctrine\ODM\MongoDB\MongoDBException
      */
     public function getResults()

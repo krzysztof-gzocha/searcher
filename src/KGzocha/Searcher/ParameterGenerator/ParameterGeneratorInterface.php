@@ -1,4 +1,5 @@
 <?php
+
 namespace KGzocha\Searcher\ParameterGenerator;
 
 /**
@@ -13,7 +14,7 @@ interface ParameterGeneratorInterface
      * Method will return unique parameter name each time it will be called.
      * Example:
      * First call: $paramGenerator->getParameterName() -> 'searchParam1'
-     * Second call: $paramGenerator->getParameterName() -> 'searchParam2'
+     * Second call: $paramGenerator->getParameterName() -> 'searchParam2'.
      *
      * @return string
      */

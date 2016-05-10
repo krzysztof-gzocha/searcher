@@ -3,8 +3,7 @@
 namespace KGzocha\Searcher\QueryCriteria;
 
 /**
- * Class DateTimeFilterModel
- * @package KGzocha\Searcher\FilterModel
+ * Class DateTimeFilterModel.
  */
 class DateTimeQueryCriteria implements QueryCriteriaInterface
 {
@@ -34,7 +33,7 @@ class DateTimeQueryCriteria implements QueryCriteriaInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shouldBeApplied()
     {

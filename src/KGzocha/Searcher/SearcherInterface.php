@@ -1,4 +1,5 @@
 <?php
+
 namespace KGzocha\Searcher;
 
 use KGzocha\Searcher\QueryCriteria\Collection\QueryCriteriaCollectionInterface;

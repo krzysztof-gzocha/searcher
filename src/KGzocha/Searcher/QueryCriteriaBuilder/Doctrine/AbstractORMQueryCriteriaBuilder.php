@@ -12,15 +12,15 @@ use KGzocha\Searcher\QueryCriteriaBuilder\QueryCriteriaBuilderInterface;
  * Abstract QueryCriteriaBuilder that can be used in builders that supports
  * only ODMBuilderSearchingContext.
  * Extra feature is join() method which will add another join only
- * if there is not such join already
+ * if there is not such join already.
  *
-*@author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
+ *@author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
 abstract class AbstractORMQueryCriteriaBuilder implements
     QueryCriteriaBuilderInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function supportsSearchingContext(
         SearchingContextInterface $searchingContext
@@ -32,12 +32,12 @@ abstract class AbstractORMQueryCriteriaBuilder implements
      * Will do JOIN only if there is no such join already.
      * For any other more advanced join strategies please use unique aliases.
      * Remember: for performance reasons you should keep number of joins as low as possible
-     * Example usage: $this->join($qb, 'p.house', 'h', Join::LEFT_JOIN)
+     * Example usage: $this->join($qb, 'p.house', 'h', Join::LEFT_JOIN).
      *
      * @param QueryBuilder $queryBuilder
-     * @param string $join
-     * @param string $alias
-     * @param string $joinType
+     * @param string       $join
+     * @param string       $alias
+     * @param string       $joinType
      *
      * @return QueryBuilder
      */
@@ -77,7 +77,7 @@ abstract class AbstractORMQueryCriteriaBuilder implements
     ) {
         $existingJoin = array_filter(
             $joinParts,
-            function(Join $joinObj) use ($alias, $join, $joinType) {
+            function (Join $joinObj) use ($alias, $join, $joinType) {
                 return $joinObj->getJoinType() == $joinType
                     && $joinObj->getAlias() == $alias
                     && $joinObj->getJoin() == $join;

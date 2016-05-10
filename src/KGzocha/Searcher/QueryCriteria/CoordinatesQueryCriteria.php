@@ -4,7 +4,6 @@ namespace KGzocha\Searcher\QueryCriteria;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\FilterModel
  */
 class CoordinatesQueryCriteria implements QueryCriteriaInterface
 {
@@ -51,7 +50,7 @@ class CoordinatesQueryCriteria implements QueryCriteriaInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function shouldBeApplied()
     {

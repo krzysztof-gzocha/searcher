@@ -20,7 +20,7 @@ abstract class AbstractSearchingContext implements SearchingContextInterface
      * order to provide strict type for QueryBuilder.
      *
      * @param mixed $queryBuilder will be used in QueryCriteriaBuilders to impose
-     * all the conditions.
+     *                            all the conditions.
      */
     public function __construct($queryBuilder)
     {
@@ -28,12 +28,12 @@ abstract class AbstractSearchingContext implements SearchingContextInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     abstract public function getResults();
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getQueryBuilder()
     {

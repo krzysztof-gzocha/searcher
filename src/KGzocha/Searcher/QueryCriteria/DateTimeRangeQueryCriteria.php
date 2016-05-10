@@ -3,8 +3,7 @@
 namespace KGzocha\Searcher\QueryCriteria;
 
 /**
- * Class DateTimeRangeFilterModel
- * @package KGzocha\Searcher\FilterModel
+ * Class DateTimeRangeFilterModel.
  */
 class DateTimeRangeQueryCriteria implements QueryCriteriaInterface
 {
@@ -61,7 +60,7 @@ class DateTimeRangeQueryCriteria implements QueryCriteriaInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function shouldBeApplied()
     {

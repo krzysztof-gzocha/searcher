@@ -18,8 +18,8 @@ class PaginationQueryCriteria implements PaginationQueryCriteriaInterface
     private $itemsPerPage;
 
     /**
-     * @param int  $page
-     * @param int  $itemsPerPage
+     * @param int $page
+     * @param int $itemsPerPage
      */
     public function __construct(
         $page,
@@ -55,6 +55,7 @@ class PaginationQueryCriteria implements PaginationQueryCriteriaInterface
 
     /**
      * @param int $itemsPerPage
+     *
      * @throws \BadMethodCallException
      */
     public function setItemsPerPage($itemsPerPage)
@@ -63,7 +64,7 @@ class PaginationQueryCriteria implements PaginationQueryCriteriaInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function shouldBeApplied()
     {

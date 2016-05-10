@@ -30,7 +30,7 @@ class QueryBuilderSearchingContext extends AbstractSearchingContext
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getResults()
     {

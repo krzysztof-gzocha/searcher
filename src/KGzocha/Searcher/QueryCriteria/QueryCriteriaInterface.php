@@ -3,12 +3,10 @@
 namespace KGzocha\Searcher\QueryCriteria;
 
 /**
- * Interface FilterModelInterface
+ * Interface FilterModelInterface.
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  * @author Daniel Ribeiro <drgomesp@gmail.com>
- *
- * @package KGzocha\Searcher\FilterModel
  */
 interface QueryCriteriaInterface
 {

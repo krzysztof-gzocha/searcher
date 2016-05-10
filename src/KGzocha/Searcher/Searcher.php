@@ -37,7 +37,7 @@ class Searcher implements SearcherInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function search(
         QueryCriteriaCollectionInterface $queryCriteriaCollection
@@ -50,7 +50,7 @@ class Searcher implements SearcherInterface
     }
 
     /**
-     * @param QueryCriteriaInterface $queryCriteria
+     * @param QueryCriteriaInterface    $queryCriteria
      * @param SearchingContextInterface $searchingContext
      */
     private function searchForModel(
