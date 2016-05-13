@@ -41,7 +41,7 @@ class AgeRangeQueryCriteria implements QueryCriteriaInterface
 
     /**
     * Only required method.
-    * If will return true, then it will be passed to some of the FilterImposer(s)
+    * If will return true, then it will be passed to some of the QueryCriteriaBuilder(s)
     */
     public function shouldBeApplied()
     {
@@ -71,9 +71,9 @@ class AgeRangeQueryCriteriaBuilder implements QueryCriteriaBuilderInterface
     }
 
     public function allowsCriteria(
-        QueryCriteriaInterface $filterModel
+        QueryCriteriaInterface $queryCriteria
     ) {
-        return $filterModel instanceof AgeRangeFilterModel;
+        return $queryCriteria instanceof AgeRangeQueryCriteria;
     }
 
     /**
@@ -111,13 +111,13 @@ Now we would like to create our `SearchingContext` and populate it with QueryBui
 ```php
 $context  = new QueryBuilderSearchingContext($queryBuilder);
 
-$searcher = new Searcher($imposers, $context);
+$searcher = new Searcher($builders, $context);
 $searcher->search($models); // Yay, we have our results!
 ```
 
 If there is even small chance that your QueryBuilder will return `null` when you are expecting traversable object or array then you can use `WrappedResultsSearcher` instead of normal `Searcher` class. It will act exactly the same as `Searcher`, but it will return `ResultCollection`, which will work only with array or `\Traversable` and if result will be just `null` your code will still work. Here is how it will looks like:
 ```php
-$searcher = new WrappedResultsSearcher(new Searcher($imposers, $context));
+$searcher = new WrappedResultsSearcher(new Searcher($builders, $context));
 $results = $searcher->search($model);  // instance of ResultCollection
 foreach ($results as $result) {
     // will work!
@@ -128,10 +128,10 @@ foreach ($results->getResults() as $result) {
 }
 ```
 ### Order
-In order to sort your results you can make use of already implemented `QueryCriteria`. You don't need to implement it from scratch. Keep in mind that you still need to implement your `QueryCriteriaBuilder` for it (this feature is still under development).  Let's say you want to order your results and you need value `p.id` in your FilterImposer to do it, but you would like to show it as `pid` to end-user. Nothing simpler!
-This is how you can create FilterModel:
+In order to sort your results you can make use of already implemented `QueryCriteria`. You don't need to implement it from scratch. Keep in mind that you still need to implement your `QueryCriteriaBuilder` for it (this feature is still under development).  Let's say you want to order your results and you need value `p.id` in your QueryCriteriaBuidler to do it, but you would like to show it as `pid` to end-user. Nothing simpler!
+This is how you can create OrderByQueryCriteria:
 ```php
-$mappedFields = ['pid' => 'p.id', 'valueForUser' => 'valueForImposer'];
+$mappedFields = ['pid' => 'p.id', 'valueForUser' => 'valueForBuilder'];
 $criteria = new MappedOrderByAdapter(
     new OrderByQueryCriteria('pid'),
     $mappedFields

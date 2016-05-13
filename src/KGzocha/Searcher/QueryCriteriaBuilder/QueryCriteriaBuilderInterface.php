@@ -39,7 +39,7 @@ interface QueryCriteriaBuilderInterface
     /**
      * @param SearchingContextInterface $searchingContext
      *
-     * @return mixed
+     * @return bool
      */
     public function supportsSearchingContext(
         SearchingContextInterface $searchingContext
