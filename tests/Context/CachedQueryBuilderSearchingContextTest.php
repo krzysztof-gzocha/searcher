@@ -8,7 +8,7 @@ use KGzocha\Searcher\Context\Doctrine\CachedQueryBuilderSearchingContext;
  * @author Daniel Ribeiro <drgomesp@gmail.com>
  * @package KGzocha\Searcher\Test\Context
  */
-class QueryCachedQueryBuilderSearchingContextTest extends \PHPUnit_Framework_TestCase
+class CachedQueryBuilderSearchingContextTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var \Doctrine\ORM\QueryBuilder|\PHPUnit_Framework_MockObject_MockObject
