@@ -1,28 +1,21 @@
 <?php
 
-/*
- * This file is part of the searcher package.
- *
- * (c) Daniel Ribeiro <drgomesp@gmail.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace KGzocha\Searcher\Context\Doctrine;
 
 /**
- * Class CachedQueryBuilderSearchingContext
+ * Use this class as a SearchingContext in order to allow all filter imposers
+ * to work with Doctrine's QueryBuilder, with query caching enabled by default.
  *
  * @author Daniel Ribeiro <drgomesp@gmail.com>
- * @package KGzocha\Searcher\Context\Doctrine
  */
 class CachedQueryBuilderSearchingContext extends QueryBuilderSearchingContext
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getResults()
     {
-        return $this
-            ->getQueryBuilder()
+        return parent::getQueryBuilder()
             ->getQuery()
             ->useQueryCache(true)
             ->getResult();
