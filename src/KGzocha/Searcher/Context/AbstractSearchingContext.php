@@ -4,7 +4,7 @@ namespace KGzocha\Searcher\Context;
 
 /**
  * This class should be extended and make sure that QueryBuilder's type
- * is correct for all required QueryCriteriaBuilders.
+ * is correct for all required CriteriaBuilders.
  *
  * @author Krzysztof Gzocha
  */
@@ -19,7 +19,7 @@ abstract class AbstractSearchingContext implements SearchingContextInterface
      * This method can be overwritten in extending SearchingContext's in
      * order to provide strict type for QueryBuilder.
      *
-     * @param mixed $queryBuilder will be used in QueryCriteriaBuilders to impose
+     * @param mixed $queryBuilder will be used in CriteriaBuilders to impose
      *                            all the conditions.
      */
     public function __construct($queryBuilder)

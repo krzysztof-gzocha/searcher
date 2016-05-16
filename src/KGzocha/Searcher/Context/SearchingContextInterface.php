@@ -10,7 +10,7 @@ namespace KGzocha\Searcher\Context;
 interface SearchingContextInterface
 {
     /**
-     * This method should return any service that QueryCriteriaBuilders can invoke
+     * This method should return any service that CriteriaBuilders can invoke
      * in order to do actual Query changes.
      *
      * @return mixed

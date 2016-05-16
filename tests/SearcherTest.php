@@ -2,8 +2,8 @@
 
 namespace KGzocha\Searcher\Test;
 
-use KGzocha\Searcher\QueryCriteriaBuilder\Collection\QueryCriteriaBuilderCollection;
-use KGzocha\Searcher\QueryCriteria\Collection\QueryCriteriaCollection;
+use KGzocha\Searcher\CriteriaBuilder\Collection\CriteriaBuilderCollection;
+use KGzocha\Searcher\Criteria\Collection\CriteriaCollection;
 use KGzocha\Searcher\Searcher;
 
 /**
@@ -17,18 +17,18 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
         $numberOfCriteria = 1;
         $results = [1, 2, 3, 4];
 
-        $searcher = new Searcher(new QueryCriteriaBuilderCollection([
-            $this->getQueryCriteriaBuilder(false, $numberOfCriteria),
-            $this->getQueryCriteriaBuilder(false, $numberOfCriteria),
-            $this->getQueryCriteriaBuilder(false, $numberOfCriteria),
-            $this->getQueryCriteriaBuilder(true, $numberOfCriteria),
-            $this->getQueryCriteriaBuilder(false, $numberOfCriteria),
-            $this->getQueryCriteriaBuilder(true, $numberOfCriteria),
-            $this->getQueryCriteriaBuilder(false, $numberOfCriteria),
+        $searcher = new Searcher(new CriteriaBuilderCollection([
+            $this->getCriteriaBuilder(false, $numberOfCriteria),
+            $this->getCriteriaBuilder(false, $numberOfCriteria),
+            $this->getCriteriaBuilder(false, $numberOfCriteria),
+            $this->getCriteriaBuilder(true, $numberOfCriteria),
+            $this->getCriteriaBuilder(false, $numberOfCriteria),
+            $this->getCriteriaBuilder(true, $numberOfCriteria),
+            $this->getCriteriaBuilder(false, $numberOfCriteria),
         ]), $this->getSearchingContext($results));
 
         $result = $searcher->search(
-            $this->getQueryCriteriaCollection($numberOfCriteria)
+            $this->getCriteriaCollection($numberOfCriteria)
         );
 
         $this->assertEquals($results, $result);
@@ -40,11 +40,11 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
      *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    private function getQueryCriteriaBuilder($supportsModel, $numberOfModels)
+    private function getCriteriaBuilder($supportsModel, $numberOfModels)
     {
         $builder = $this
             ->getMockBuilder(
-                '\KGzocha\Searcher\QueryCriteriaBuilder\QueryCriteriaBuilderInterface'
+                '\KGzocha\Searcher\CriteriaBuilder\CriteriaBuilderInterface'
             )
             ->getMock();
 
@@ -72,14 +72,14 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
     /**
      * @param int $numberOfCriteria
      *
-     * @return QueryCriteriaCollection
+     * @return CriteriaCollection
      */
-    private function getQueryCriteriaCollection($numberOfCriteria)
+    private function getCriteriaCollection($numberOfCriteria)
     {
-        return new QueryCriteriaCollection(array_fill(
+        return new CriteriaCollection(array_fill(
             0,
             $numberOfCriteria,
-            $this->getQueryCriteria()
+            $this->getCriteria()
         ));
     }
 
@@ -104,11 +104,11 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
     /**
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    private function getQueryCriteria()
+    private function getCriteria()
     {
         $model = $this
             ->getMockBuilder(
-                '\KGzocha\Searcher\QueryCriteria\QueryCriteriaInterface'
+                '\KGzocha\Searcher\Criteria\CriteriaInterface'
             )
             ->getMock();
 

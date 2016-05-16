@@ -4,16 +4,16 @@ Query criteria
 
 Idea
 -----
-In simplest words ``QueryCriteria`` classes will hold all the parameters and their values that can be used
-with ``QueryCriteriaBuilder`` class(s) in searching process. You have to be aware that ``QueryCriteria`` can be used
-with multiple ``QueryCriteriaBuilder``, which means that it can be used for searches in MySQL, MongoDB, SQLite
+In simplest words ``Criteria`` classes will hold all the parameters and their values that can be used
+with ``CriteriaBuilder`` class(s) in searching process. You have to be aware that ``Criteria`` can be used
+with multiple ``CriteriaBuilder``, which means that it can be used for searches in MySQL, MongoDB, SQLite
 or whatever context you will use (I will describe contexts later) and that's why we we are not talking about any specific context.
 Instead we will use *abstract database*
-Of course you can use multiple ``QueryCriteria`` within single searching process.
-Any class that implements ``\KGzocha\Searcher\QueryCriteria\QueryCriteriaInterface`` can be used as ``QueryCriteria``.
+Of course you can use multiple ``Criteria`` within single searching process.
+Any class that implements ``\KGzocha\Searcher\Criteria\CriteriaInterface`` can be used as ``Criteria``.
 There is only one method inside this interface that is required to be implemented and it is ``shouldBeApplied()``.
 The name of the method should speak for it self - if it will return true then the criteria will be used in searching process.
-Of course if there will be at least one ``QueryCriteriaBuilder`` that will handle it, but I will describe builders later on.
+Of course if there will be at least one ``CriteriaBuilder`` that will handle it, but I will describe builders later on.
 
 
 Example
@@ -24,9 +24,9 @@ In order to to do you can create very simple class:
 
 .. code-block:: php
 
-    use \KGzocha\Searcher\QueryCriteria\QueryCriteriaInterface;
+    use \KGzocha\Searcher\Criteria\CriteriaInterface;
 
-    class SpecificAgeQueryCriteria implements QueryCriteriaInterface
+    class SpecificAgeCriteria implements CriteriaInterface
     {
         private $age;
 
@@ -42,7 +42,7 @@ In order to to do you can create very simple class:
 
         /**
         * Only required method.
-        * If will return true, then it will be passed to some of the QueryCriteriaBuilder(s)
+        * If will return true, then it will be passed to some of the CriteriaBuilder(s)
         */
         public function shouldBeApplied()
         {
@@ -60,14 +60,14 @@ Multiple fields example
 Ok, we have criteria for one fields, but what if having more makes more sense? Well, nothing is gonna stop you to do it!
 Lets assume that you still want to query your *abstract database* of people by theirs age, but you do not want specific age, but
 rather age range. Nothing is simpler! We just need to create criteria with minimum and maximum age, so let's do that!
-We are still *filtering* people by 1 *filter*, so keeping two fields in single ``QueryCriteria`` makes sense, but
-you should keep your ``QueryCriteria`` as small as possible. It should be readable and naming used inside should be obvious.
+We are still *filtering* people by 1 *filter*, so keeping two fields in single ``Criteria`` makes sense, but
+you should keep your ``Criteria`` as small as possible. It should be readable and naming used inside should be obvious.
 
 .. code-block:: php
 
-    use \KGzocha\Searcher\QueryCriteria\QueryCriteriaInterface;
+    use \KGzocha\Searcher\Criteria\CriteriaInterface;
 
-    class AgeRangeQueryCriteria implements QueryCriteriaInterface
+    class AgeRangeCriteria implements CriteriaInterface
     {
         private $minimumAge;
         private $maximumAge;
@@ -108,7 +108,7 @@ If there would be **and** condition then this criteria would be applied only if 
 
 Implemented criteria
 -----------------------------
-You can find and use already implemented QueryCriteria in `here <https://github.com/krzysztof-gzocha/searcher/tree/master/src/KGzocha/Searcher/QueryCriteria>`_.
+You can find and use already implemented Criteria in `here <https://github.com/krzysztof-gzocha/searcher/tree/master/src/KGzocha/Searcher/Criteria>`_.
 You will find there query criteria for:
 
 - Coordinates
@@ -124,9 +124,9 @@ You will find there query criteria for:
 
 Too long, didn't read
 --------------------
-**What do you need to know about QueryCriteria:**
+**What do you need to know about Criteria:**
 
-1. It can be **any** class implementing ``QueryCriteriaInterface``
+1. It can be **any** class implementing ``CriteriaInterface``
 #. Holds parameters and values that will be used in searching process
 #. Implementation of ``shouldBeApplied`` can change searching behaviour
-#. Can be used with multiple ``QueryCriteriaBuilder``
+#. Can be used with multiple ``CriteriaBuilder``

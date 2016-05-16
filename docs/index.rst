@@ -15,6 +15,6 @@ Index
     :caption: Classes
     :maxdepth: 2
 
-    QueryCriteria <class/query-criteria.rst>
-    QueryCriteriaBuilder <class/query-criteria-builder.rst>
+    Criteria <class/query-criteria.rst>
+    CriteriaBuilder <class/query-criteria-builder.rst>
     Collections <class/collections.rst>

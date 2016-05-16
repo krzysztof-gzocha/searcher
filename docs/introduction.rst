@@ -16,7 +16,7 @@ It's maybe not a great idea to pass whole form to some service at let it parse e
 How?
 -----
 Thanks to this library you can split the responsibility of building query criteria to several smaller classes.
-One class per filter. One **QueryCriteriaBuilder** per **QueryCriteria**.
-In this way inside **QueryCriteriaBuilder** you care only for one **QueryCriteria**, which makes it a lot more readable.
-You can later use exactly the same **QueryCriteria** for different search,
-with different **QueryCriteriaBuilder** and even different **SearchingContext** which can use even different database.
+One class per filter. One **CriteriaBuilder** per **Criteria**.
+In this way inside **CriteriaBuilder** you care only for one **Criteria**, which makes it a lot more readable.
+You can later use exactly the same **Criteria** for different search,
+with different **CriteriaBuilder** and even different **SearchingContext** which can use even different database.
