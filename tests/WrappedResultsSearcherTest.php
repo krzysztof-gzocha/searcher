@@ -2,7 +2,7 @@
 
 namespace KGzocha\Searcher\Test;
 
-use KGzocha\Searcher\QueryCriteria\Collection\QueryCriteriaCollection;
+use KGzocha\Searcher\Criteria\Collection\CriteriaCollection;
 use KGzocha\Searcher\WrappedResultsSearcher;
 
 /**
@@ -17,7 +17,7 @@ class WrappedResultsSearcherTest extends \PHPUnit_Framework_TestCase
             new \stdClass(),
             new \stdClass(),
         ]));
-        $results = $searcher->search(new QueryCriteriaCollection());
+        $results = $searcher->search(new CriteriaCollection());
         $this->assertInstanceOf('KGzocha\Searcher\Result\ResultCollection', $results);
         $this->assertCount(3, $results);
     }

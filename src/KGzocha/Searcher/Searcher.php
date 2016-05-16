@@ -3,9 +3,9 @@
 namespace KGzocha\Searcher;
 
 use KGzocha\Searcher\Context\SearchingContextInterface;
-use KGzocha\Searcher\QueryCriteriaBuilder\Collection\QueryCriteriaBuilderCollectionInterface;
-use KGzocha\Searcher\QueryCriteria\Collection\QueryCriteriaCollectionInterface;
-use KGzocha\Searcher\QueryCriteria\QueryCriteriaInterface;
+use KGzocha\Searcher\CriteriaBuilder\Collection\CriteriaBuilderCollectionInterface;
+use KGzocha\Searcher\Criteria\Collection\CriteriaCollectionInterface;
+use KGzocha\Searcher\Criteria\CriteriaInterface;
 
 /**
  * Main class responsible for performing actual searching.
@@ -15,7 +15,7 @@ use KGzocha\Searcher\QueryCriteria\QueryCriteriaInterface;
 class Searcher implements SearcherInterface
 {
     /**
-     * @var QueryCriteriaBuilderCollectionInterface
+     * @var CriteriaBuilderCollectionInterface
      */
     private $builders;
 
@@ -25,11 +25,11 @@ class Searcher implements SearcherInterface
     private $searchingContext;
 
     /**
-     * @param QueryCriteriaBuilderCollectionInterface $builders
+     * @param CriteriaBuilderCollectionInterface $builders
      * @param SearchingContextInterface               $searchingContext
      */
     public function __construct(
-        QueryCriteriaBuilderCollectionInterface $builders,
+        CriteriaBuilderCollectionInterface $builders,
         SearchingContextInterface $searchingContext
     ) {
         $this->builders = $builders;
@@ -40,9 +40,9 @@ class Searcher implements SearcherInterface
      * {@inheritdoc}
      */
     public function search(
-        QueryCriteriaCollectionInterface $queryCriteriaCollection
+        CriteriaCollectionInterface $criteriaCollection
     ) {
-        foreach ($queryCriteriaCollection->getCriteria() as $criteria) {
+        foreach ($criteriaCollection->getCriteria() as $criteria) {
             $this->searchForModel($criteria, $this->searchingContext);
         }
 
@@ -50,20 +50,20 @@ class Searcher implements SearcherInterface
     }
 
     /**
-     * @param QueryCriteriaInterface    $queryCriteria
+     * @param CriteriaInterface    $criteria
      * @param SearchingContextInterface $searchingContext
      */
     private function searchForModel(
-        QueryCriteriaInterface $queryCriteria,
+        CriteriaInterface $criteria,
         SearchingContextInterface $searchingContext
     ) {
         $builders = $this
             ->builders
-            ->getQueryCriteriaBuildersForContext($searchingContext);
+            ->getCriteriaBuildersForContext($searchingContext);
 
         foreach ($builders as $builder) {
-            if ($builder->allowsCriteria($queryCriteria)) {
-                $builder->buildCriteria($queryCriteria, $searchingContext);
+            if ($builder->allowsCriteria($criteria)) {
+                $builder->buildCriteria($criteria, $searchingContext);
             }
         }
     }
