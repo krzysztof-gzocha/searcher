@@ -2,7 +2,6 @@
 Index
 ======
 
-
 .. toctree::
     :caption: Searcher
     :maxdepth: 3
@@ -15,6 +14,14 @@ Index
     :caption: Classes
     :maxdepth: 2
 
-    Criteria <class/query-criteria.rst>
-    CriteriaBuilder <class/query-criteria-builder.rst>
+    Criteria <class/criteria.rst>
+    Criteria builder <class/criteria-builder.rst>
     Collections <class/collections.rst>
+    Searching context <class/searching-context.rst>
+    Searcher <class/searcher.rst>
+
+.. toctree::
+    :caption: Example
+    :maxdepth: 1
+
+    Complete example <complete-example.rst>

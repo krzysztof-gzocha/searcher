@@ -4,8 +4,14 @@ Searcher
 
 What?
 -----------------
-*Searcher* is a library created in order to simplify construction of complex searching queries basing on passed models (aka *criteria*).
+*Searcher* is a library created in order to simplify construction of complex searching queries basing on passed models (aka *criteria*)
+regardless of what do you want to search: entities in MySQL, MongoDB or just files.
 It's basic idea is to split each searching filter to separate class. Supported PHP versions: >=5.4, 7 and HHVM.
+
+GitHub repository: https://github.com/krzysztof-gzocha/searcher
+
+Packagist: https://packagist.org/packages/krzysztof-gzocha/searcher
+
 
 Why?
 ----------

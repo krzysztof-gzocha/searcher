@@ -26,7 +26,7 @@ class Searcher implements SearcherInterface
 
     /**
      * @param CriteriaBuilderCollectionInterface $builders
-     * @param SearchingContextInterface               $searchingContext
+     * @param SearchingContextInterface          $searchingContext
      */
     public function __construct(
         CriteriaBuilderCollectionInterface $builders,
@@ -50,7 +50,7 @@ class Searcher implements SearcherInterface
     }
 
     /**
-     * @param CriteriaInterface    $criteria
+     * @param CriteriaInterface         $criteria
      * @param SearchingContextInterface $searchingContext
      */
     private function searchForModel(

@@ -30,11 +30,6 @@ abstract class AbstractSearchingContext implements SearchingContextInterface
     /**
      * {@inheritdoc}
      */
-    abstract public function getResults();
-
-    /**
-     * {@inheritdoc}
-     */
     public function getQueryBuilder()
     {
         return $this->queryBuilder;
