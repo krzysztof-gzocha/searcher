@@ -1,5 +1,5 @@
 =======================
-Query criteria builder
+Criteria builder
 =======================
 
 Idea
@@ -12,7 +12,7 @@ which can work with multiple libraries and databases like:
 - Doctrine ORM for MySQL, MariaDB, Postgres
 - Doctrine ODM for MongoDB
 - ruflin/elastica for ElasticSearch
-- and anything else that will came to your mind
+- and anything else that will came to your mind - even **files**
 
 Only classes that are implementing ``\KGzocha\Searcher\CriteriaBuilder\CriteriaBuilderInterface`` can be used
 as a criteria builders. This means that builders need to implement 3 methods:
@@ -78,6 +78,12 @@ The most **important part** in here is to use **andWhere** instead of **where**,
 Because there might be another ``CriteriaBuilder`` before and using **where** would might have overwrite it's logic.
 It's really important for you to always think about single ``CriteriaBuilder`` as a part of complete query.
 You should always work only on your part - you don't want to mess up logic from different ``CriteriaBuilder``.
+
+Troubleshooting
+----------------
+
+You might experience problems when trying to declare the same *join* in two separate criteria builders.
+In such scenarios you have to try to not perform second join if it's already there.
 
 Too long, didn't read
 ----------------------

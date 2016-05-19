@@ -49,7 +49,7 @@ class MappedOrderByAdapter implements OrderByCriteriaInterface
             return $this->fieldsMap[$this->getOrderBy()];
         }
 
-        return;
+        return null;
     }
 
     /**
