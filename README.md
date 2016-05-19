@@ -1,6 +1,6 @@
 <img align="right" src="https://camo.githubusercontent.com/03659f3fcddeaec49aa2f494c1d4aff0ec9cbd36/687474703a2f2f7777772e636c6b65722e636f6d2f636c6970617274732f612f632f612f382f31313934393936353638313938333637303238396b63616368656772696e642e7376672e7468756d622e706e67"/>
 
-# Searcher [![Build Status](https://travis-ci.org/krzysztof-gzocha/searcher.svg?branch=master)](https://travis-ci.org/krzysztof-gzocha/searcher) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/?branch=master)
+# Searcher [![Build Status](https://travis-ci.org/krzysztof-gzocha/searcher.svg?branch=master)](https://travis-ci.org/krzysztof-gzocha/searcher) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/?branch=master) [![Latest Stable Version](https://poser.pugx.org/krzysztof-gzocha/searcher/v/stable)](https://packagist.org/packages/krzysztof-gzocha/searcher)
 
 ### What is that?
 *Searcher* is a library created in order to simplify construction of complex searching queries basing on passed criteria.
@@ -172,4 +172,4 @@ In alphabetical order
 
 #### License
 License: MIT
-Author: Krzysztof Gzocha [@kgzocha](https://twitter.com/kgzocha)
+Author: Krzysztof Gzocha [![](https://img.shields.io/badge/Twitter-%40kgzocha-blue.svg)](https://twitter.com/kgzocha)
