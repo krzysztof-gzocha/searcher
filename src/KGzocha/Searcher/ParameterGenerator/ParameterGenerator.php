@@ -4,10 +4,9 @@ namespace KGzocha\Searcher\ParameterGenerator;
 
 /**
  * This service can be used in order to assure unique parameter names
- * across all of the FilterImposers.
+ * across all of the CriteriaBuilders.
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\ParameterGenerator
  */
 class ParameterGenerator implements ParameterGeneratorInterface
 {
@@ -31,11 +30,12 @@ class ParameterGenerator implements ParameterGeneratorInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getParameterName()
     {
         $this->counter += 1;
+
         return sprintf('%s%s', $this->prefix, $this->counter);
     }
 }

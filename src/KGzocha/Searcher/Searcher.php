@@ -3,16 +3,21 @@
 namespace KGzocha\Searcher;
 
 use KGzocha\Searcher\Context\SearchingContextInterface;
-use KGzocha\Searcher\FilterImposer\Collection\FilterImposerCollectionInterface;
-use KGzocha\Searcher\FilterModel\Collection\FilterModelCollectionInterface;
-use KGzocha\Searcher\FilterModel\FilterModelInterface;
+use KGzocha\Searcher\CriteriaBuilder\Collection\CriteriaBuilderCollectionInterface;
+use KGzocha\Searcher\Criteria\Collection\CriteriaCollectionInterface;
+use KGzocha\Searcher\Criteria\CriteriaInterface;
 
+/**
+ * Main class responsible for performing actual searching.
+ *
+ * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
+ */
 class Searcher implements SearcherInterface
 {
     /**
-     * @var FilterImposerCollectionInterface
+     * @var CriteriaBuilderCollectionInterface
      */
-    private $imposerCollection;
+    private $builders;
 
     /**
      * @var SearchingContextInterface
@@ -20,45 +25,45 @@ class Searcher implements SearcherInterface
     private $searchingContext;
 
     /**
-     * @param FilterImposerCollectionInterface $imposerCollection
-     * @param SearchingContextInterface $searchingContext
+     * @param CriteriaBuilderCollectionInterface $builders
+     * @param SearchingContextInterface          $searchingContext
      */
     public function __construct(
-        FilterImposerCollectionInterface $imposerCollection,
+        CriteriaBuilderCollectionInterface $builders,
         SearchingContextInterface $searchingContext
     ) {
-        $this->imposerCollection = $imposerCollection;
+        $this->builders = $builders;
         $this->searchingContext = $searchingContext;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function search(
-        FilterModelCollectionInterface $filterCollection
+        CriteriaCollectionInterface $criteriaCollection
     ) {
-        foreach ($filterCollection->getImposedModels() as $filterModel) {
-            $this->searchForModel($filterModel, $this->searchingContext);
+        foreach ($criteriaCollection->getCriteria() as $criteria) {
+            $this->searchForModel($criteria, $this->searchingContext);
         }
 
         return $this->searchingContext->getResults();
     }
 
     /**
-     * @param FilterModelInterface $filterModel
+     * @param CriteriaInterface         $criteria
      * @param SearchingContextInterface $searchingContext
      */
     private function searchForModel(
-        FilterModelInterface $filterModel,
+        CriteriaInterface $criteria,
         SearchingContextInterface $searchingContext
     ) {
-        $imposers = $this
-            ->imposerCollection
-            ->getFilterImposersForContext($searchingContext);
+        $builders = $this
+            ->builders
+            ->getCriteriaBuildersForContext($searchingContext);
 
-        foreach ($imposers as $imposer) {
-            if ($imposer->supportsModel($filterModel)) {
-                $imposer->imposeFilter($filterModel, $searchingContext);
+        foreach ($builders as $builder) {
+            if ($builder->allowsCriteria($criteria)) {
+                $builder->buildCriteria($criteria, $searchingContext);
             }
         }
     }

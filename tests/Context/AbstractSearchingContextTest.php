@@ -9,7 +9,6 @@ use KGzocha\Searcher\Context\AbstractSearchingContext;
  */
 class AbstractSearchingContextTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testGetQueryBuilderMethod()
     {
         $queryBuilder = new \stdClass();

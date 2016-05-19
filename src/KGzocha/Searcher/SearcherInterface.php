@@ -1,16 +1,22 @@
 <?php
+
 namespace KGzocha\Searcher;
 
-use KGzocha\Searcher\FilterModel\Collection\FilterModelCollectionInterface;
-use KGzocha\Searcher\Result\ResultCollectionInterface;
+use KGzocha\Searcher\Criteria\Collection\CriteriaCollectionInterface;
 
+/**
+ * Will perform actual searching basing on passed CriteriaCollection.
+ *
+ * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
+ */
 interface SearcherInterface
 {
     /**
-     * @param FilterModelCollectionInterface $filterCollection
-     * @return ResultCollectionInterface
+     * @param CriteriaCollectionInterface $criteriaCollection
+     *
+     * @return mixed depending on SearchingContextInterface
      */
     public function search(
-        FilterModelCollectionInterface $filterCollection
+        CriteriaCollectionInterface $criteriaCollection
     );
 }

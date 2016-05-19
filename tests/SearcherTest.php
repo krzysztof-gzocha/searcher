@@ -2,8 +2,8 @@
 
 namespace KGzocha\Searcher\Test;
 
-use KGzocha\Searcher\FilterImposer\Collection\FilterImposerCollection;
-use KGzocha\Searcher\FilterModel\Collection\FilterModelCollection;
+use KGzocha\Searcher\CriteriaBuilder\Collection\CriteriaBuilderCollection;
+use KGzocha\Searcher\Criteria\Collection\CriteriaCollection;
 use KGzocha\Searcher\Searcher;
 
 /**
@@ -14,21 +14,21 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
 {
     public function testSearchMethod()
     {
-        $numberOfModels = 1;
+        $numberOfCriteria = 1;
         $results = [1, 2, 3, 4];
 
-        $searcher = new Searcher(new FilterImposerCollection([
-            $this->getFilterImposer(false, $numberOfModels),
-            $this->getFilterImposer(false, $numberOfModels),
-            $this->getFilterImposer(false, $numberOfModels),
-            $this->getFilterImposer(true, $numberOfModels),
-            $this->getFilterImposer(false, $numberOfModels),
-            $this->getFilterImposer(true, $numberOfModels),
-            $this->getFilterImposer(false, $numberOfModels),
+        $searcher = new Searcher(new CriteriaBuilderCollection([
+            $this->getCriteriaBuilder(false, $numberOfCriteria),
+            $this->getCriteriaBuilder(false, $numberOfCriteria),
+            $this->getCriteriaBuilder(false, $numberOfCriteria),
+            $this->getCriteriaBuilder(true, $numberOfCriteria),
+            $this->getCriteriaBuilder(false, $numberOfCriteria),
+            $this->getCriteriaBuilder(true, $numberOfCriteria),
+            $this->getCriteriaBuilder(false, $numberOfCriteria),
         ]), $this->getSearchingContext($results));
 
         $result = $searcher->search(
-            $this->getFilterModelCollection($numberOfModels)
+            $this->getCriteriaCollection($numberOfCriteria)
         );
 
         $this->assertEquals($results, $result);
@@ -40,46 +40,46 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
      *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    private function getFilterImposer($supportsModel, $numberOfModels)
+    private function getCriteriaBuilder($supportsModel, $numberOfModels)
     {
-        $imposer = $this
+        $builder = $this
             ->getMockBuilder(
-                '\KGzocha\Searcher\FilterImposer\FilterImposerInterface'
+                '\KGzocha\Searcher\CriteriaBuilder\CriteriaBuilderInterface'
             )
             ->getMock();
 
-        $imposer
+        $builder
             ->expects($this->exactly($numberOfModels))
-            ->method('supportsModel')
+            ->method('allowsCriteria')
             ->willReturn($supportsModel);
 
-        $imposer
+        $builder
             ->expects($this->exactly($numberOfModels))
             ->method('supportsSearchingContext')
             ->willReturn(true);
 
-        $imposer
+        $builder
             ->expects(
                 $supportsModel
                     ? $this->exactly($numberOfModels)
                     : $this->never()
             )
-            ->method('imposeFilter');
+            ->method('buildCriteria');
 
-        return $imposer;
+        return $builder;
     }
 
     /**
-     * @param int $numberOfModels
+     * @param int $numberOfCriteria
      *
-     * @return FilterModelCollection
+     * @return CriteriaCollection
      */
-    private function getFilterModelCollection($numberOfModels)
+    private function getCriteriaCollection($numberOfCriteria)
     {
-        return new FilterModelCollection(array_fill(
+        return new CriteriaCollection(array_fill(
             0,
-            $numberOfModels,
-            $this->getImposedFilterModel()
+            $numberOfCriteria,
+            $this->getCriteria()
         ));
     }
 
@@ -104,17 +104,17 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
     /**
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    private function getImposedFilterModel()
+    private function getCriteria()
     {
         $model = $this
             ->getMockBuilder(
-                '\KGzocha\Searcher\FilterModel\FilterModelInterface'
+                '\KGzocha\Searcher\Criteria\CriteriaInterface'
             )
             ->getMock();
 
         $model
             ->expects($this->any())
-            ->method('isImposed')
+            ->method('shouldBeApplied')
             ->willReturn(true);
 
         return $model;

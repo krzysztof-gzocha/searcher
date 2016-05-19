@@ -4,11 +4,9 @@ namespace KGzocha\Searcher\Context;
 
 /**
  * This class should be extended and make sure that QueryBuilder's type
- * is correct for all required FilterImposers. This is a layer of abstraction
- * between searcher and searching engines and ORMs.
+ * is correct for all required CriteriaBuilders.
  *
  * @author Krzysztof Gzocha
- * @package KGzocha\Searcher\Context
  */
 abstract class AbstractSearchingContext implements SearchingContextInterface
 {
@@ -18,11 +16,11 @@ abstract class AbstractSearchingContext implements SearchingContextInterface
     private $queryBuilder;
 
     /**
-     * This method should be overwritten in extending SearchingContext's in
+     * This method can be overwritten in extending SearchingContext's in
      * order to provide strict type for QueryBuilder.
      *
-     * @param mixed $queryBuilder will be used in filter imposers to impose
-     * all the conditions.
+     * @param mixed $queryBuilder will be used in CriteriaBuilders to impose
+     *                            all the conditions.
      */
     public function __construct($queryBuilder)
     {
@@ -30,15 +28,7 @@ abstract class AbstractSearchingContext implements SearchingContextInterface
     }
 
     /**
-     * @inheritdoc
-     */
-    abstract public function getResults();
-
-    /**
-     * Please be noticed that this method can return not only QueryBuilder, but different
-     * classes depending on SearchingContext implementation.
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getQueryBuilder()
     {

@@ -2,10 +2,14 @@
 
 namespace KGzocha\Searcher;
 
-use KGzocha\Searcher\FilterModel\Collection\FilterModelCollectionInterface;
+use KGzocha\Searcher\Criteria\Collection\CriteriaCollectionInterface;
 use KGzocha\Searcher\Result\ResultCollection;
 
 /**
+ * Will pass all results from search to ResultCollection.
+ * Not recommended to use in development environment due to eventual problems with debugging.
+ * Should be used only if results are supposed to return array or traversable object.
+ *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
 class WrappedResultsSearcher implements SearcherInterface
@@ -24,13 +28,13 @@ class WrappedResultsSearcher implements SearcherInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function search(
-        FilterModelCollectionInterface $filterCollection
+        CriteriaCollectionInterface $criteriaCollection
     ) {
         return new ResultCollection(
-            $this->searcher->search($filterCollection)
+            $this->searcher->search($criteriaCollection)
         );
     }
 }
