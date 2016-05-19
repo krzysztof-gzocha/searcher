@@ -17,6 +17,9 @@ In this way inside `CriteriaBuilder` you care only for one `Criteria`, which mak
 You can later use exactly the same `Criteria` for different search, with different `CriteriaBuilder` and even different `SearchingContext` which can use even different database.
 You can even use searcher to find **files** on your system thanks to `FinderSearchingContext`.
 
+### Full documentation
+Full documentation can be found at [http://searcher.rtfd.io/](http://searcher.readthedocs.io/en/stable/introduction.html)
+
 ### Installation
 You can install the library via composer by typing in terminal:
 ```bash
