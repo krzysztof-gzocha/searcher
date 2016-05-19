@@ -2,15 +2,20 @@
 Searcher
 =================
 
+.. image:: https://camo.githubusercontent.com/03659f3fcddeaec49aa2f494c1d4aff0ec9cbd36/687474703a2f2f7777772e636c6b65722e636f6d2f636c6970617274732f612f632f612f382f31313934393936353638313938333637303238396b63616368656772696e642e7376672e7468756d622e706e67
+    :align: left
+
 What?
 -----------------
-*Searcher* is a library created in order to simplify construction of complex searching queries basing on passed models (aka *criteria*)
-regardless of what do you want to search: entities in MySQL, MongoDB or just files.
-It's basic idea is to split each searching filter to separate class. Supported PHP versions: >=5.4, 7 and HHVM.
+*Searcher* is a library completely decoupled from any framework created in order to simplify
+construction of complex searching queries basing on passed models (aka *criteria*),
+regardless of what do you want to search: rows in MySQL, documents in MongoDB or just files.
+It's basic idea is to split each searching *filter* to separate classes.
+Supported PHP versions: >=5.4, 7 and HHVM.
+You can find searcher in two most important places:
 
-GitHub repository: https://github.com/krzysztof-gzocha/searcher
-
-Packagist: https://packagist.org/packages/krzysztof-gzocha/searcher
+- GitHub repository: https://github.com/krzysztof-gzocha/searcher
+- Packagist: https://packagist.org/packages/krzysztof-gzocha/searcher
 
 
 Why?

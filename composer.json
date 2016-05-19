@@ -37,7 +37,7 @@
         "doctrine/orm": "^2.5.0",
         "doctrine/mongodb-odm": "^1.0.0",
         "ruflin/elastica": ">=2.0.0",
-        "symfony/finder": "^2.0.4"
+        "symfony/finder": "^2.0.5"
     },
     "scripts": {
         "test": ["phpunit tests/"],
