@@ -90,7 +90,7 @@ class AgeRangeCriteriaBuilder implements CriteriaBuilderInterface
     public function supportsSearchingContext(
         SearchingContextInterface $searchingContext
     ) {
-        return $searchingContext instanceof \Doctrine\ORM\QueryBuilder;
+        return $searchingContext instanceof QueryBuilderSearchingContext;
     }
 }
 ```
