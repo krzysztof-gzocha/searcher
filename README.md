@@ -3,9 +3,7 @@
 # Searcher [![Build Status](https://travis-ci.org/krzysztof-gzocha/searcher.svg?branch=master)](https://travis-ci.org/krzysztof-gzocha/searcher) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/?branch=master) [![Latest Stable Version](https://poser.pugx.org/krzysztof-gzocha/searcher/v/stable)](https://packagist.org/packages/krzysztof-gzocha/searcher)
 
 ### What is that?
-*Searcher* is a library completely decoupled from any framework created in order to simplify construction of complex searching queries basing on passed criteria.
-It's basic idea is to split each searching *filter* to separate class.
-Regardless of what do you want to search: entities in MySQL, MongoDB or just files.
+*Searcher* is a framework-agnostic search query builder. Search queries are written using Criterias and can be run against MySQL, MongoDB or even files.
 Supported PHP versions: >=5.4, 7 and HHVM.
 
 ### Why?
