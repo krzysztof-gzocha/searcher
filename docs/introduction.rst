@@ -7,10 +7,8 @@ Searcher
 
 What?
 -----------------
-*Searcher* is a library completely decoupled from any framework created in order to simplify
-construction of complex searching queries basing on passed models (aka *criteria*),
-regardless of what do you want to search: rows in MySQL, documents in MongoDB or just files.
-It's basic idea is to split each searching *filter* to separate classes.
+*Searcher* is a framework-agnostic search query builder.
+Search queries are written using Criterias and can be run againstMySQL, MongoDB or even files.
 Supported PHP versions: >=5.4, 7 and HHVM.
 You can find searcher in two most important places:
 
