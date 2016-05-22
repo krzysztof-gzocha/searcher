@@ -7,12 +7,12 @@
 Supported PHP versions: >=5.4, 7 and HHVM.
 
 ### Why?
-Did you ever seen code responsible for searching for something basing on many different criteria? It can be quite a mess!
-Imagine that you have a form with 20 fields and all of them have their impact on searching conditions.
-It's maybe not a great idea to pass whole form to some service at let it parse everything in one place.
+Have you ever seen code responsible for searching for something based on many different criteria? It can become quite a mess!
+Imagine you have a form with 20 fields and all of them have some impact on searching conditions.
+It's not a great idea to pass a whole form to some service at let it parse everything in one place.
 Thanks to this library you can split the responsibility of building query criteria to several smaller classes. One class per filter. One `CriteriaBuilder` per `Criteria`.
-In this way inside `CriteriaBuilder` you care only for one `Criteria`, which makes it a lot more readable.
-You can later use exactly the same `Criteria` for different search, with different `CriteriaBuilder` and even different `SearchingContext` which can use even different database.
+This way, inside `CriteriaBuilder` you care only about one `Criteria`, which makes it a lot more readable and maintanable.
+You can later use exactly the same `Criteria` for different searches, with different `CriteriaBuilder` and even different `SearchingContext` which can use even different databases.
 You can even use searcher to find **files** on your system thanks to `FinderSearchingContext`.
 
 ### Full documentation
