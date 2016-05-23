@@ -1,8 +1,9 @@
 {
     "name": "krzysztof-gzocha/searcher",
-    "description": "Library which allows to construct complex queries basing on models",
+    "description": "Searcher is a framework-agnostic search query builder. Search queries are written using Criterias and can be run against MySQL, MongoDB or even files.",
     "license": "MIT",
     "type": "library",
+    "homepage": "http://searcher.rtfd.io",
     "authors": [
         {
             "name": "Krzysztof Gzocha"
@@ -11,7 +12,8 @@
     "suggest": {
         "doctrine/orm": "to use with Doctrine's ORM",
         "doctrine/mongodb-odm": "to use with Doctrine's ODM",
-        "ruflin/elastica": "to use with ruflin/elastica"
+        "ruflin/elastica": "to use with ruflin/elastica",
+        "symfony/finder": "to use with Symfony Finder component"
     },
     "config": {
         "bin-dir": "bin",

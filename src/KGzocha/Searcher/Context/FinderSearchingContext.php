@@ -5,7 +5,7 @@ namespace KGzocha\Searcher\Context;
 use Symfony\Component\Finder\Finder;
 
 /**
- * Use this searching context to search for files with Symfony Finder component
+ * Use this searching context to search for files with Symfony Finder component.
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
@@ -40,6 +40,6 @@ class FinderSearchingContext extends AbstractSearchingContext
      */
     public static function buildDefault()
     {
-        return new FinderSearchingContext(new Finder());
+        return new self(new Finder());
     }
 }

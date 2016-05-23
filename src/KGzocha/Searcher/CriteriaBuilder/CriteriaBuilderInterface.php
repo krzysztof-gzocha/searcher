@@ -19,7 +19,7 @@ interface CriteriaBuilderInterface
     /**
      * Will impose conditions with values taken from the criteria.
      *
-     * @param CriteriaInterface    $criteria
+     * @param CriteriaInterface         $criteria
      * @param SearchingContextInterface $searchingContext
      */
     public function buildCriteria(
