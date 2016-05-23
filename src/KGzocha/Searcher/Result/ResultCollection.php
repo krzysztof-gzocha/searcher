@@ -71,6 +71,7 @@ class ResultCollection implements ResultCollectionInterface
      */
     private function canUseResults($results = [])
     {
-        return is_array($results) || $results instanceof \Traversable;
+        return is_array($results)
+            || (is_object($results) && $results instanceof \Traversable);
     }
 }

@@ -21,6 +21,7 @@ class ResultCollectionTest extends \PHPUnit_Framework_TestCase
         $result = new ResultCollection($inputArray);
 
         $this->assertCount($expectedCount, $result);
+        $this->assertCount($expectedCount, $result->getResults());
     }
 
     /**
@@ -35,6 +36,30 @@ class ResultCollectionTest extends \PHPUnit_Framework_TestCase
             [[], 0],
             [new ArrayCollection([]), 0],
             [new ArrayCollection([1, 2, 3]), 3],
+        ];
+    }
+
+    /**
+     * @param mixed $inputArray
+     * @dataProvider numberOfWrongElementsProvider
+     */
+    public function testNumberOfWrongElements($inputArray)
+    {
+        $result = new ResultCollection($inputArray);
+
+        $this->assertCount(0, $result);
+        $this->assertCount(0, $result->getResults());
+    }
+
+    public function numberOfWrongElementsProvider()
+    {
+        return [
+            [new \stdClass()],
+            [null],
+            [1],
+            [-0.34],
+            ['asd'],
+            [false],
         ];
     }
 

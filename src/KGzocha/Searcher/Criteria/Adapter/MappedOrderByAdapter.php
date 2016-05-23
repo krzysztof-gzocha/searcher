@@ -28,8 +28,8 @@ class MappedOrderByAdapter implements OrderByCriteriaInterface
 
     /**
      * @param OrderByCriteriaInterface $orderBy
-     * @param array|\ArrayAccess            $fieldsMap keys will be visible to user,
-     *                                                 values to CriteriaBuilder
+     * @param array|\ArrayAccess       $fieldsMap keys will be visible to user,
+     *                                            values to CriteriaBuilder
      */
     public function __construct(
         OrderByCriteriaInterface $orderBy,
@@ -49,7 +49,7 @@ class MappedOrderByAdapter implements OrderByCriteriaInterface
             return $this->fieldsMap[$this->getOrderBy()];
         }
 
-        return null;
+        return;
     }
 
     /**

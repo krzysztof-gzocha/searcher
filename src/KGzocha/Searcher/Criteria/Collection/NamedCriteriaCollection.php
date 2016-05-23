@@ -21,7 +21,7 @@ class NamedCriteriaCollection extends CriteriaCollection implements
     }
 
     /**
-     * @param string                 $name
+     * @param string            $name
      * @param CriteriaInterface $value
      */
     public function __set($name, CriteriaInterface $value)
@@ -30,7 +30,7 @@ class NamedCriteriaCollection extends CriteriaCollection implements
     }
 
     /**
-     * @param string                 $name
+     * @param string            $name
      * @param CriteriaInterface $filterModel
      *
      * @return $this

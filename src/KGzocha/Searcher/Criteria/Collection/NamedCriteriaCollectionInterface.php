@@ -15,7 +15,7 @@ interface NamedCriteriaCollectionInterface extends
     CriteriaCollectionInterface
 {
     /**
-     * @param string                 $name
+     * @param string            $name
      * @param CriteriaInterface $filterModel
      *
      * @return $this
