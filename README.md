@@ -3,19 +3,20 @@
 # Searcher [![Build Status](https://travis-ci.org/krzysztof-gzocha/searcher.svg?branch=master)](https://travis-ci.org/krzysztof-gzocha/searcher) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/?branch=master) [![Latest Stable Version](https://poser.pugx.org/krzysztof-gzocha/searcher/v/stable)](https://packagist.org/packages/krzysztof-gzocha/searcher)
 
 ### What is that?
-*Searcher* is a library completely decoupled from any framework created in order to simplify construction of complex searching queries basing on passed criteria.
-It's basic idea is to split each searching *filter* to separate class.
-Regardless of what do you want to search: entities in MySQL, MongoDB or just files.
+*Searcher* is a framework-agnostic search query builder. Search queries are written using Criterias and can be run against MySQL, MongoDB or even files.
 Supported PHP versions: >=5.4, 7 and HHVM.
 
 ### Why?
-Did you ever seen code responsible for searching for something basing on many different criteria? It can be quite a mess!
-Imagine that you have a form with 20 fields and all of them have their impact on searching conditions.
-It's maybe not a great idea to pass whole form to some service at let it parse everything in one place.
+Have you ever seen code responsible for searching for something based on many different criteria? It can become quite a mess!
+Imagine you have a form with 20 fields and all of them have some impact on searching conditions.
+It's not a great idea to pass a whole form to some service at let it parse everything in one place.
 Thanks to this library you can split the responsibility of building query criteria to several smaller classes. One class per filter. One `CriteriaBuilder` per `Criteria`.
-In this way inside `CriteriaBuilder` you care only for one `Criteria`, which makes it a lot more readable.
-You can later use exactly the same `Criteria` for different search, with different `CriteriaBuilder` and even different `SearchingContext` which can use even different database.
+This way, inside `CriteriaBuilder` you care only about one `Criteria`, which makes it a lot more readable and maintanable.
+You can later use exactly the same `Criteria` for different searches, with different `CriteriaBuilder` and even different `SearchingContext` which can use even different databases.
 You can even use searcher to find **files** on your system thanks to `FinderSearchingContext`.
+
+### Full documentation
+Full documentation can be found at [http://searcher.rtfd.io/](http://searcher.readthedocs.io/en/stable/introduction.html)
 
 ### Installation
 You can install the library via composer by typing in terminal:
@@ -87,7 +88,7 @@ class AgeRangeCriteriaBuilder implements CriteriaBuilderInterface
     public function supportsSearchingContext(
         SearchingContextInterface $searchingContext
     ) {
-        return $searchingContext instanceof \Doctrine\ORM\QueryBuilder;
+        return $searchingContext instanceof QueryBuilderSearchingContext;
     }
 }
 ```
@@ -175,5 +176,5 @@ In alphabetical order
 
 
 #### License
-License: MIT
+License: MIT  
 Author: Krzysztof Gzocha [![](https://img.shields.io/badge/Twitter-%40kgzocha-blue.svg)](https://twitter.com/kgzocha)
