@@ -3,7 +3,7 @@
 # Searcher [![Build Status](https://travis-ci.org/krzysztof-gzocha/searcher.svg?branch=master)](https://travis-ci.org/krzysztof-gzocha/searcher) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/krzysztof-gzocha/searcher/?branch=master) [![Latest Stable Version](https://poser.pugx.org/krzysztof-gzocha/searcher/v/stable)](https://packagist.org/packages/krzysztof-gzocha/searcher)
 
 ### What is that?
-*Searcher* is a framework-agnostic search query builder. Search queries are written using Criterias and can be run against MySQL, MongoDB or even files.
+*Searcher* is a framework-agnostic search query builder. Search queries are written using criterias and can be run against MySQL, MongoDB, ElasticSearch, files or whatever else you like.
 Supported PHP versions: >=5.4, 7 and HHVM.
 
 ### Why?
@@ -177,4 +177,5 @@ In alphabetical order
 
 #### License
 License: MIT  
-Author: Krzysztof Gzocha [![](https://img.shields.io/badge/Twitter-%40kgzocha-blue.svg)](https://twitter.com/kgzocha)
+Author: Krzysztof Gzocha  
+[![](https://img.shields.io/badge/Twitter-%40kgzocha-blue.svg)](https://twitter.com/kgzocha)
