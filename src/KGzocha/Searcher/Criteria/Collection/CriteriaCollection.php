@@ -36,7 +36,7 @@ class CriteriaCollection implements CriteriaCollectionInterface
     {
         return array_filter(
             $this->getCriteria(),
-            function (CriteriaInterface $criteria) {
+            function(CriteriaInterface $criteria) {
                 return $criteria->shouldBeApplied();
             }
         );

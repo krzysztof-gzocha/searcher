@@ -55,7 +55,7 @@ class CriteriaBuilderCollection implements CriteriaBuilderCollectionInterface
     ) {
         return array_filter(
             $this->getCriteriaBuilders(),
-            function (CriteriaBuilderInterface $criteriaBuilder) use ($searchingContext) {
+            function(CriteriaBuilderInterface $criteriaBuilder) use ($searchingContext) {
                 return $criteriaBuilder->supportsSearchingContext($searchingContext);
             }
         );
