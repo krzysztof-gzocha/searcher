@@ -25,8 +25,8 @@ class PaginationCriteria implements PaginationCriteriaInterface
         $page,
         $itemsPerPage
     ) {
-        $this->page = $this->convert($page);
-        $this->itemsPerPage = $this->convert($itemsPerPage);
+        $this->setPage($page);
+        $this->setItemsPerPage($itemsPerPage);
     }
 
     /**

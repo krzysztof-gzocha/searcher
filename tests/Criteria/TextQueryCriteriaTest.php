@@ -26,10 +26,15 @@ class TextCriteriaTest extends AbstractCriteriaTestCase
      */
     public function testImposedMethod($value, $expectedResult)
     {
+        $model = $this->getTextFilterModel();
         $this->assertEquals(
-            $this->getTextFilterModel()->setText($value)->shouldBeApplied(),
+            $model->setText($value)->shouldBeApplied(),
             $expectedResult
         );
+
+        if (gettype($value) === 'string') {
+            $this->assertEquals($value, $model->getText());
+        }
     }
 
     /**

@@ -14,7 +14,7 @@ namespace KGzocha\Searcher\Result;
 class ResultCollection implements ResultCollectionInterface
 {
     /**
-     * @var array
+     * @var \Traversable|array
      */
     private $results;
 

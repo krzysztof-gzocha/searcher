@@ -10,18 +10,20 @@ class DateTimeCriteriaTest extends AbstractCriteriaTestCase
     public function testImposedMethodWithoutValue()
     {
         $this->assertFalse(
-            $this->getDateTimeFilterModel()
-                ->shouldBeApplied()
+            $this->getDateTimeFilterModel()->shouldBeApplied()
         );
     }
 
     public function testImposedMethod()
     {
+        $model = $this->getDateTimeFilterModel();
         $this->assertTrue(
-            $this->getDateTimeFilterModel()
-                ->setDateTime(new \DateTime())
+            $model
+                ->setDateTime($dateTime = new \DateTime())
                 ->shouldBeApplied()
         );
+
+        $this->assertEquals($dateTime, $model->getDateTime());
     }
 
     public function testIfImplementsInterface()

@@ -15,7 +15,8 @@ class CachedQueryBuilderSearchingContext extends QueryBuilderSearchingContext
      */
     public function getResults()
     {
-        return parent::getQueryBuilder()
+        return $this
+            ->getQueryBuilder()
             ->getQuery()
             ->useQueryCache(true)
             ->getResult();

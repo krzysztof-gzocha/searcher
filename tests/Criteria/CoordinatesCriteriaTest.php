@@ -19,10 +19,12 @@ class CoordinatesCriteriaTest extends AbstractCriteriaTestCase
     public function testIsImposedOnFilled()
     {
         $model = new CoordinatesCriteria();
-        $model->setLatitude(12.34567);
-        $model->setLongitude(76.54321);
+        $model->setLatitude($latitude = 12.34567);
+        $model->setLongitude($longitude = 76.54321);
 
         $this->assertTrue($model->shouldBeApplied());
+        $this->assertEquals($latitude, $model->getLatitude());
+        $this->assertEquals($longitude, $model->getLongitude());
     }
 
     public function testIfImplementsInterface()
