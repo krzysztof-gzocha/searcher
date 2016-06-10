@@ -41,6 +41,6 @@ class OrderByCriteria implements OrderByCriteriaInterface
      */
     public function shouldBeApplied()
     {
-        return $this->orderBy != null;
+        return $this->orderBy !== null && !empty($this->orderBy);
     }
 }

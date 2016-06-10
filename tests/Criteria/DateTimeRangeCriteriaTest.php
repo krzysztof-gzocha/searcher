@@ -13,13 +13,16 @@ class DateTimeRangeCriteriaTest extends AbstractCriteriaTestCase
     }
 
     public function testImposedMethod() {
+        $model = $this->getDateTimeRangeFilterModel();
         $this->assertTrue(
-            $this
-                ->getDateTimeRangeFilterModel()
-                ->setStartingDateTime(new \DateTime())
-                ->setEndingDateTime(new \DateTime())
+            $model
+                ->setStartingDateTime($startDate = new \DateTime())
+                ->setEndingDateTime($endDate = new \DateTime())
                 ->shouldBeApplied()
         );
+
+        $this->assertEquals($startDate, $model->getStartingDateTime());
+        $this->assertEquals($endDate, $model->getEndingDateTime());
     }
 
     public function testIfImplementsInterface()
