@@ -3,6 +3,7 @@
 namespace KGzocha\Searcher\Context\Elastica;
 
 use Elastica\Query;
+use Elastica\ResultSet;
 use Elastica\Search;
 use KGzocha\Searcher\Context\AbstractSearchingContext;
 
@@ -51,7 +52,7 @@ class QuerySearchingContext extends AbstractSearchingContext
     }
 
     /**
-     * {@inheritdoc}
+     * @return ResultSet
      */
     public function getResults()
     {
