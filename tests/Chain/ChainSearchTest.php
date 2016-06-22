@@ -4,7 +4,7 @@ namespace KGzocha\Searcher\Test\Chain;
 
 use KGzocha\Searcher\Chain\Cell;
 use KGzocha\Searcher\Chain\ChainSearch;
-use KGzocha\Searcher\Chain\EmptyTransformer;
+use KGzocha\Searcher\Chain\EndTransformer;
 use KGzocha\Searcher\Criteria\Collection\CriteriaCollection;
 use KGzocha\Searcher\Criteria\Collection\CriteriaCollectionInterface;
 
@@ -32,7 +32,7 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
             ),
             new Cell(
                 $this->getSearcher($thirdCriteria, [7,8,9]), 
-                new EmptyTransformer(),
+                new EndTransformer(),
                 'third'
             ),
         ];
@@ -51,7 +51,100 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
             'third' => [7,8,9],
         ], $results->getResults());
     }
-    
+
+    public function testUnnamedResultKeys()
+    {
+        $startingCriteria = new CriteriaCollection();
+        $secondCriteria = new CriteriaCollection();
+        $thirdCriteria = new CriteriaCollection();
+
+        $cells = [
+            new Cell(
+                $this->getSearcher($startingCriteria, [1,2,3]),
+                $this->getTransformer([1,2,3], $secondCriteria)
+            ),
+            new Cell(
+                $this->getSearcher($secondCriteria, [4,5,6]),
+                $this->getTransformer([4,5,6], $thirdCriteria)
+            ),
+            new Cell(
+                $this->getSearcher($thirdCriteria, [7,8,9]),
+                new EndTransformer()
+            ),
+        ];
+
+        $chain = new ChainSearch($cells);
+        $results = $chain->search($startingCriteria);
+
+        $this->assertCount(count($cells), $results);
+        $this->assertEquals(
+            [0, 1, 2],
+            array_keys($results->getResults())
+        );
+        $this->assertEquals([
+            [1,2,3],
+            [4,5,6],
+            [7,8,9],
+        ], $results->getResults());
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testTooLessCellValidation()
+    {
+        new ChainSearch([]);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testNotCellInterfaceValidation()
+    {
+        new ChainSearch([
+            new Cell($this->getSearcher(new CriteriaCollection()), $this->getTransformer([])),
+            new Cell($this->getSearcher(new CriteriaCollection()), $this->getTransformer([])),
+            new \stdClass(),
+        ]);
+    }
+
+    public function testSkippingTransformer()
+    {
+        $firstCriteria = new CriteriaCollection();
+
+        $search = new ChainSearch([
+            new Cell($this->getSearcher(new CriteriaCollection(), [1]), $this->getTransformer([1], $firstCriteria), 'first'),
+            new Cell($this->getSearcher($firstCriteria, [2]), $this->getSkipTransformer(), 'second'),
+            new Cell($this->getSearcher(new CriteriaCollection(), [3]), new EndTransformer(), 'third'),
+        ]);
+
+        $result = $search->search(new CriteriaCollection());
+
+        $this->assertEquals([
+            'first' => [1],
+            'third' => [3],
+        ], $result->getResults());
+    }
+
+    private function getSkipTransformer()
+    {
+        $transformer = $this
+            ->getMockBuilder('\KGzocha\Searcher\Chain\TransformerInterface')
+            ->getMock();
+
+        $transformer
+            ->expects($this->once())
+            ->method('skip')
+            ->willReturn(true);
+
+        $transformer
+            ->expects($this->never())
+            ->method('transform')
+            ->withAnyParameters();
+
+        return $transformer;
+    }
+
     /**
      * @param mixed                            $entryData
      * @param CriteriaCollectionInterface|null $result

@@ -3,9 +3,12 @@
 namespace KGzocha\Searcher\Chain;
 
 /**
+ * Use this class to indicate that there is no more searchers in the chain.
+ * It is like a NullObject. It does not do much.
+ *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
-class EmptyTransformer implements TransformerInterface
+final class EndTransformer implements TransformerInterface
 {
     /**
      * @inheritDoc
