@@ -107,6 +107,6 @@ class ChainSearch implements SearcherInterface
         TransformerInterface $transformer,
         $results
     ) {
-        return null !== $results && $transformer->skip($results);
+        return $transformer->skip($results);
     }
 }
