@@ -126,6 +126,24 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
         ], $result->getResults());
     }
 
+    public function testSkippingFirstTransformer()
+    {
+        $firstCriteria = new CriteriaCollection();
+
+        $search = new ChainSearch([
+            new Cell($this->getSearcher($firstCriteria, [2]), $this->getSkipTransformer(), 'second'),
+            new Cell($this->getSearcher(new CriteriaCollection(), [1]), $this->getTransformer([1], $firstCriteria), 'first'),
+            new Cell($this->getSearcher(new CriteriaCollection(), [3]), new EndTransformer(), 'third'),
+        ]);
+
+        $result = $search->search(new CriteriaCollection());
+
+        $this->assertEquals([
+            'first' => [1],
+            'third' => [3],
+        ], $result->getResults());
+    }
+
     private function getSkipTransformer()
     {
         $transformer = $this

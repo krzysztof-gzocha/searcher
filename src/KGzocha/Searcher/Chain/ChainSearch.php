@@ -48,7 +48,7 @@ class ChainSearch implements SearcherInterface
         $resultsArray = [];
 
         foreach ($this->cells as $cell) {
-            if ($this->shouldSkipResults($cell->getTransformer(), $previousResults)) {
+            if ($cell->getTransformer()->skip($previousResults)) {
                 continue;
             }
 
@@ -95,18 +95,5 @@ class ChainSearch implements SearcherInterface
                 __CLASS__
             ));
         }
-    }
-
-    /**
-     * @param TransformerInterface $transformer
-     * @param mixed                $results
-     *
-     * @return bool
-     */
-    private function shouldSkipResults(
-        TransformerInterface $transformer,
-        $results
-    ) {
-        return null !== $results && $transformer->skip($results);
     }
 }

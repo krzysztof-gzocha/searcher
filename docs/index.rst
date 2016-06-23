@@ -23,6 +23,12 @@ Index
     Searcher <class/searcher.rst>
 
 .. toctree::
+    :caption: Chain search
+    :maxdepth: 1
+
+    Chain search <chain-search.rst>
+
+.. toctree::
     :caption: Example
     :maxdepth: 1
 

@@ -20,6 +20,8 @@ interface TransformerInterface
     public function transform($results);
 
     /**
+     * Important! Results might be null when cell will be used as first one.
+     *
      * @param mixed $results
      *
      * @return bool
