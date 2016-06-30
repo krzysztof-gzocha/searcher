@@ -42,7 +42,7 @@ class Searcher implements SearcherInterface
     public function search(
         CriteriaCollectionInterface $criteriaCollection
     ) {
-        foreach ($criteriaCollection->getCriteria() as $criteria) {
+        foreach ($criteriaCollection->getApplicableCriteria() as $criteria) {
             $this->searchForModel($criteria, $this->searchingContext);
         }
 
