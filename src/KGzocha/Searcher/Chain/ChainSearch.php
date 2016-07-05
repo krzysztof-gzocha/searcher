@@ -59,7 +59,7 @@ class ChainSearch implements SearcherInterface
 
             $previousResults = $cell->getSearcher()->search($previousCriteria);
             if ($cell->hasTransformer()) {
-                $previousCriteria = $cell->getTransformer()->transform($previousResults);
+                $previousCriteria = $cell->getTransformer()->transform($previousResults, $previousCriteria);
             }
 
             if ($cell->getName()) {

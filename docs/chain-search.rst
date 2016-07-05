@@ -51,7 +51,7 @@ injected into the ``$statisticSearcher``:
         /**
          * @param mixed $results
          */
-        public function transform($results)
+        public function transform($results, CriteriaCollectionInterface $criteria)
         {
             // Assuming that UserIdsCriteria will holds an array of user IDs
             $userIdsCriteria = new UserIdsCriteria(array_map(
@@ -60,6 +60,8 @@ injected into the ``$statisticSearcher``:
                 },
                 $results
             ));
+
+            // We can use some criteria from previous search, but in this scenario we do not need them.
 
             return new CriteriaCollection($userIdsCriteria);
         }

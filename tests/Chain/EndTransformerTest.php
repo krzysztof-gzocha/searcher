@@ -3,6 +3,7 @@
 namespace KGzocha\Searcher\Test\Chain;
 
 use KGzocha\Searcher\Chain\EndTransformer;
+use KGzocha\Searcher\Criteria\Collection\CriteriaCollection;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
@@ -21,6 +22,6 @@ class EndTransformerTest extends \PHPUnit_Framework_TestCase
     public function testTransformMethod()
     {
         $transformer = new EndTransformer();
-        $transformer->transform([]);
+        $transformer->transform([], new CriteriaCollection());
     }
 }
