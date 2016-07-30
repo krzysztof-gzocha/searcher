@@ -17,16 +17,15 @@ class PaginationCriteriaTest extends AbstractCriteriaTestCase
     /**
      * @param $page
      * @param $itemsPerPage
+     * @param $expected
      * @dataProvider dataProvider
      */
-    public function testImposedWithValue($page, $itemsPerPage)
+    public function testShouldBeApplied($page, $itemsPerPage, $expected)
     {
-        $this->assertTrue($this->getCriteria($page, $itemsPerPage)->shouldBeApplied());
-    }
-
-    public function testImposedWithoutValue()
-    {
-        $this->assertFalse($this->getCriteria(0, 0)->shouldBeApplied());
+        $this->assertEquals(
+            $expected,
+            $this->getCriteria($page, $itemsPerPage)->shouldBeApplied()
+        );
     }
 
     /**
@@ -54,9 +53,13 @@ class PaginationCriteriaTest extends AbstractCriteriaTestCase
     public function dataProvider()
     {
         return [
-            [1, 50],
-            [5, 25],
-            [11234, 11233],
+            [1, 50, true],
+            [5, 25, true],
+            [11234, 11233, true],
+
+            [0, 12, false],
+            [12, 0, false],
+            [null, null, false],
         ];
     }
 

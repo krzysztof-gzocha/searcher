@@ -7,22 +7,42 @@ use KGzocha\Searcher\Criteria\DateTimeRangeCriteria;
 
 class DateTimeRangeCriteriaTest extends AbstractCriteriaTestCase
 {
-    public function testImposedMethodWithoutValues()
+    public function testShouldBeAppliedByDefault()
     {
         $this->assertFalse($this->getDateTimeRangeFilterModel()->shouldBeApplied());
     }
 
-    public function testImposedMethod() {
-        $model = $this->getDateTimeRangeFilterModel();
-        $this->assertTrue(
-            $model
-                ->setStartingDateTime($startDate = new \DateTime())
-                ->setEndingDateTime($endDate = new \DateTime())
-                ->shouldBeApplied()
-        );
+    public function testGetters()
+    {
+        $model = new DateTimeRangeCriteria();
+        $model->setStartingDateTime($date1 = new \DateTime());
+        $model->setEndingDateTime($date2 = new \DateTime());
 
-        $this->assertEquals($startDate, $model->getStartingDateTime());
-        $this->assertEquals($endDate, $model->getEndingDateTime());
+        $this->assertEquals($date1, $model->getStartingDateTime());
+        $this->assertEquals($date2, $model->getEndingDateTime());
+    }
+
+    /**
+     * @param $startDate
+     * @param $endDate
+     * @param $expected
+     * @dataProvider shouldBeAppliedDataProvider
+     */
+    public function testShouldBeApplied($startDate, $endDate, $expected)
+    {
+        $model = new DateTimeRangeCriteria($startDate, $endDate);
+        $this->assertEquals($expected, $model->shouldBeApplied());
+    }
+
+    public function shouldBeAppliedDataProvider()
+    {
+        return [
+            [new \DateTime(), new \DateTime(), true],
+            [null, new \DateTime(), true],
+            [new \DateTime(), null, true],
+
+            [null, null, false],
+        ];
     }
 
     public function testIfImplementsInterface()

@@ -16,6 +16,8 @@ use KGzocha\Searcher\SearcherInterface;
  */
 class ChainSearch implements SearcherInterface
 {
+    const MINIMUM_CELLS = 2;
+
     /**
      * @var CellInterface[]
      */
@@ -79,7 +81,7 @@ class ChainSearch implements SearcherInterface
      */
     private function validateCells(array $cells)
     {
-        if (2 > count($cells)) {
+        if (self::MINIMUM_CELLS > count($cells)) {
             throw new \InvalidArgumentException(
                 'At least two searchers are required to create a chain'
             );

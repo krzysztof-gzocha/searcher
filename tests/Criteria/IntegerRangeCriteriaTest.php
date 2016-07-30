@@ -17,19 +17,34 @@ class IntegerRangeCriteriaTest extends AbstractCriteriaTestCase
         );
     }
 
-    public function testIsImposedOnEmpty()
+    public function testShouldBeAppliedByDefault()
     {
         $model = new IntegerRangeCriteria();
         $this->assertFalse($model->shouldBeApplied());
     }
 
-    public function testIsImposedOnFilled()
+    /**
+     * @param $min
+     * @param $max
+     * @param $expected
+     * @dataProvider shouldBeAppliedDataProvider
+     */
+    public function testShouldBeApplied($min, $max, $expected)
     {
-        $model = new IntegerRangeCriteria();
-        $model->setMin(12);
-        $model->setMax(24);
+        $model = new IntegerRangeCriteria($min, $max, $expected);
 
-        $this->assertTrue($model->shouldBeApplied());
+        $this->assertEquals($expected, $model->shouldBeApplied());
+    }
+
+    public function shouldBeAppliedDataProvider()
+    {
+        return [
+            [1, 2, true],
+
+            [null, 2, false],
+            [null, null, false],
+            [1, null, false],
+        ];
     }
 
     public function testGetters()

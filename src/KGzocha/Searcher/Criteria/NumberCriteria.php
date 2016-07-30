@@ -42,6 +42,6 @@ class NumberCriteria implements CriteriaInterface
     public function shouldBeApplied()
     {
         return $this->number !== null
-            && is_float($this->number);
+            && is_numeric($this->number);
     }
 }

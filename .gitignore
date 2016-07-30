@@ -4,4 +4,6 @@ coverage/
 coverage.clover
 ocular.phar
 composer.lock
+humbug.json
+humbuglog.txt
 

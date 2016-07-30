@@ -33,8 +33,6 @@ class TextCriteria implements CriteriaInterface
     public function setText($text)
     {
         $this->text = (string) $text;
-
-        return $this;
     }
 
     /**

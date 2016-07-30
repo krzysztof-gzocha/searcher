@@ -17,27 +17,36 @@ class IntegerCriteriaTest extends AbstractCriteriaTestCase
         );
     }
 
-    public function testIsImposedOnEmpty()
+    public function testShouldBeAppliedByDefault()
     {
         $model = new IntegerCriteria();
         $this->assertFalse($model->shouldBeApplied());
     }
 
-    public function testIsImposedOnFilled()
+    /**
+     * @param int $integer
+     * @param $expected
+     * @dataProvider shouldBeAppliedDataProvider
+     */
+    public function testShouldBeApplied($integer, $expected)
     {
-        $model = new IntegerCriteria();
+        $model = new IntegerCriteria($integer);
+        $this->assertEquals($expected, $model->shouldBeApplied());
+    }
 
-        $model->setInteger(10);
-        $this->assertTrue($model->shouldBeApplied());
+    /**
+     * @return array
+     */
+    public function shouldBeAppliedDataProvider()
+    {
+        return [
+            [10, true],
+            ['1a', true],
+            [10.12, true],
+            ['10.12', true],
 
-        $model->setInteger('1a');
-        $this->assertTrue($model->shouldBeApplied());
-
-        $model->setInteger(10.12);
-        $this->assertTrue($model->shouldBeApplied());
-
-        $model->setInteger('100.32');
-        $this->assertTrue($model->shouldBeApplied());
+            [null, false],
+        ];
     }
 
     public function testGetters()

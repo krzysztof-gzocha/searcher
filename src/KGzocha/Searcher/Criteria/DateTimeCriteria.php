@@ -36,8 +36,6 @@ class DateTimeCriteria implements CriteriaInterface
     public function setDateTime(\DateTime $dateTime = null)
     {
         $this->dateTime = $dateTime;
-
-        return $this;
     }
 
     /**

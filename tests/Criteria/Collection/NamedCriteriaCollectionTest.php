@@ -34,5 +34,18 @@ class NamedCriteriaCollectionTest extends CriteriaCollectionTest
 
         $this->assertCount(3, $collection->getCriteria());
     }
+
+    public function testFluentInterface()
+    {
+        $collection = new NamedCriteriaCollection();
+        $this->assertInstanceOf(
+            '\KGzocha\Searcher\Criteria\Collection\NamedCriteriaCollection',
+            $collection->addCriteria($this->getCriteria())
+        );
+        $this->assertInstanceOf(
+            '\KGzocha\Searcher\Criteria\Collection\NamedCriteriaCollection',
+            $collection->addNamedCriteria('name', $this->getCriteria())
+        );
+    }
 }
 

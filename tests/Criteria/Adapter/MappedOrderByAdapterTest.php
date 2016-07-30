@@ -40,6 +40,29 @@ class MappedOrderByAdapterTest extends OrderByCriteriaTest
     }
 
     /**
+     * @param $value
+     * @param $expected
+     * @dataProvider shouldBeAppliedDataProvider
+     */
+    public function testShouldBeApplied($value, $expected)
+    {
+        $model = $this->getFilterModel();
+        $model->setOrderBy($value);
+
+        $this->assertEquals($expected, $model->shouldBeApplied());
+    }
+
+    public function shouldBeAppliedDataProvider()
+    {
+        return [
+            ['value', true],
+            ['not-mapped-field', false],
+            [null, false],
+            ['', false],
+        ];
+    }
+
+    /**
      * @inheritDoc
      */
     protected function getFilterModel($defaultOrderBy = null)

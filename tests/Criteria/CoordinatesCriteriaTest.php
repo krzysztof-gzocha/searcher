@@ -10,21 +10,33 @@ use KGzocha\Searcher\Criteria\CoordinatesCriteria;
  */
 class CoordinatesCriteriaTest extends AbstractCriteriaTestCase
 {
-    public function testIsImposedOnEmpty()
+    public function testShouldBeAppliedByDefault()
     {
         $model = new CoordinatesCriteria();
         $this->assertFalse($model->shouldBeApplied());
     }
 
-    public function testIsImposedOnFilled()
+    /**
+     * @param $lat
+     * @param $lon
+     * @param $expected
+     * @dataProvider shouldBeAppliedDataProvider
+     */
+    public function testShouldBeApplied($lat, $lon, $expected)
     {
-        $model = new CoordinatesCriteria();
-        $model->setLatitude($latitude = 12.34567);
-        $model->setLongitude($longitude = 76.54321);
+        $model = new CoordinatesCriteria($lat, $lon);
 
-        $this->assertTrue($model->shouldBeApplied());
-        $this->assertEquals($latitude, $model->getLatitude());
-        $this->assertEquals($longitude, $model->getLongitude());
+        $this->assertEquals($expected, $model->shouldBeApplied());
+    }
+
+    public function shouldBeAppliedDataProvider()
+    {
+        return [
+            [23.123, 56.566, true],
+            [null, null, false],
+            [23.123, null, false],
+            [null, 56.123, false],
+        ];
     }
 
     public function testIfImplementsInterface()

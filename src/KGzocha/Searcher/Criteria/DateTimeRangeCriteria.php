@@ -46,8 +46,6 @@ class DateTimeRangeCriteria implements CriteriaInterface
         \DateTime $startingDateTime = null
     ) {
         $this->startingDateTime = $startingDateTime;
-
-        return $this;
     }
 
     /**
@@ -67,8 +65,6 @@ class DateTimeRangeCriteria implements CriteriaInterface
         \DateTime $endingDateTime = null
     ) {
         $this->endingDateTime = $endingDateTime;
-
-        return $this;
     }
 
     /**

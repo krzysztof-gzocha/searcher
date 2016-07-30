@@ -24,12 +24,13 @@ class TextCriteriaTest extends AbstractCriteriaTestCase
      *
      * @dataProvider textDataProvider
      */
-    public function testImposedMethod($value, $expectedResult)
+    public function testShouldBeApplied($value, $expectedResult)
     {
         $model = $this->getTextFilterModel();
+        $model->setText($value);
         $this->assertEquals(
-            $model->setText($value)->shouldBeApplied(),
-            $expectedResult
+            $expectedResult,
+            $model->shouldBeApplied()
         );
 
         if (gettype($value) === 'string') {

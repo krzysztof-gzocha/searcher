@@ -61,6 +61,17 @@ class CriteriaBuilderCollectionTest extends \PHPUnit_Framework_TestCase
         ));
     }
 
+    public function testFluentInterface()
+    {
+        $collection = new CriteriaBuilderCollection();
+        $this->assertInstanceOf(
+            '\KGzocha\Searcher\CriteriaBuilder\Collection\CriteriaBuilderCollection',
+            $collection->addCriteriaBuilder(
+                $this->getCriteriaBuilder()
+            )
+        );
+    }
+
     /**
      * @return \PHPUnit_Framework_MockObject_MockObject
      */

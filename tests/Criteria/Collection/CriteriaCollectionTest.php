@@ -46,6 +46,15 @@ class CriteriaCollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(self::NUMBER_OF_QUERY_CRITERIA, $criteriaCollection->getCriteria());
     }
 
+    public function testFluentInterface()
+    {
+        $collection = new CriteriaCollection();
+        $this->assertInstanceOf(
+            '\KGzocha\Searcher\Criteria\Collection\CriteriaCollection',
+            $collection->addCriteria($this->getCriteria())
+        );
+    }
+
     public function testCriteriaThatShouldBeApplied()
     {
         $criteria = [];

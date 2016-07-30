@@ -89,11 +89,44 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @param int $numberOfCells
+     * @param $expectedException
+     * @dataProvider tooLessCellsDataProvider
      */
-    public function testTooLessCellValidation()
+    public function testTooLessCellValidation($numberOfCells, $expectedException)
     {
-        new ChainSearch([]);
+        // array_fill(0,0,[]) is not working on PHP 5.5 and 5.4
+        if (0 == $numberOfCells) {
+            $array = [];
+        } else {
+            $array = array_fill(
+                0,
+                $numberOfCells,
+                new Cell(
+                    $this->getSearcher(new CriteriaCollection()),
+                    $this->getTransformer([1])
+                )
+            );
+        }
+
+        if ($expectedException) {
+            $this->setExpectedException('\InvalidArgumentException');
+        }
+
+        new ChainSearch($array);
+    }
+
+    /**
+     * @return array
+     */
+    public function tooLessCellsDataProvider()
+    {
+        return [
+            [0, true],
+            [1, true],
+            [2, false],
+            [3, false],
+        ];
     }
 
     /**
