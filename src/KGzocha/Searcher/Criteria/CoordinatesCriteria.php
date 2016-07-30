@@ -18,6 +18,16 @@ class CoordinatesCriteria implements CriteriaInterface
     private $longitude;
 
     /**
+     * @param float $latitude
+     * @param float $longitude
+     */
+    public function __construct($latitude = null, $longitude = null)
+    {
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
+    }
+
+    /**
      * @return float
      */
     public function getLatitude()

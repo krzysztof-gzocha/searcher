@@ -13,6 +13,14 @@ class IntegerCriteria implements CriteriaInterface
     private $integer;
 
     /**
+     * @param int $integer
+     */
+    public function __construct($integer = null)
+    {
+        $this->integer = $integer;
+    }
+
+    /**
      * @return int
      */
     public function getInteger()

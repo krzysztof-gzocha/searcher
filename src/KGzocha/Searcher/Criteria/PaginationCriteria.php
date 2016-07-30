@@ -22,8 +22,8 @@ class PaginationCriteria implements PaginationCriteriaInterface
      * @param int $itemsPerPage
      */
     public function __construct(
-        $page,
-        $itemsPerPage
+        $page = null,
+        $itemsPerPage = null
     ) {
         $this->setPage($page);
         $this->setItemsPerPage($itemsPerPage);

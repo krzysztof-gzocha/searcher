@@ -18,6 +18,16 @@ class IntegerRangeCriteria implements CriteriaInterface
     private $max;
 
     /**
+     * @param int $min
+     * @param int $max
+     */
+    public function __construct($min = null, $max = null)
+    {
+        $this->min = $min;
+        $this->max = $max;
+    }
+
+    /**
      * @return int
      */
     public function getMin()

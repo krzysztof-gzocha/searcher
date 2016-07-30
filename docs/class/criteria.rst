@@ -120,6 +120,15 @@ You will find there query criteria for:
 - OrderBy (with ``MappedOrderByAdapter``)
 - Pagination (with ``ImmutablePaginationAdapter``)
 - Text
+- AlwaysAppliedCriteria
+
+Always applied criteria
+------------------------
+In some cases you might find ``AlwaysAppliedCriteria`` useful, as you might use it to trigger some ``CriteriaBuilder``,
+which will add some very important constraints to the ``QueryBuilder``. For example you might want to use it to
+force searcher to return entities/rows/files/documents only with specified status. In such scenario you can add
+``AlwaysAppliedCriteria`` directly to the ``CriteriaCollection`` and add ``CriteriaBuilder`` for it - builder will
+always be triggered, which will make impossible for end-user to change this behaviour.
 
 Order adapter
 --------------

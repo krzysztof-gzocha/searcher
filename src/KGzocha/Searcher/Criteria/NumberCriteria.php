@@ -13,6 +13,14 @@ class NumberCriteria implements CriteriaInterface
     private $number;
 
     /**
+     * @param float $number
+     */
+    public function __construct($number = null)
+    {
+        $this->number = $number;
+    }
+
+    /**
      * @return float
      */
     public function getNumber()

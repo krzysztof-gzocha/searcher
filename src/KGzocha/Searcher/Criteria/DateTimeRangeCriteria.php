@@ -18,6 +18,18 @@ class DateTimeRangeCriteria implements CriteriaInterface
     private $endingDateTime;
 
     /**
+     * @param \DateTime $startingDateTime
+     * @param \DateTime $endingDateTime
+     */
+    public function __construct(
+        \DateTime $startingDateTime = null,
+        \DateTime $endingDateTime = null
+    ) {
+        $this->startingDateTime = $startingDateTime;
+        $this->endingDateTime = $endingDateTime;
+    }
+
+    /**
      * @return \DateTime
      */
     public function getStartingDateTime()

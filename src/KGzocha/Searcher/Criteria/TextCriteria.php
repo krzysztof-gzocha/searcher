@@ -10,6 +10,14 @@ class TextCriteria implements CriteriaInterface
     private $text;
 
     /**
+     * @param string $text
+     */
+    public function __construct($text = null)
+    {
+        $this->text = $text;
+    }
+
+    /**
      * @return string
      */
     public function getText()

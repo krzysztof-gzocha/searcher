@@ -13,6 +13,14 @@ class DateTimeCriteria implements CriteriaInterface
     private $dateTime;
 
     /**
+     * @param \DateTime $dateTime
+     */
+    public function __construct(\DateTime $dateTime = null)
+    {
+        $this->dateTime = $dateTime;
+    }
+
+    /**
      * @return \DateTime
      */
     public function getDateTime()
