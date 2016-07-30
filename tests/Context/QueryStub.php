@@ -15,10 +15,19 @@ namespace KGzocha\Searcher\Test\Context;
  * Stub for making sure that useQueryCache will be called.
  *
  * @author Daniel Ribeiro <drgomesp@gmail.com>
- * @package KGzocha\Searcher\Test\Context
  */
 class QueryStub
 {
+    private $results;
+
+    /**
+     * @param $results
+     */
+    public function __construct($results = null)
+    {
+        $this->results = $results;
+    }
+
     /**
      * @see \Doctrine\ORM\Query::useQueryCache()
      */
@@ -27,5 +36,8 @@ class QueryStub
     /**
      * @see \Doctrine\ORM\Query::getResult()
      */
-    public function getResult() {}
+    public function getResult()
+    {
+        return $this->results;
+    }
 }

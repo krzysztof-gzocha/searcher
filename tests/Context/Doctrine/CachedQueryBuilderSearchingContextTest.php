@@ -1,12 +1,11 @@
 <?php
 
-namespace KGzocha\Searcher\Test\Context;
+namespace KGzocha\Searcher\Test\Context\Doctrine;
 
 use KGzocha\Searcher\Context\Doctrine\CachedQueryBuilderSearchingContext;
 
 /**
  * @author Daniel Ribeiro <drgomesp@gmail.com>
- * @package KGzocha\Searcher\Test\Context
  */
 class CachedQueryBuilderSearchingContextTest extends \PHPUnit_Framework_TestCase
 {
