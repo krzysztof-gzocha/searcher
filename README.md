@@ -4,7 +4,8 @@
 
 ### What is that?
 *Searcher* is a framework-agnostic search query builder. Search queries are written using criterias and can be run against MySQL, MongoDB, ElasticSearch, files or whatever else you like.
-Supported PHP versions: >=5.4, 7 and HHVM.
+Supported PHP versions: >=5.4, 7 and HHVM.  
+**Now tested also with [Humbug](https://github.com/padraic/humbug)**
 
 ### Why?
 Have you ever seen code responsible for searching for something based on many different criteria? It can become quite a mess!
@@ -165,7 +166,12 @@ All ideas and pull requests are welcomed and appreciated :)
 If you have any problem with usage don't hesitate to create an issue, we can figure your problem out together.
 
 ### Development
-Command to run test: `composer test`
+Command to run test: `composer test`.  
+All unit tests are tested with [padric/humbug](https://github.com/padraic/humbug) library for mutation testing,
+aiming to keep [Mutation Score Indicator](https://github.com/padraic/humbug#the-metrics) equal or close to 100%.
+
+To run mutation tests you need to install humbug and run: `humbug` in main directory.
+Output should be stored in `humbuglog.txt`.
 
 ### Thanks to
 In alphabetical order
