@@ -39,6 +39,33 @@ class CoordinatesCriteriaTest extends AbstractCriteriaTestCase
         ];
     }
 
+    /**
+     * @param $lat
+     * @param $lon
+     * @param $expectedLat
+     * @param $expectedLon
+     * @dataProvider gettersAndSettersDataProvider
+     */
+    public function testGettersAndSetters($lat, $lon, $expectedLat, $expectedLon)
+    {
+        $model = new CoordinatesCriteria();
+
+        $model->setLatitude($lat);
+        $model->setLongitude($lon);
+
+        $this->assertEquals($expectedLat, $model->getLatitude());
+        $this->assertEquals($expectedLon, $model->getLongitude());
+    }
+
+    public function gettersAndSettersDataProvider()
+    {
+        return [
+            [12.123, 23.233, 12.123, 23.233],
+            ['12.123', '23.233', 12.123, 23.233],
+            [null, '', 0.0, 0.0],
+        ];
+    }
+
     public function testIfImplementsInterface()
     {
         $this->checkIfImplementsInterface(new CoordinatesCriteria());

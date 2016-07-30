@@ -35,4 +35,26 @@ class NumberCriteriaTest extends \PHPUnit_Framework_TestCase
             [2.123, true],
         ];
     }
+
+    /**
+     * @param $number
+     * @param $expectedNumber
+     * @dataProvider gettersAndSettersDataProvider
+     */
+    public function testGettersAndSetters($number, $expectedNumber)
+    {
+        $model = new NumberCriteria();
+        $model->setNumber($number);
+
+        $this->assertEquals($expectedNumber, $model->getNumber());
+    }
+
+    public function gettersAndSettersDataProvider()
+    {
+        return [
+            [12.123, 12.123],
+            ['12.123', 12.123],
+            [null, 0.0],
+        ];
+    }
 }
