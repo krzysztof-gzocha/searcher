@@ -53,12 +53,28 @@ class CriteriaBuilderCollection implements CriteriaBuilderCollectionInterface
     public function getCriteriaBuildersForContext(
         SearchingContextInterface $searchingContext
     ) {
-        return array_filter(
+        return new self(array_filter(
             $this->getCriteriaBuilders(),
             function(CriteriaBuilderInterface $criteriaBuilder) use ($searchingContext) {
                 return $criteriaBuilder->supportsSearchingContext($searchingContext);
             }
-        );
+        ));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->criteriaBuilders);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function count()
+    {
+        return count($this->criteriaBuilders);
     }
 
     /**

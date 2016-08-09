@@ -42,25 +42,27 @@ class Searcher implements SearcherInterface
     public function search(
         CriteriaCollectionInterface $criteriaCollection
     ) {
+        $builders = $this
+            ->builders
+            ->getCriteriaBuildersForContext($this->searchingContext);
+
         foreach ($criteriaCollection->getApplicableCriteria() as $criteria) {
-            $this->searchForModel($criteria, $this->searchingContext);
+            $this->searchForModel($criteria, $this->searchingContext, $builders);
         }
 
         return $this->searchingContext->getResults();
     }
 
     /**
-     * @param CriteriaInterface         $criteria
-     * @param SearchingContextInterface $searchingContext
+     * @param CriteriaInterface                  $criteria
+     * @param SearchingContextInterface          $searchingContext
+     * @param CriteriaBuilderCollectionInterface $builders
      */
     private function searchForModel(
         CriteriaInterface $criteria,
-        SearchingContextInterface $searchingContext
+        SearchingContextInterface $searchingContext,
+        CriteriaBuilderCollectionInterface $builders
     ) {
-        $builders = $this
-            ->builders
-            ->getCriteriaBuildersForContext($searchingContext);
-
         foreach ($builders as $builder) {
             if ($builder->allowsCriteria($criteria)) {
                 $builder->buildCriteria($criteria, $searchingContext);

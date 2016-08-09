@@ -34,12 +34,12 @@ class CriteriaCollection implements CriteriaCollectionInterface
      */
     public function getApplicableCriteria()
     {
-        return array_filter(
+        return new self(array_filter(
             $this->getCriteria(),
             function(CriteriaInterface $criteria) {
                 return $criteria->shouldBeApplied();
             }
-        );
+        ));
     }
 
     /**
@@ -58,6 +58,22 @@ class CriteriaCollection implements CriteriaCollectionInterface
         $this->criteria[] = $criteria;
 
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->criteria);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function count()
+    {
+        return count($this->criteria);
     }
 
     /**

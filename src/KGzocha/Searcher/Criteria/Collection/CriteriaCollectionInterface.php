@@ -10,13 +10,13 @@ use KGzocha\Searcher\Criteria\CriteriaInterface;
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  * @author Daniel Ribeiro <drgomesp@gmail.com>
  */
-interface CriteriaCollectionInterface
+interface CriteriaCollectionInterface extends \Countable, \IteratorAggregate
 {
     /**
      * Will return array of CriteriaInterface
      * that returns true in shouldBeApplied().
      *
-     * @return CriteriaInterface[]
+     * @return CriteriaCollectionInterface
      */
     public function getApplicableCriteria();
 

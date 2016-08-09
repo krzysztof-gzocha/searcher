@@ -11,7 +11,7 @@ use KGzocha\Searcher\CriteriaBuilder\CriteriaBuilderInterface;
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
-interface CriteriaBuilderCollectionInterface
+interface CriteriaBuilderCollectionInterface extends \Countable, \IteratorAggregate
 {
     /**
      * @param CriteriaBuilderInterface $criteriaBuilder
@@ -30,7 +30,7 @@ interface CriteriaBuilderCollectionInterface
     /**
      * @param SearchingContextInterface $searchingContext
      * 
-     * @return CriteriaBuilderInterface[]
+     * @return CriteriaBuilderCollectionInterface
      */
     public function getCriteriaBuildersForContext(
         SearchingContextInterface $searchingContext
