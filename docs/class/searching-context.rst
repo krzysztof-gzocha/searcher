@@ -32,6 +32,11 @@ and ``getResults()`` for allowing searcher to fetch the results after the query 
     This is giving you great power, but with great power comes great responsibility. Please take care of your results
     and make sure you will always return what you really expect.
 
+.. warning::
+
+    Configuration of the query builder passed to SearchingContext should be done outside of the library, as it is not
+    Searcher's responsibility to configure all query builders.
+
 Symfony/Finder example
 -----------------------
 
