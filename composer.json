@@ -19,7 +19,7 @@
         "bin-dir": "bin",
         "vendor-dir": "vendor"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
             "KGzocha\\Searcher\\": "src/KGzocha/Searcher"
@@ -45,6 +45,7 @@
     "scripts": {
         "test": ["phpunit tests/"],
         "coverage": ["phpunit tests/ --coverage-clover=coverage.clover"],
+        "coverage-html": ["phpunit tests/ --coverage-html coverage/", "open coverage/index.html"],
         "cs-fix": ["php-cs-fixer fix src/", "php-cs-fixer fix tests/"],
         "phpmd": ["phpmd src/ text cleancode,codesize,controversial,design,unusedcode --exclude tests/"],
         "ci": ["@coverage", "@phpmd"]
