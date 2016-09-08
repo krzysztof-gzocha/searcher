@@ -63,7 +63,7 @@ class MappedOrderByAdapterTest extends OrderByCriteriaTest
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function getFilterModel($defaultOrderBy = null)
     {

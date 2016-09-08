@@ -16,13 +16,13 @@ interface NamedCriteriaCollectionInterface extends
 {
     /**
      * @param string            $name
-     * @param CriteriaInterface $filterModel
+     * @param CriteriaInterface $criteria
      *
-     * @return $this
+     *@return $this
      */
     public function addNamedCriteria(
         $name,
-        CriteriaInterface $filterModel
+        CriteriaInterface $criteria
     );
 
     /**

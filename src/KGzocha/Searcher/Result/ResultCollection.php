@@ -2,6 +2,8 @@
 
 namespace KGzocha\Searcher\Result;
 
+use KGzocha\Searcher\AbstractCollection;
+
 /**
  * Can be used to hold results from searching when developer is not 100% sure
  * if searching process will return array of objects or a number, or null, or whatever.
@@ -11,25 +13,14 @@ namespace KGzocha\Searcher\Result;
  *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
-class ResultCollection implements ResultCollectionInterface
+class ResultCollection extends AbstractCollection implements ResultCollectionInterface
 {
     /**
-     * @var \Traversable|array
+     * @inheritDoc
      */
-    private $results;
-
-    /**
-     * @param \Traversable|array $results
-     */
-    public function __construct($results = [])
+    public function addNamedItem($name, $item)
     {
-        if ($this->canUseResults($results)) {
-            $this->results = $results;
-
-            return;
-        }
-
-        $this->results = [];
+        return parent::addNamedItem($name, $item);
     }
 
     /**
@@ -37,15 +28,7 @@ class ResultCollection implements ResultCollectionInterface
      */
     public function getResults()
     {
-        return $this->results;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function count()
-    {
-        return count($this->results);
+        return $this->getItems();
     }
 
     /**
@@ -53,25 +36,14 @@ class ResultCollection implements ResultCollectionInterface
      */
     public function jsonSerialize()
     {
-        return $this->results;
+        return $this->getItems();
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
-    public function getIterator()
+    protected function isItemValid($item)
     {
-        return new \ArrayIterator($this->results);
-    }
-
-    /**
-     * @param \Traversable|array $results
-     *
-     * @return bool
-     */
-    private function canUseResults($results = [])
-    {
-        return is_array($results)
-            || (is_object($results) && $results instanceof \Traversable);
+        return true;
     }
 }

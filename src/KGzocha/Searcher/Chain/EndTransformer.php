@@ -13,7 +13,7 @@ use KGzocha\Searcher\Criteria\Collection\CriteriaCollectionInterface;
 final class EndTransformer implements TransformerInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function transform($results, CriteriaCollectionInterface $criteria)
     {
@@ -23,7 +23,7 @@ final class EndTransformer implements TransformerInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function skip($results)
     {

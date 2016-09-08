@@ -66,7 +66,7 @@ abstract class AbstractORMCriteriaBuilder implements
      * @param string       $join
      * @param string       $joinType
      *
-     * @return QueryBuilder|static
+     * @return QueryBuilder
      */
     protected function filterExistingJoins(
         QueryBuilder $queryBuilder,

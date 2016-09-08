@@ -31,7 +31,9 @@ class QueryStub
     /**
      * @see \Doctrine\ORM\Query::useQueryCache()
      */
-    public function useQueryCache($bool) {}
+    public function useQueryCache($bool)
+    {
+    }
 
     /**
      * @see \Doctrine\ORM\Query::getResult()

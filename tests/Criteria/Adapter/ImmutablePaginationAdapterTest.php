@@ -21,7 +21,7 @@ class ImmutablePaginationAdapterTest extends PaginationCriteriaTest
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function getCriteria($page, $itemsPerPage)
     {

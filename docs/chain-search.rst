@@ -85,18 +85,19 @@ Now we are ready and we can create an instance of ``ChainSearch`` and populate i
 
 .. code:: php
 
-    $cells = [
-        new Cell(
+    $cells = new CellCollection([
+
+        // Optionally you can specify a name for ease of fetching sub-results
+        'users' => new Cell(
             $userSearcher,
             new Transformer(),
-            'users'            // Just an optional name
         ),
-        new Cell(
+
+        'statistics' => new Cell(
             $statisticSearcher,
             new EndTransformer(),   // We don't want to go further
-            'statistics'
         ),
-    ];
+    ]);
 
     $chainSearch = new ChainSearch($cells);
     $results = $chainSearch->search($entryCriteria);
@@ -109,3 +110,8 @@ Now, the variable ``$results`` will hold a ``ResultCollection`` with two element
         'users' => [/** results from $userSearcher **/],
         'statistics' => [/** results from $statisticSearcher **/],
     ]
+
+.. warning::
+
+    When trying to use CellCollection will less than 2 elements InvalidArgumentException will be thrown, because
+    there is no sense in using chain search with just 1 cell.

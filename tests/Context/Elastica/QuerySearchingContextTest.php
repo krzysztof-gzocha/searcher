@@ -8,7 +8,6 @@ use KGzocha\Searcher\Context\Elastica\QuerySearchingContext;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package Context\Elastica
  */
 class QuerySearchingContextTest extends \PHPUnit_Framework_TestCase
 {
@@ -36,7 +35,7 @@ class QuerySearchingContextTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [new Query()],
-            [null]
+            [null],
         ];
     }
 

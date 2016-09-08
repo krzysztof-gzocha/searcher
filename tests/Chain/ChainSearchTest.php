@@ -4,6 +4,7 @@ namespace KGzocha\Searcher\Test\Chain;
 
 use KGzocha\Searcher\Chain\Cell;
 use KGzocha\Searcher\Chain\ChainSearch;
+use KGzocha\Searcher\Chain\Collection\CellCollection;
 use KGzocha\Searcher\Chain\EndTransformer;
 use KGzocha\Searcher\Criteria\Collection\CriteriaCollection;
 use KGzocha\Searcher\Criteria\Collection\CriteriaCollectionInterface;
@@ -19,23 +20,20 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
         $secondCriteria = new CriteriaCollection();
         $thirdCriteria = new CriteriaCollection();
 
-        $cells = [
-            new Cell(
-                $this->getSearcher($startingCriteria, [1,2,3]),
-                $this->getTransformer([1,2,3], $secondCriteria),
-                'first'
+        $cells = new CellCollection([
+            'first' => new Cell(
+                $this->getSearcher($startingCriteria, [1, 2, 3]),
+                $this->getTransformer([1, 2, 3], $secondCriteria)
             ),
-            new Cell(
-                $this->getSearcher($secondCriteria, [4,5,6]),
-                $this->getTransformer([4,5,6], $thirdCriteria),
-                'second'
+            'second' => new Cell(
+                $this->getSearcher($secondCriteria, [4, 5, 6]),
+                $this->getTransformer([4, 5, 6], $thirdCriteria)
             ),
-            new Cell(
-                $this->getSearcher($thirdCriteria, [7,8,9]), 
-                new EndTransformer(),
-                'third'
+            'third' => new Cell(
+                $this->getSearcher($thirdCriteria, [7, 8, 9]),
+                new EndTransformer()
             ),
-        ];
+        ]);
 
         $chain = new ChainSearch($cells);
         $results = $chain->search($startingCriteria);
@@ -46,9 +44,9 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
             array_keys($results->getResults())
         );
         $this->assertEquals([
-            'first' => [1,2,3],
-            'second' => [4,5,6],
-            'third' => [7,8,9],
+            'first' => [1, 2, 3],
+            'second' => [4, 5, 6],
+            'third' => [7, 8, 9],
         ], $results->getResults());
     }
 
@@ -58,20 +56,20 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
         $secondCriteria = new CriteriaCollection();
         $thirdCriteria = new CriteriaCollection();
 
-        $cells = [
+        $cells = new CellCollection([
             new Cell(
-                $this->getSearcher($startingCriteria, [1,2,3]),
-                $this->getTransformer([1,2,3], $secondCriteria)
+                $this->getSearcher($startingCriteria, [1, 2, 3]),
+                $this->getTransformer([1, 2, 3], $secondCriteria)
             ),
             new Cell(
-                $this->getSearcher($secondCriteria, [4,5,6]),
-                $this->getTransformer([4,5,6], $thirdCriteria)
+                $this->getSearcher($secondCriteria, [4, 5, 6]),
+                $this->getTransformer([4, 5, 6], $thirdCriteria)
             ),
             new Cell(
-                $this->getSearcher($thirdCriteria, [7,8,9]),
+                $this->getSearcher($thirdCriteria, [7, 8, 9]),
                 new EndTransformer()
             ),
-        ];
+        ]);
 
         $chain = new ChainSearch($cells);
         $results = $chain->search($startingCriteria);
@@ -82,9 +80,9 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
             array_keys($results->getResults())
         );
         $this->assertEquals([
-            [1,2,3],
-            [4,5,6],
-            [7,8,9],
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9],
         ], $results->getResults());
     }
 
@@ -103,7 +101,7 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
                 0,
                 $numberOfCells,
                 new Cell(
-                    $this->getSearcher(new CriteriaCollection()),
+                    $this->getSearcher(new CriteriaCollection(), [1]),
                     $this->getTransformer([1])
                 )
             );
@@ -113,7 +111,9 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
             $this->setExpectedException('\InvalidArgumentException');
         }
 
-        new ChainSearch($array);
+        $search = new ChainSearch(new CellCollection($array));
+
+        $search->search(new CriteriaCollection());
     }
 
     /**
@@ -134,22 +134,22 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotCellInterfaceValidation()
     {
-        new ChainSearch([
+        new ChainSearch(new CellCollection([
             new Cell($this->getSearcher(new CriteriaCollection()), $this->getTransformer([])),
             new Cell($this->getSearcher(new CriteriaCollection()), $this->getTransformer([])),
             new \stdClass(),
-        ]);
+        ]));
     }
 
     public function testSkippingTransformer()
     {
         $firstCriteria = new CriteriaCollection();
 
-        $search = new ChainSearch([
-            new Cell($this->getSearcher(new CriteriaCollection(), [1]), $this->getTransformer([1], $firstCriteria), 'first'),
-            new Cell($this->getSearcher($firstCriteria, [2]), $this->getSkipTransformer(), 'second'),
-            new Cell($this->getSearcher(new CriteriaCollection(), [3]), new EndTransformer(), 'third'),
-        ]);
+        $search = new ChainSearch(new CellCollection([
+            'first' => new Cell($this->getSearcher(new CriteriaCollection(), [1]), $this->getTransformer([1], $firstCriteria)),
+            'second' => new Cell($this->getSearcher($firstCriteria, [2]), $this->getSkipTransformer()),
+            'third' => new Cell($this->getSearcher(new CriteriaCollection(), [3]), new EndTransformer()),
+        ]));
 
         $result = $search->search(new CriteriaCollection());
 
@@ -163,11 +163,11 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
     {
         $firstCriteria = new CriteriaCollection();
 
-        $search = new ChainSearch([
-            new Cell($this->getSearcher($firstCriteria, [2]), $this->getSkipTransformer(), 'second'),
-            new Cell($this->getSearcher(new CriteriaCollection(), [1]), $this->getTransformer([1], $firstCriteria), 'first'),
-            new Cell($this->getSearcher(new CriteriaCollection(), [3]), new EndTransformer(), 'third'),
-        ]);
+        $search = new ChainSearch(new CellCollection([
+            'second' => new Cell($this->getSearcher($firstCriteria, [2]), $this->getSkipTransformer()),
+            'first' => new Cell($this->getSearcher(new CriteriaCollection(), [1]), $this->getTransformer([1], $firstCriteria)),
+            'third' => new Cell($this->getSearcher(new CriteriaCollection(), [3]), new EndTransformer()),
+        ]));
 
         $result = $search->search(new CriteriaCollection());
 
@@ -225,7 +225,7 @@ class ChainSearchTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param CriteriaCollectionInterface $criteriaCollection
-     * @param mixed $results
+     * @param mixed                       $results
      *
      * @return \KGzocha\Searcher\SearcherInterface|\PHPUnit_Framework_MockObject_MockObject
      */

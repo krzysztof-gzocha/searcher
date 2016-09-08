@@ -1,19 +1,18 @@
 <?php
 
-namespace KGzocha\Searcher\Test\Result;
+namespace KGzocha\Searcher\Test\Chain\Collection;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use KGzocha\Searcher\Result\ResultCollection;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\Test\Model\Result
  */
 class ResultCollectionTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @param array $inputArray
-     * @param int $expectedCount
+     * @param int   $expectedCount
      * @dataProvider numberOfElementsDataProvider
      */
     public function testNumberOfElements($inputArray, $expectedCount)
@@ -41,14 +40,12 @@ class ResultCollectionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param mixed $inputArray
+     * @expectedException \InvalidArgumentException
      * @dataProvider numberOfWrongElementsProvider
      */
     public function testNumberOfWrongElements($inputArray)
     {
-        $result = new ResultCollection($inputArray);
-
-        $this->assertCount(0, $result);
-        $this->assertCount(0, $result->getResults());
+        new ResultCollection($inputArray);
     }
 
     public function numberOfWrongElementsProvider()
@@ -64,7 +61,7 @@ class ResultCollectionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param array $inputArray
+     * @param array  $inputArray
      * @param string $expectedOutput
      * @dataProvider jsonSerializableDataProvider
      */
@@ -99,7 +96,7 @@ class ResultCollectionTest extends \PHPUnit_Framework_TestCase
 
         $i = 0;
         foreach ($result as $value) {
-            $i++;
+            ++$i;
         }
 
         $this->assertEquals(3, $i);

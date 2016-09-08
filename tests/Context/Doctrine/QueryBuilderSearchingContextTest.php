@@ -26,7 +26,7 @@ class QueryBuilderSearchingContextTest extends \PHPUnit_Framework_TestCase
     public function testResults()
     {
         $context = new QueryBuilderSearchingContext(
-            $this->getQueryBuilderMock($results = [1,2,3])
+            $this->getQueryBuilderMock($results = [1, 2, 3])
         );
 
         $this->assertEquals(
@@ -37,6 +37,7 @@ class QueryBuilderSearchingContextTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param array $results
+     *
      * @return \PHPUnit_Framework_MockObject_MockObject|QueryBuilder
      */
     private function getQueryBuilderMock(array $results = [])

@@ -31,17 +31,13 @@ class NamedCriteriaCollection extends CriteriaCollection implements
 
     /**
      * @param string            $name
-     * @param CriteriaInterface $filterModel
+     * @param CriteriaInterface $criteria
      *
      * @return $this
      */
-    public function addNamedCriteria(
-        $name,
-        CriteriaInterface $filterModel
-    ) {
-        $this->criteria[$name] = $filterModel;
-
-        return $this;
+    public function addNamedCriteria($name, CriteriaInterface $criteria)
+    {
+        return $this->addNamedItem($name, $criteria);
     }
 
     /**
@@ -51,8 +47,6 @@ class NamedCriteriaCollection extends CriteriaCollection implements
      */
     public function getNamedCriteria($name)
     {
-        return array_key_exists($name, $this->criteria)
-            ? $this->criteria[$name]
-            : null;
+        return $this->getNamedItem($name);
     }
 }

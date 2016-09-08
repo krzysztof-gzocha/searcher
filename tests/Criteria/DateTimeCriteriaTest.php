@@ -1,6 +1,5 @@
 <?php
 
-
 namespace KGzocha\Searcher\Test\Criteria;
 
 use KGzocha\Searcher\Criteria\DateTimeCriteria;

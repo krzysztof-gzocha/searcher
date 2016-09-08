@@ -54,7 +54,7 @@ class FinderSearchingContextTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [new FinderSearchingContext(new Finder())],
-            [FinderSearchingContext::buildDefault()]
+            [FinderSearchingContext::buildDefault()],
         ];
     }
 }

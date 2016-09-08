@@ -15,13 +15,11 @@ class CellTest extends \PHPUnit_Framework_TestCase
     {
         $searcher = $this->getSearcher();
         $transformer = $this->getTransformer();
-        $name = 'name';
 
-        $cell = new Cell($searcher, $transformer, $name);
+        $cell = new Cell($searcher, $transformer);
 
         $this->assertEquals($searcher, $cell->getSearcher());
         $this->assertEquals($transformer, $cell->getTransformer());
-        $this->assertEquals($name, $cell->getName());
     }
 
     /**
@@ -32,7 +30,7 @@ class CellTest extends \PHPUnit_Framework_TestCase
      */
     public function testHasTransformer(TransformerInterface $transformer, $expected)
     {
-        $cell = new Cell($this->getSearcher(), $transformer, 'endCell');
+        $cell = new Cell($this->getSearcher(), $transformer);
 
         $this->assertEquals($expected, $cell->hasTransformer());
     }

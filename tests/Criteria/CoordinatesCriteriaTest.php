@@ -6,7 +6,6 @@ use KGzocha\Searcher\Criteria\CoordinatesCriteria;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\Test\FilterModel
  */
 class CoordinatesCriteriaTest extends AbstractCriteriaTestCase
 {

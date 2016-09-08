@@ -59,7 +59,7 @@ class AbstractORMCriteriaBuilderTest extends \PHPUnit_Framework_TestCase
         $alias = 'newEntity';
 
         $joinParts = [
-            new Join($joinType, $join, $alias)
+            new Join($joinType, $join, $alias),
         ];
 
         $builder->filterExistingJoins(
@@ -97,8 +97,8 @@ class AbstractORMCriteriaBuilderTest extends \PHPUnit_Framework_TestCase
         $builder = new ORMCriteriaBuilderStub();
         $alreadyDefinedJoins = [
             'entityName' => [
-                new Join(Join::LEFT_JOIN, 'entityName.newEntityName', 'alias')
-            ]
+                new Join(Join::LEFT_JOIN, 'entityName.newEntityName', 'alias'),
+            ],
         ];
 
         $builder->join(
@@ -118,7 +118,7 @@ class AbstractORMCriteriaBuilderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param bool $joinWillBeCalled
+     * @param bool  $joinWillBeCalled
      * @param array $joinParts
      *
      * @return QueryBuilder|\PHPUnit_Framework_MockObject_MockObject

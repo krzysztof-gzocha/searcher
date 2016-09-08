@@ -1,6 +1,7 @@
 {
     "name": "krzysztof-gzocha/searcher",
-    "description": "Searcher is a framework-agnostic search query builder. Search queries are written using Criterias and can be run against MySQL, MongoDB or even files.",
+    "description": "Searcher is a framework-agnostic search query builder. Search queries are written using Criterias and can be run against MySQL, MongoDB, ElasticSearch or even files.",
+    "keywords": ["search", "searcher", "agnostic", "query", "builder", "elastic", "mongo", "doctrine", "criteria"],
     "license": "MIT",
     "type": "library",
     "homepage": "http://searcher.rtfd.io",
