@@ -309,7 +309,71 @@ Metrics:
         - { class: \AgeRangeCriteriaBuilder, name: ageRange }
         - { class: \TitleCriteriaBuilder, name: title }
         - { class: \GenderCriteriaBuilder, name: gender }
-        - { class: \OnlyAliveCriteriaBuilder, name: onlyAlive }</code></pre></div></div></section><section data-id="3f629bac5920292b6075b2c421395fae"><div class="sl-block" data-block-type="text" data-block-id="ca5f53a7f4016e7ccce5b3253913f0b6" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 180px; top: 103px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
+        - { class: \OnlyAliveCriteriaBuilder, name: onlyAlive }</code></pre></div></div></section><section data-id="937a9384c7b2ce700055549ee490bcf1"><div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 33px; height: auto;" data-block-id="8bb68939365907c78b61f1b1c10f60c3"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 10;">
+<h2>Criteria?</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="446fdab5c6dfbe91417875eaaf7a5217" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 222px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 150%;">
+<p>Object responsible to all required parameter for single "filter".</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 432px;" data-block-id="f1c9f408646f255d834701b5089184fd"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; font-size: 150%;">
+<p>For filtering by age range you need two parameters: ageMin and ageMax</p>
+</div></div></section><section data-id="13f7e31245da203f6233b14a31ce76f9"><div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 33px; height: auto;" data-block-id="6aaeb47c590aac3fd88a0da8c3413c4c"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 11;">
+<h2>Example criteria</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="460eb9486a6fdea0810bfc6f2f7d79f4" style="min-width: 30px; min-height: 30px; width: 960px; height: 462px; left: 0px; top: 153px;"><div class="sl-block-content" style="z-index: 12; font-size: 130%;"><pre class="php"><code>class AgeRangeCriteria implements CriteriaInterface
+{
+    private $minimalAge;
+    private $maximalAge;
+
+    /**
+    * Only required method.
+    * If will return true, 
+    * then it will be passed to 
+    * some of the CriteriaBuilder(s)
+    */
+    public function shouldBeApplied()
+    {
+        return null !== $this-&gt;minimalAge &amp;&amp; null !== $this-&gt;maximalAge;
+    }
+
+    // Getters, setters, whatever
+}</code></pre></div></div></section><section data-id="9e2f85f131bc7a28e61202a3b9a1f2fe"><div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 33px; height: auto;" data-block-id="9cc59451b7d0f51be54c914477587bae"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 10;">
+<h2>Criteria builder?</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="1607eee82e3d608292872b8eb075a75a" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 193px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; font-size: 150%;">
+<p>Service, which will accept <strong>applicable</strong> Criteria as a parameter and will use to add constraint to query builder.</p>
+</div></div></section><section data-id="9eb1112ad260d15507e8f68c64a4b845"><div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 33px; height: auto;" data-block-id="efbc49579807ac69d0efe6d89b31f665"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 11;">
+<h2>Criteria builder?</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="bbb3ef84d0b08508f6f16af69ce76da4" style="min-width: 30px; min-height: 30px; width: 960px; height: 584px; left: 0px; top: 116px;"><div class="sl-block-content" style="z-index: 12;"><pre class="php"><code>class AgeRangeCriteriaBuilder implements CriteriaBuilderInterface
+{
+    public function buildCriteria(
+        CriteriaInterface $criteria,
+        SearchingContextInterface $searchingContext
+    ) {
+        $searchingContext
+            -&gt;getQueryBuilder()
+            -&gt;andWhere('e.age &gt;= :minimalAge')
+            -&gt;andWhere('e.age &lt;= :maximalAge')
+            -&gt;setParameter('minimalAge', $criteria-&gt;getMinimalAge())
+            -&gt;setParameter('maximalAge', $criteria-&gt;getMaximalAge());
+    }
+
+    public function allowsCriteria(
+        CriteriaInterface $criteria
+    ) {
+        return $criteria instanceof AgeRangeCriteria;
+    }
+
+    /**
+    * You can skip this method if you will extend from AbstractORMCriteriaBuilder.
+    */
+    public function supportsSearchingContext(
+        SearchingContextInterface $searchingContext
+    ) {
+        return $searchingContext instanceof QueryBuilderSearchingContext;
+    }
+}</code></pre></div></div></section><section data-id="3f629bac5920292b6075b2c421395fae"><div class="sl-block" data-block-type="text" data-block-id="ca5f53a7f4016e7ccce5b3253913f0b6" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 180px; top: 103px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11;">
 <h2>Searching context?</h2>
 </div></div>
 <div class="sl-block" data-block-type="text" data-block-id="11d7cd7a53bf2ba94692ad54e4eacd8b" style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 263px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; font-size: 150%;">
@@ -377,7 +441,7 @@ Metrics:
 
 		
 <script>
-	var SLConfig = {"current_user":{"id":445625,"username":"krzysiekgzocha","name":"Krzysiek Gzocha","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/--Yr1_nHsBmk/AAAAAAAAAAI/AAAAAAAAAjs/CmBpG_1lp34/photo.jpg?sz=50","pro":false,"team_id":null,"settings":{"id":285816,"present_controls":true,"present_upsizing":true,"present_notes":true,"editor_grid":true,"editor_snap":true,"developer_mode":false,"speaker_layout":null},"email":"d3t33s@gmail.com","notify_on_receipt":true,"billing_address":null,"editor_tutorial_completed":true,"manually_upgraded":false,"deck_user_editor_limit":1},"deck":{"id":788456,"slug":"deck-1","title":"Searcher","description":"Searcher is a framework-agnostic search query builder. Search queries are written using criterias and can be run against MySQL, MongoDB, ElasticSearch, files or whatever else you like. Supported PHP versions: \u003e=5.4, 7 and HHVM.","visibility":"all","published_at":"2016-09-02T12:25:42.304Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/14608fa43fae1bc5fa36c5215fe06a14/thumb.jpg","view_count":0,"user":{"id":445625,"username":"krzysiekgzocha","name":"Krzysiek Gzocha","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/--Yr1_nHsBmk/AAAAAAAAAAI/AAAAAAAAAjs/CmBpG_1lp34/photo.jpg?sz=50","pro":false,"team_id":null,"settings":{"id":285816,"present_controls":true,"present_upsizing":true,"present_notes":true}},"background_transition":"concave","transition":"concave","theme_id":null,"theme_font":"montserrat","theme_color":"cobalt-orange","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"should_loop":false,"share_notes":false,"slide_number":true,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":1,"data_updated_at":1472992920940,"access_token":"8LjPQcKesDWDTHwFM5EqXsy5qYsr","notes":{}}};
+	var SLConfig = {"current_user":{"id":445625,"username":"krzysiekgzocha","name":"Krzysiek Gzocha","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/--Yr1_nHsBmk/AAAAAAAAAAI/AAAAAAAAAjs/CmBpG_1lp34/photo.jpg?sz=50","pro":false,"team_id":null,"settings":{"id":285816,"present_controls":true,"present_upsizing":true,"present_notes":true,"editor_grid":true,"editor_snap":true,"developer_mode":false,"speaker_layout":null},"email":"d3t33s@gmail.com","notify_on_receipt":true,"billing_address":null,"editor_tutorial_completed":true,"manually_upgraded":false,"deck_user_editor_limit":1},"deck":{"id":788456,"slug":"deck-1","title":"Searcher","description":"Searcher is a framework-agnostic search query builder. Search queries are written using criterias and can be run against MySQL, MongoDB, ElasticSearch, files or whatever else you like. Supported PHP versions: \u003e=5.4, 7 and HHVM.","visibility":"all","published_at":"2016-09-02T12:25:42.304Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/14608fa43fae1bc5fa36c5215fe06a14/thumb.jpg","view_count":0,"user":{"id":445625,"username":"krzysiekgzocha","name":"Krzysiek Gzocha","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/--Yr1_nHsBmk/AAAAAAAAAAI/AAAAAAAAAjs/CmBpG_1lp34/photo.jpg?sz=50","pro":false,"team_id":null,"settings":{"id":285816,"present_controls":true,"present_upsizing":true,"present_notes":true}},"background_transition":"concave","transition":"concave","theme_id":null,"theme_font":"montserrat","theme_color":"cobalt-orange","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"should_loop":false,"share_notes":false,"slide_number":true,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":1,"data_updated_at":1473916235039,"access_token":"8LjPQcKesDWDTHwFM5EqXsy5qYsr","notes":{}}};
 </script>
 
 		<script>
