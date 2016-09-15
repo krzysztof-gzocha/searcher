@@ -406,7 +406,42 @@ Metrics:
     {
         return $this-&gt;getQueryBuilder()-&gt;getIterator();
     }
-}</code></pre></div></div></section></section><section data-id="88ec69517202a9a485c05a5f5bc9cad5"><div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 92px; height: auto;" data-block-id="13a923fed7f9fd4ecfca10845a3d99b2"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" data-has-custom-html="" style="z-index: 11;">
+}</code></pre></div></div></section><section data-id="69f9525198ec65c83e152f96beb0017d"><div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 33px; height: auto;" data-block-id="a9eff3399f23cf554d7851fb1b0bc1fd"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 10;">
+<h2>Fetching results..</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" data-block-id="533b2ce4af62db6321acbb66e1b11ab1" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 461px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 11; font-size: 150%; transition-duration: 0.6s; transition-delay: 2.4s;" data-animation-type="fade-in">
+<p>Collect all <strong>hydrated</strong> criteria</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 181px;" data-block-id="552f6eba1e12b33de8dd208e8479dfb1"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13; font-size: 150%; transition-duration: 0.6s; transition-delay: 0.6s;" data-animation-type="fade-in">
+<p>Collect all criteria builders</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 251px;" data-block-id="d323d5fade3cdd72bbee5e26efe7740c"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14; font-size: 150%; transition-duration: 0.6s; transition-delay: 1.2s;" data-animation-type="fade-in">
+<p>Build proper searching context</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 321px;" data-block-id="ea04c8132179cd8e50da952be629851a"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 15; font-size: 150%; transition-duration: 0.6s; transition-delay: 1.8s;" data-animation-type="fade-in">
+<p>Build Searcher service with them</p>
+</div></div>
+<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 960px; left: 0px; top: 531px;" data-block-id="ca1c3a93b8a64bee120420d4b6aa4353"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 16; font-size: 150%; transition-duration: 0.6s; transition-delay: 3s;" data-animation-type="fade-in">
+<p>Pass them to Searcher</p>
+</div></div></section><section data-id="547cdd39cee61f83f685908ed739a0e9"><div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 33px; height: auto;" data-block-id="3a148cac0d8ee58d3cf59081ec0c9237"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 11;">
+<h2>Fetching results..</h2>
+</div></div>
+<div class="sl-block" data-block-type="code" data-block-id="7a6271e95b9ff3a513c24cac149eea88" style="min-width: 30px; min-height: 30px; width: 960px; height: 450px; left: 0px; top: 140px;"><div class="sl-block-content" style="z-index: 12; font-size: 140%;"><pre class="php"><code>$context  = new QueryBuilderSearchingContext($queryBuilder);
+
+$builders = new CriteriaBuilderCollection([
+  new AgeRangeCriteriaBuilder(), 
+  // .. rest of the builders
+]);
+
+$criteria = new CriteriaCollection([
+  new AgeRangeCriteria(20, 25),
+  // ... rest of hydrated criteria
+]);
+
+$searcher = new Searcher($builders, $context);
+
+// Yay, we have our results!
+$results = $searcher-&gt;search($criteria);</code></pre></div></div></section></section><section data-id="88ec69517202a9a485c05a5f5bc9cad5"><div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 92px; height: auto;" data-block-id="13a923fed7f9fd4ecfca10845a3d99b2"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" data-has-custom-html="" style="z-index: 11;">
 <h1>Thanks !</h1>
 </div></div>
 <div class="sl-block" data-block-type="text" data-block-id="60fb8da5d33b8096886a9d0d8dcc992a" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 180px; top: 261px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12; font-size: 150%;">
@@ -441,7 +476,7 @@ Metrics:
 
 		
 <script>
-	var SLConfig = {"current_user":{"id":445625,"username":"krzysiekgzocha","name":"Krzysiek Gzocha","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/--Yr1_nHsBmk/AAAAAAAAAAI/AAAAAAAAAjs/CmBpG_1lp34/photo.jpg?sz=50","pro":false,"team_id":null,"settings":{"id":285816,"present_controls":true,"present_upsizing":true,"present_notes":true,"editor_grid":true,"editor_snap":true,"developer_mode":false,"speaker_layout":null},"email":"d3t33s@gmail.com","notify_on_receipt":true,"billing_address":null,"editor_tutorial_completed":true,"manually_upgraded":false,"deck_user_editor_limit":1},"deck":{"id":788456,"slug":"deck-1","title":"Searcher","description":"Searcher is a framework-agnostic search query builder. Search queries are written using criterias and can be run against MySQL, MongoDB, ElasticSearch, files or whatever else you like. Supported PHP versions: \u003e=5.4, 7 and HHVM.","visibility":"all","published_at":"2016-09-02T12:25:42.304Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/14608fa43fae1bc5fa36c5215fe06a14/thumb.jpg","view_count":0,"user":{"id":445625,"username":"krzysiekgzocha","name":"Krzysiek Gzocha","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/--Yr1_nHsBmk/AAAAAAAAAAI/AAAAAAAAAjs/CmBpG_1lp34/photo.jpg?sz=50","pro":false,"team_id":null,"settings":{"id":285816,"present_controls":true,"present_upsizing":true,"present_notes":true}},"background_transition":"concave","transition":"concave","theme_id":null,"theme_font":"montserrat","theme_color":"cobalt-orange","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"should_loop":false,"share_notes":false,"slide_number":true,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":1,"data_updated_at":1473916235039,"access_token":"8LjPQcKesDWDTHwFM5EqXsy5qYsr","notes":{}}};
+	var SLConfig = {"current_user":{"id":445625,"username":"krzysiekgzocha","name":"Krzysiek Gzocha","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/--Yr1_nHsBmk/AAAAAAAAAAI/AAAAAAAAAjs/CmBpG_1lp34/photo.jpg?sz=50","pro":false,"team_id":null,"settings":{"id":285816,"present_controls":true,"present_upsizing":true,"present_notes":true,"editor_grid":true,"editor_snap":true,"developer_mode":false,"speaker_layout":null},"email":"d3t33s@gmail.com","notify_on_receipt":true,"billing_address":null,"editor_tutorial_completed":true,"manually_upgraded":false,"deck_user_editor_limit":1},"deck":{"id":788456,"slug":"deck-1","title":"Searcher","description":"Searcher is a framework-agnostic search query builder. Search queries are written using criterias and can be run against MySQL, MongoDB, ElasticSearch, files or whatever else you like. Supported PHP versions: \u003e=5.4, 7 and HHVM.","visibility":"all","published_at":"2016-09-02T12:25:42.304Z","sanitize_messages":null,"thumbnail_url":"https://s3.amazonaws.com/media-p.slid.es/thumbnails/14608fa43fae1bc5fa36c5215fe06a14/thumb.jpg","view_count":0,"user":{"id":445625,"username":"krzysiekgzocha","name":"Krzysiek Gzocha","description":null,"thumbnail_url":"https://lh3.googleusercontent.com/--Yr1_nHsBmk/AAAAAAAAAAI/AAAAAAAAAjs/CmBpG_1lp34/photo.jpg?sz=50","pro":false,"team_id":null,"settings":{"id":285816,"present_controls":true,"present_upsizing":true,"present_notes":true}},"background_transition":"concave","transition":"concave","theme_id":null,"theme_font":"montserrat","theme_color":"cobalt-orange","auto_slide_interval":0,"comments_enabled":true,"forking_enabled":true,"rolling_links":false,"center":false,"should_loop":false,"share_notes":false,"slide_number":true,"rtl":false,"version":2,"collaborative":null,"deck_user_editor_limit":1,"data_updated_at":1473917400688,"access_token":"8LjPQcKesDWDTHwFM5EqXsy5qYsr","notes":{}}};
 </script>
 
 		<script>
