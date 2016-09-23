@@ -4,8 +4,9 @@
 
 ### What is that?
 *Searcher* is a framework-agnostic search query builder. Search queries are written using criterias and can be run against MySQL, MongoDB, ElasticSearch, files or whatever else you like.
-Supported PHP versions: >=5.4, 7 and HHVM.  
-**Now tested also with [Humbug](https://github.com/padraic/humbug)**
+Supported PHP versions: >=5.4, 7 and HHVM. **Now tested also with [Humbug](https://github.com/padraic/humbug)**
+
+### See [this presentation](https://krzysztof-gzocha.github.io/searcher/) to understand better
 
 ### Why?
 Have you ever seen code responsible for searching for something based on many different criteria? It can become quite a mess!
