@@ -26,7 +26,7 @@ class CriteriaCollection extends AbstractCollection implements CriteriaCollectio
     {
         return new self(array_filter(
             $this->getItems(),
-            function(CriteriaInterface $criteria) {
+            function (CriteriaInterface $criteria) {
                 return $criteria->shouldBeApplied();
             }
         ));

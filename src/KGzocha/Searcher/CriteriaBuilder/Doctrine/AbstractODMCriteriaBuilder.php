@@ -13,8 +13,7 @@ use KGzocha\Searcher\CriteriaBuilder\CriteriaBuilderInterface;
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  * @author Daniel Ribeiro <drgomesp@gmail.com>
  */
-abstract class AbstractODMCriteriaBuilder implements
-    CriteriaBuilderInterface
+abstract class AbstractODMCriteriaBuilder implements CriteriaBuilderInterface
 {
     /**
      * @param SearchingContextInterface $searchingContext

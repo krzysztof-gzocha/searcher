@@ -9,8 +9,7 @@ use KGzocha\Searcher\CriteriaBuilder\CriteriaBuilderInterface;
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
-class CriteriaBuilderCollection extends AbstractCollection implements
-    CriteriaBuilderCollectionInterface
+class CriteriaBuilderCollection extends AbstractCollection implements CriteriaBuilderCollectionInterface
 {
     /**
      * @param CriteriaBuilderInterface[] $builders array or \Traversable object
@@ -44,7 +43,7 @@ class CriteriaBuilderCollection extends AbstractCollection implements
     ) {
         return new self(array_filter(
             $this->getItems(),
-            function(CriteriaBuilderInterface $criteriaBuilder) use ($searchingContext) {
+            function (CriteriaBuilderInterface $criteriaBuilder) use ($searchingContext) {
                 return $criteriaBuilder->supportsSearchingContext($searchingContext);
             }
         ));

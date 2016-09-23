@@ -7,8 +7,7 @@ use KGzocha\Searcher\Criteria\CriteriaInterface;
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
-class NamedCriteriaCollection extends CriteriaCollection implements
-    NamedCriteriaCollectionInterface
+class NamedCriteriaCollection extends CriteriaCollection implements NamedCriteriaCollectionInterface
 {
     /**
      * @param string $name

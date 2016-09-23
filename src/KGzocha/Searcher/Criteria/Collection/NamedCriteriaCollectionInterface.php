@@ -11,8 +11,7 @@ use KGzocha\Searcher\Criteria\CriteriaInterface;
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  * @author Daniel Ribeiro <drgomesp@gmail.com>
  */
-interface NamedCriteriaCollectionInterface extends
-    CriteriaCollectionInterface
+interface NamedCriteriaCollectionInterface extends CriteriaCollectionInterface
 {
     /**
      * @param string            $name
