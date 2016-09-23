@@ -113,6 +113,35 @@ Those services will be accessible for you. Here is a list of them:
 
 You can found complete configuration reference in `here <https://github.com/krzysztof-gzocha/searcher-bundle/blob/master/src/KGzocha/Bundle/SearcherBundle/configReference.yml>`_.
 
+Example searching context definition
+-------------------------------------
+
+Below code will show an example definition of ``QueryBuilderSearchingContext`` for Doctrine ORM.
+The code is assuming that service ``entity.repository`` actually exists and you want to use alias ``alias`` for it.
+
+.. code:: yaml
+
+    services:
+       project_doctor.entity.query_builder:
+          class: Doctrine\ORM\QueryBuilder
+          factory: ['@entity.repository', 'createQueryBuilder']
+          arguments:
+            - 'alias'
+
+       project_doctor.entity.searching_context:
+          class: 'KGzocha\Searcher\Context\Doctrine\QueryBuilderSearchingContext'
+          arguments:
+            - '@project_doctor.entity.query_builder'
+
+With definition like that we can now use it in SearcherBundle configuration as follows:
+
+.. code:: yaml
+
+    k_gzocha_searcher:
+      contexts:
+        people:
+          context:
+            service: project_doctor.entity.searching_context
 
 Hydration
 ----------
