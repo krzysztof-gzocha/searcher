@@ -208,3 +208,60 @@ simple action inside a controller:
     By default Searcher is wrapped with WrappedResultsSearcher, so results will be actually an instance of ResultCollection.
     If you would like to have pure Searcher then you have to specify searcher.wrapper_class in the config as null
     or create searcher service yourself and specify searcher.service.
+
+Using KnpPaginatorAdapter
+--------------------------
+
+Searcher bundle has already implemented class for KnpPaginatorBundle, but you need to configure it before you use it.
+One of the methods to do it is to create a Configurator service and use it within adapters service definition.
+Code below is an dummy example of such configurator:
+
+.. code:: php
+
+    class KnpPaginatorAdapterConfigurator
+    {
+        /**
+         * @param KnpPaginatorAdapter $paginatorAdapter
+         *
+         * @return KnpPaginatorAdapter
+         */
+        public static function configure(KnpPaginatorAdapter $paginatorAdapter)
+        {
+            // You need to fetch those values in the way you want
+            $page = 2;
+            $limit = 23;
+
+            $paginatorAdapter->setLimit($limit);
+            $paginatorAdapter->setPage($page);
+
+            return $paginatorAdapter;
+        }
+    }
+
+Then we need to define such service:
+
+.. code:: yaml
+
+    # Original KnpPaginatorAdapter
+    project_doctor.knp_paginator_searching_context:
+      class: 'KGzocha\Bundle\SearcherBundle\Context\KnpPaginatorAdapter'
+      arguments:
+        - '@knp_paginator'
+        - '@project_doctor.searching_context'
+
+    # Configured KnpPaginatorAdapter - use this one as SearchingContext
+    project_doctor.configured_knp_paginator:
+      class: 'KGzocha\Bundle\SearcherBundle\Context\KnpPaginatorAdapter'
+      factory: ['\KnpPaginatorConfigurator', 'configure']
+      arguments:
+        - '@project_doctor.knp_paginator_searching_context'
+
+And finally we can use configured KnpPaginatorAdapter service as a searching context in our searching process:
+
+.. code:: yaml
+
+    k_gzocha_searcher:
+        contexts:
+            doctor:
+                context:
+                    service: project_doctor.configured_knp_paginator
