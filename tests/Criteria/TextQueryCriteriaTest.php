@@ -4,7 +4,7 @@ namespace KGzocha\Searcher\Test\Criteria;
 
 use KGzocha\Searcher\Criteria\TextCriteria;
 
-class TextCriteriaTest extends AbstractCriteriaTestCase
+class TextQueryCriteriaTest extends AbstractCriteriaTestCase
 {
     public function testIfImplementsInterface()
     {
@@ -62,4 +62,3 @@ class TextCriteriaTest extends AbstractCriteriaTestCase
         return new TextCriteria();
     }
 }
-

@@ -16,8 +16,7 @@ use KGzocha\Searcher\CriteriaBuilder\CriteriaBuilderInterface;
  *
  *@author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
-abstract class AbstractORMCriteriaBuilder implements
-    CriteriaBuilderInterface
+abstract class AbstractORMCriteriaBuilder implements CriteriaBuilderInterface
 {
     /**
      * {@inheritdoc}
@@ -66,7 +65,7 @@ abstract class AbstractORMCriteriaBuilder implements
      * @param string       $join
      * @param string       $joinType
      *
-     * @return QueryBuilder|static
+     * @return QueryBuilder
      */
     protected function filterExistingJoins(
         QueryBuilder $queryBuilder,
@@ -77,7 +76,7 @@ abstract class AbstractORMCriteriaBuilder implements
     ) {
         $existingJoin = array_filter(
             $joinParts,
-            function(Join $joinObj) use ($alias, $join, $joinType) {
+            function (Join $joinObj) use ($alias, $join, $joinType) {
                 return $joinObj->getJoinType() == $joinType
                     && $joinObj->getAlias() == $alias
                     && $joinObj->getJoin() == $join;

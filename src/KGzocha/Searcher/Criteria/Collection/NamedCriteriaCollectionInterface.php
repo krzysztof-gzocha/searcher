@@ -11,18 +11,17 @@ use KGzocha\Searcher\Criteria\CriteriaInterface;
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  * @author Daniel Ribeiro <drgomesp@gmail.com>
  */
-interface NamedCriteriaCollectionInterface extends
-    CriteriaCollectionInterface
+interface NamedCriteriaCollectionInterface extends CriteriaCollectionInterface
 {
     /**
      * @param string            $name
-     * @param CriteriaInterface $filterModel
+     * @param CriteriaInterface $criteria
      *
-     * @return $this
+     *@return $this
      */
     public function addNamedCriteria(
         $name,
-        CriteriaInterface $filterModel
+        CriteriaInterface $criteria
     );
 
     /**

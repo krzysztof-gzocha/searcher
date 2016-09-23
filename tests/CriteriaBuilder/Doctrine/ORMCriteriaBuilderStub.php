@@ -13,7 +13,7 @@ use KGzocha\Searcher\CriteriaBuilder\Doctrine\AbstractORMCriteriaBuilder;
 class ORMCriteriaBuilderStub extends AbstractORMCriteriaBuilder
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function buildCriteria(
         CriteriaInterface $criteria,
@@ -23,7 +23,7 @@ class ORMCriteriaBuilderStub extends AbstractORMCriteriaBuilder
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function allowsCriteria(CriteriaInterface $criteria)
     {
@@ -31,7 +31,7 @@ class ORMCriteriaBuilderStub extends AbstractORMCriteriaBuilder
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function join(QueryBuilder $queryBuilder, $join, $alias, $joinType)
     {
@@ -39,7 +39,7 @@ class ORMCriteriaBuilderStub extends AbstractORMCriteriaBuilder
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function filterExistingJoins(
         QueryBuilder $queryBuilder,

@@ -2,6 +2,7 @@
 
 namespace KGzocha\Searcher\Chain;
 
+use KGzocha\Searcher\Chain\Collection\CellCollectionInterface;
 use KGzocha\Searcher\Criteria\Collection\CriteriaCollectionInterface;
 use KGzocha\Searcher\Result\ResultCollection;
 use KGzocha\Searcher\SearcherInterface;
@@ -16,20 +17,17 @@ use KGzocha\Searcher\SearcherInterface;
  */
 class ChainSearch implements SearcherInterface
 {
-    const MINIMUM_CELLS = 2;
+    /**
+     * @var CellCollectionInterface
+     */
+    private $cellCollection;
 
     /**
-     * @var CellInterface[]
+     * @param CellCollectionInterface $cellCollection
      */
-    private $cells;
-
-    /**
-     * @param CellInterface[] $cells
-     */
-    public function __construct(array $cells)
+    public function __construct(CellCollectionInterface $cellCollection)
     {
-        $this->validateCells($cells);
-        $this->cells = $cells;
+        $this->cellCollection = $cellCollection;
     }
 
     /**
@@ -45,57 +43,50 @@ class ChainSearch implements SearcherInterface
     public function search(
         CriteriaCollectionInterface $criteriaCollection
     ) {
-        $previousCriteria = null;
+        $previousCriteria = $criteriaCollection;
         $previousResults = null;
-        $resultsArray = [];
+        $result = new ResultCollection();
 
-        foreach ($this->cells as $cell) {
+        /** @var CellInterface $cell */
+        foreach ($this->cellCollection as $name => $cell) {
             if ($cell->getTransformer()->skip($previousResults)) {
                 continue;
             }
 
-            // Assumed only for first iteration
-            if (!$previousCriteria) {
-                $previousCriteria = $criteriaCollection;
-            }
-
             $previousResults = $cell->getSearcher()->search($previousCriteria);
-            if ($cell->hasTransformer()) {
-                $previousCriteria = $cell->getTransformer()->transform($previousResults, $previousCriteria);
-            }
+            $previousCriteria = $this->getNewCriteria(
+                $cell,
+                $previousCriteria,
+                $previousResults
+            );
 
-            if ($cell->getName()) {
-                $resultsArray[$cell->getName()] = $previousResults;
-                continue;
-            }
-
-            array_push($resultsArray, $previousResults);
+            $result->addNamedItem($name, $previousResults);
         }
 
-        return new ResultCollection($resultsArray);
+        return $result;
     }
 
     /**
-     * @param CellInterface[] $cells
-     * @throws \InvalidArgumentException
+     * If $cell has transformer then it will be used to return new criteria.
+     * If not old criteria will be returned.
+     *
+     * @param CellInterface               $cell
+     * @param CriteriaCollectionInterface $criteria
+     * @param mixed                       $results
+     *
+     * @return CriteriaCollectionInterface
      */
-    private function validateCells(array $cells)
-    {
-        if (self::MINIMUM_CELLS > count($cells)) {
-            throw new \InvalidArgumentException(
-                'At least two searchers are required to create a chain'
-            );
+    private function getNewCriteria(
+        CellInterface $cell,
+        CriteriaCollectionInterface $criteria,
+        $results
+    ) {
+        if (!$cell->hasTransformer()) {
+            return $criteria;
         }
 
-        foreach ($cells as $cell) {
-            if (is_object($cell) && $cell instanceof CellInterface) {
-                continue;
-            }
-
-            throw new \InvalidArgumentException(sprintf(
-                'All cells passed to %s should be object and must implement CellInterface',
-                __CLASS__
-            ));
-        }
+        return $cell
+            ->getTransformer()
+            ->transform($results, $criteria);
     }
 }

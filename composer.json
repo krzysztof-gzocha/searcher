@@ -1,6 +1,7 @@
 {
     "name": "krzysztof-gzocha/searcher",
-    "description": "Searcher is a framework-agnostic search query builder. Search queries are written using Criterias and can be run against MySQL, MongoDB or even files.",
+    "description": "Searcher is a framework-agnostic search query builder. Search queries are written using Criterias and can be run against MySQL, MongoDB, ElasticSearch or even files.",
+    "keywords": ["search", "searcher", "agnostic", "query", "builder", "elastic", "mongo", "doctrine", "criteria"],
     "license": "MIT",
     "type": "library",
     "homepage": "http://searcher.rtfd.io",
@@ -38,7 +39,7 @@
         "phpmd/phpmd": "^2.4.3",
         "doctrine/orm": "^2.5.0",
         "doctrine/mongodb-odm": "^1.0.0",
-        "ruflin/elastica": ">=2.0.0",
+        "ruflin/elastica": ">=2.1.0",
         "symfony/finder": "^2.0.5",
         "phpdocumentor/reflection-docblock": "2.0.4"
     },
@@ -46,7 +47,7 @@
         "test": ["phpunit tests/"],
         "coverage": ["phpunit tests/ --coverage-clover=coverage.clover"],
         "coverage-html": ["phpunit tests/ --coverage-html coverage/", "open coverage/index.html"],
-        "cs-fix": ["php-cs-fixer fix src/", "php-cs-fixer fix tests/"],
+        "cs-fix": ["php-cs-fixer fix src/ --level=psr2", "php-cs-fixer fix tests/ --level=psr2"],
         "phpmd": ["phpmd src/ text cleancode,codesize,controversial,design,unusedcode --exclude tests/"],
         "ci": ["@coverage", "@phpmd"]
     }

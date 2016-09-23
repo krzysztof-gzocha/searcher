@@ -6,7 +6,6 @@ use KGzocha\Searcher\Criteria\CriteriaInterface;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\Test\FilterModel
  */
 abstract class AbstractCriteriaTestCase extends \PHPUnit_Framework_TestCase
 {

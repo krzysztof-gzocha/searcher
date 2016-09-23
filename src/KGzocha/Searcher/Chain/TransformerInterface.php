@@ -13,7 +13,10 @@ use KGzocha\Searcher\Criteria\Collection\CriteriaCollectionInterface;
 interface TransformerInterface
 {
     /**
-     * @param mixed $results
+     * Will transform previous results and criteria into new one,
+     * that will be used in next cell.
+     *
+     * @param mixed                       $results
      * @param CriteriaCollectionInterface $criteria
      *
      * @return CriteriaCollectionInterface

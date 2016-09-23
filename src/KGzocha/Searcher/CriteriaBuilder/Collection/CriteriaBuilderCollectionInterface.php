@@ -29,7 +29,7 @@ interface CriteriaBuilderCollectionInterface extends \Countable, \IteratorAggreg
 
     /**
      * @param SearchingContextInterface $searchingContext
-     * 
+     *
      * @return CriteriaBuilderCollectionInterface
      */
     public function getCriteriaBuildersForContext(

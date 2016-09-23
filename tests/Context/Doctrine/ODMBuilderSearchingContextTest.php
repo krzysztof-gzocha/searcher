@@ -28,6 +28,7 @@ class ODMBuilderSearchingContextTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param array $results
+     *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getBuilderMock(array $results = [])

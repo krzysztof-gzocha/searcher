@@ -6,7 +6,6 @@ use KGzocha\Searcher\ParameterGenerator\ParameterGenerator;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\Test\ParameterGenerator
  */
 class ParameterGeneratorTest extends \PHPUnit_Framework_TestCase
 {

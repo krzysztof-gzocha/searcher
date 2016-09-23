@@ -6,7 +6,6 @@ use KGzocha\Searcher\Criteria\IntegerCriteria;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\Test\FilterModel
  */
 class IntegerCriteriaTest extends AbstractCriteriaTestCase
 {

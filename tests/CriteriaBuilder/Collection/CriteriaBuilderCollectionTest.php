@@ -28,7 +28,7 @@ class CriteriaBuilderCollectionTest extends \PHPUnit_Framework_TestCase
             [1.2],
             [new \stdClass()],
             [''],
-            []
+            [],
         ];
     }
 
@@ -36,7 +36,7 @@ class CriteriaBuilderCollectionTest extends \PHPUnit_Framework_TestCase
     {
         $builders = [];
 
-        for ($i = 1; $i <= self::NUMBER_OF_FILTER_IMPOSERS; $i++) {
+        for ($i = 1; $i <= self::NUMBER_OF_FILTER_IMPOSERS; ++$i) {
             $builders[] = $this->getCriteriaBuilder();
         }
 
@@ -112,4 +112,3 @@ class CriteriaBuilderCollectionTest extends \PHPUnit_Framework_TestCase
             ->getMock();
     }
 }
-

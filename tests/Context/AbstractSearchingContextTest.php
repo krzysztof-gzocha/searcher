@@ -1,11 +1,11 @@
 <?php
 
 namespace KGzocha\Searcher\Test\Context;
+
 use KGzocha\Searcher\Context\AbstractSearchingContext;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
- * @package KGzocha\Searcher\Test\Context
  */
 class AbstractSearchingContextTest extends \PHPUnit_Framework_TestCase
 {

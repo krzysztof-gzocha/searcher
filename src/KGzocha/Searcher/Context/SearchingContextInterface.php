@@ -4,7 +4,7 @@ namespace KGzocha\Searcher\Context;
 
 /**
  * This is a layer of abstraction between searcher and searching engines and ORMs.
- * 
+ *
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
 interface SearchingContextInterface

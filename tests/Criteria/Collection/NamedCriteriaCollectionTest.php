@@ -8,31 +8,38 @@ class NamedCriteriaCollectionTest extends CriteriaCollectionTest
 {
     public function testMagicMethods()
     {
-        $filterModel = $this->getCriteria();
+        $criteria = $this->getCriteria();
         $collection = new NamedCriteriaCollection();
-        $collection->filterModel1 = $filterModel;
-        $collection->filterModel2 = $filterModel;
-        
+        $collection->crtieria1 = $criteria;
+        $collection->crtieria2 = $criteria;
+
         $this->assertEquals(
-            $filterModel,
-            $collection->filterModel1
+            $criteria,
+            $collection->crtieria1
         );
         $this->assertEquals(
-            $filterModel,
-            $collection->filterModel2
+            $criteria,
+            $collection->crtieria2
         );
     }
 
     public function testNonMagicMethods()
     {
-        $filterModel = $this->getCriteria();
+        $criteria = $this->getCriteria();
         $collection = new NamedCriteriaCollection();
-        $collection->addNamedCriteria('test1', $filterModel);
-        $collection->addNamedCriteria('test2', $filterModel);
-        $collection->addNamedCriteria('test3', $filterModel);
-        $collection->addNamedCriteria('test3', $filterModel); // Duplicate
+        $collection->addNamedCriteria('test1', $criteria);
+        $collection->addNamedCriteria('test2', $criteria);
+        $collection->addNamedCriteria('test3', $criteria);
+        $collection->addNamedCriteria('test3', $criteria); // Duplicate
 
         $this->assertCount(3, $collection->getCriteria());
+    }
+
+    public function testMissingCriteria()
+    {
+        $collection = new NamedCriteriaCollection();
+
+        $this->assertEmpty($collection->getNamedCriteria('non-existing-criteria'));
     }
 
     public function testFluentInterface()
@@ -48,4 +55,3 @@ class NamedCriteriaCollectionTest extends CriteriaCollectionTest
         );
     }
 }
-

@@ -15,12 +15,11 @@ use KGzocha\Searcher\CriteriaBuilder\CriteriaBuilderInterface;
 abstract class AbstractQueryCriteriaBuilder implements CriteriaBuilderInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function supportsSearchingContext(
         SearchingContextInterface $searchingContext
     ) {
         return $searchingContext instanceof QuerySearchingContext;
     }
-
 }

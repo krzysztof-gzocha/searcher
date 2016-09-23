@@ -3,19 +3,21 @@
 namespace KGzocha\Searcher\Test\Context\Elastica;
 
 use Elastica\Query;
+use Elastica\Scroll;
 use Elastica\Search;
-use KGzocha\Searcher\Context\Elastica\QuerySearchingContext;
+use KGzocha\Searcher\Context\Elastica\ScrollingSearchingContext;
 
 /**
  * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
-class QuerySearchingContextTest extends \PHPUnit_Framework_TestCase
+class ScrollingSearchingContextTest extends \PHPUnit_Framework_TestCase
 {
-    public function testConstructor(Query $query = null)
+    public function testConstructor(Query $query = null, $expiryTime = '1m')
     {
-        $context = new QuerySearchingContext(
-            $search = $this->getSearchMock(),
-            $query
+        $context = new ScrollingSearchingContext(
+            $search = $this->getSearchMock($expiryTime),
+            $query,
+            $expiryTime
         );
 
         $this->assertInstanceOf(
@@ -24,40 +26,40 @@ class QuerySearchingContextTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertInstanceOf(
-            '\Elastica\ResultSet',
-            $context->getResults()
+            '\Elastica\Scroll',
+            $result = $context->getResults()
         );
 
         $this->assertEquals($search, $context->getSearch());
+        $this->assertEquals($expiryTime, $result->expiryTime);
     }
 
     public function dataProviderForTestingConstructor()
     {
         return [
-            [new Query()],
-            [null],
+            [new Query(), '1m'],
+            [new Query(), '2m'],
+            [null, '1m'],
+            [null, '3m'],
         ];
     }
 
     /**
      * @return Search|\PHPUnit_Framework_MockObject_MockObject
      */
-    private function getSearchMock()
+    private function getSearchMock($expiryTime = '1m')
     {
         $search = $this
             ->getMockBuilder('\Elastica\Search')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $resultSet = $this
-            ->getMockBuilder('\Elastica\ResultSet')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $scroll = new Scroll($search, $expiryTime);
 
         $search
             ->expects($this->once())
-            ->method('search')
-            ->willReturn($resultSet);
+            ->method('scroll')
+            ->willReturn($scroll);
 
         return $search;
     }

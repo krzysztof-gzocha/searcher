@@ -12,6 +12,32 @@ class CriteriaCollectionTest extends \PHPUnit_Framework_TestCase
     /**
      * @param mixed $params
      * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessageRegExp /Argument passed to collection KGzocha\\Searcher\\Criteria\\Collection\\CriteriaCollection needs to be an array or traversable object/
+     * @dataProvider notTraversableParamsDataProvider
+     */
+    public function testConstructorWithNotTraversableParams($params = null)
+    {
+        new CriteriaCollection($params);
+    }
+
+    /**
+     * @return array
+     */
+    public function notTraversableParamsDataProvider()
+    {
+        return [
+            [],
+            [0],
+            [1.2],
+            [new \stdClass()],
+            [''],
+        ];
+    }
+
+    /**
+     * @param mixed $params
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessageRegExp /At least one item in collection "KGzocha\\Searcher\\Criteria\\Collection\\CriteriaCollection" is invalid/
      * @dataProvider wrongParamsDataProvider
      */
     public function testConstructorWithWrongParams($params = null)
@@ -25,11 +51,11 @@ class CriteriaCollectionTest extends \PHPUnit_Framework_TestCase
     public function wrongParamsDataProvider()
     {
         return [
-            [],
-            [0],
-            [1.2],
-            [new \stdClass()],
-            ['']
+            [[0]],
+            [[1.2]],
+            [[new \stdClass(), new \stdClass()]],
+            [['']],
+            [[$this->getMockClass('\KGzocha\Searcher\Searcher')]],
         ];
     }
 
@@ -37,13 +63,18 @@ class CriteriaCollectionTest extends \PHPUnit_Framework_TestCase
     {
         $criteria = [];
 
-        for ($i = 1; $i <= self::NUMBER_OF_QUERY_CRITERIA; $i++) {
+        for ($i = 1; $i <= self::NUMBER_OF_QUERY_CRITERIA; ++$i) {
             $criteria[] = $this->getCriteria();
         }
 
         $criteriaCollection = new CriteriaCollection($criteria);
 
         $this->assertCount(self::NUMBER_OF_QUERY_CRITERIA, $criteriaCollection->getCriteria());
+    }
+
+    public function testTraversableParams()
+    {
+        new CriteriaCollection(new CriteriaCollection()); // Just some traversable object :)
     }
 
     public function testFluentInterface()
@@ -59,7 +90,7 @@ class CriteriaCollectionTest extends \PHPUnit_Framework_TestCase
     {
         $criteria = [];
 
-        for ($i = 1; $i <= self::NUMBER_OF_QUERY_CRITERIA; $i++) {
+        for ($i = 1; $i <= self::NUMBER_OF_QUERY_CRITERIA; ++$i) {
             $criteria[] = $this->getCriteria();
         }
 
@@ -96,4 +127,3 @@ class CriteriaCollectionTest extends \PHPUnit_Framework_TestCase
         return $criteria;
     }
 }
-

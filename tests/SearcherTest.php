@@ -8,7 +8,6 @@ use KGzocha\Searcher\Searcher;
 
 /**
  * @author Krzysztof Gzocha
- * @package KGzocha\Searcher\Test\Searcher
  */
 class SearcherTest extends \PHPUnit_Framework_TestCase
 {
@@ -36,7 +35,7 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param bool $supportsModel
-     * @param int $numberOfModels
+     * @param int  $numberOfModels
      *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
