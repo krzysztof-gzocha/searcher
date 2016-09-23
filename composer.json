@@ -39,7 +39,7 @@
         "phpmd/phpmd": "^2.4.3",
         "doctrine/orm": "^2.5.0",
         "doctrine/mongodb-odm": "^1.0.0",
-        "ruflin/elastica": ">=2.0.0",
+        "ruflin/elastica": ">=2.1.0",
         "symfony/finder": "^2.0.5",
         "phpdocumentor/reflection-docblock": "2.0.4"
     },
