@@ -265,3 +265,8 @@ And finally we can use configured KnpPaginatorAdapter service as a searching con
             doctor:
                 context:
                     service: project_doctor.configured_knp_paginator
+
+.. warning::
+
+    Remember that you are changing class of SearchingContext to KnpPaginatorAdapter, so you might need to update
+    yours criteria builders, because they might not support such change.
