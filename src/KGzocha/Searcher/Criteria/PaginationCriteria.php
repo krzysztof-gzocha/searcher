@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria;
 
@@ -8,12 +9,12 @@ namespace KGzocha\Searcher\Criteria;
 class PaginationCriteria implements PaginationCriteriaInterface
 {
     /**
-     * @var int
+     * @var int|null
      */
     private $page;
 
     /**
-     * @var int
+     * @var int|null
      */
     private $itemsPerPage;
 
@@ -22,15 +23,15 @@ class PaginationCriteria implements PaginationCriteriaInterface
      * @param int $itemsPerPage
      */
     public function __construct(
-        $page = null,
-        $itemsPerPage = null
+        int $page = null,
+        int $itemsPerPage = null
     ) {
         $this->setPage($page);
         $this->setItemsPerPage($itemsPerPage);
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getPage()
     {
@@ -40,13 +41,13 @@ class PaginationCriteria implements PaginationCriteriaInterface
     /**
      * @param int $page
      */
-    public function setPage($page)
+    public function setPage(int $page = null)
     {
         $this->page = $this->convert($page);
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getItemsPerPage()
     {
@@ -58,7 +59,7 @@ class PaginationCriteria implements PaginationCriteriaInterface
      *
      * @throws \BadMethodCallException
      */
-    public function setItemsPerPage($itemsPerPage)
+    public function setItemsPerPage(int $itemsPerPage = null)
     {
         $this->itemsPerPage = $this->convert($itemsPerPage);
     }
@@ -66,9 +67,9 @@ class PaginationCriteria implements PaginationCriteriaInterface
     /**
      * {@inheritdoc}
      */
-    public function shouldBeApplied()
+    public function shouldBeApplied(): bool
     {
-        return $this->page != 0 && $this->itemsPerPage != 0;
+        return $this->page !== 0 && $this->itemsPerPage !== 0;
     }
 
     /**
@@ -76,8 +77,8 @@ class PaginationCriteria implements PaginationCriteriaInterface
      *
      * @return int
      */
-    private function convert($number)
+    private function convert(int $number = null): int
     {
-        return abs((int) $number);
+        return (int) abs($number);
     }
 }

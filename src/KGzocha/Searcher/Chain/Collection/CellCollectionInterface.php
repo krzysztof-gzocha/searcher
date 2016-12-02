@@ -18,20 +18,20 @@ interface CellCollectionInterface extends \Countable, \IteratorAggregate
      *
      * @return CellInterface|null
      */
-    public function getNamedCell($name);
+    public function getNamedCell(string $name);
 
     /**
      * @param CellInterface $item
      *
-     * @return $this
+     * @return CellCollectionInterface
      */
-    public function addCell(CellInterface $item);
+    public function addCell(CellInterface $item): CellCollectionInterface;
 
     /**
      * @param string        $name
      * @param CellInterface $cell
      *
-     * @return $this
+     * @return CellCollectionInterface
      */
-    public function addNamedCell($name, CellInterface $cell);
+    public function addNamedCell(string $name, CellInterface $cell): CellCollectionInterface;
 }

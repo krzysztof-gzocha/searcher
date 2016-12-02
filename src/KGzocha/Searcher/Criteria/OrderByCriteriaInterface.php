@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria;
 
@@ -15,5 +16,5 @@ interface OrderByCriteriaInterface extends CriteriaInterface
     /**
      * @param null|string $orderBy
      */
-    public function setOrderBy($orderBy);
+    public function setOrderBy(string $orderBy = null);
 }

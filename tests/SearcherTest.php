@@ -2,6 +2,8 @@
 
 namespace KGzocha\Searcher\Test;
 
+use KGzocha\Searcher\Context\SearchingContextInterface;
+use KGzocha\Searcher\Criteria\CriteriaInterface;
 use KGzocha\Searcher\CriteriaBuilder\Collection\CriteriaBuilderCollection;
 use KGzocha\Searcher\Criteria\Collection\CriteriaCollection;
 use KGzocha\Searcher\Searcher;
@@ -90,7 +92,8 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
     private function getSearchingContext($result)
     {
         $context = $this
-            ->getMock('\KGzocha\Searcher\Context\SearchingContextInterface');
+            ->getMockBuilder(SearchingContextInterface::class)
+            ->getMock();
 
         $context
             ->expects($this->once())
@@ -106,9 +109,7 @@ class SearcherTest extends \PHPUnit_Framework_TestCase
     private function getCriteria()
     {
         $model = $this
-            ->getMockBuilder(
-                '\KGzocha\Searcher\Criteria\CriteriaInterface'
-            )
+            ->getMockBuilder(CriteriaInterface::class)
             ->getMock();
 
         $model

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria;
 
@@ -13,5 +14,5 @@ interface CriteriaInterface
      *
      * @return bool
      */
-    public function shouldBeApplied();
+    public function shouldBeApplied(): bool;
 }

@@ -27,8 +27,6 @@ class NumberCriteriaTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [null, false],
-            ['non-numeric', false],
-
             [0, true],
             [1.0, true],
             [1, true],

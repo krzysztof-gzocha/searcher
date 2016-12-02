@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Context\Doctrine;
 
@@ -23,7 +24,7 @@ class ODMBuilderSearchingContext extends AbstractSearchingContext
     /**
      * @return Builder
      */
-    public function getQueryBuilder()
+    public function getQueryBuilder(): Builder
     {
         return parent::getQueryBuilder();
     }

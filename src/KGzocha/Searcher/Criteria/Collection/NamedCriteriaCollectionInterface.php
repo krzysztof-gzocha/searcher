@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria\Collection;
 
@@ -17,12 +18,12 @@ interface NamedCriteriaCollectionInterface extends CriteriaCollectionInterface
      * @param string            $name
      * @param CriteriaInterface $criteria
      *
-     *@return $this
+     * @return NamedCriteriaCollectionInterface
      */
     public function addNamedCriteria(
-        $name,
+        string $name,
         CriteriaInterface $criteria
-    );
+    ): NamedCriteriaCollectionInterface;
 
     /**
      * @param string $name

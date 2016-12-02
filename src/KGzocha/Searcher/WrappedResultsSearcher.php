@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher;
 
@@ -32,7 +33,7 @@ class WrappedResultsSearcher implements SearcherInterface
      */
     public function search(
         CriteriaCollectionInterface $criteriaCollection
-    ) {
+    ): ResultCollection {
         return new ResultCollection(
             $this->searcher->search($criteriaCollection)
         );

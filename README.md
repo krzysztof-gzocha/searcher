@@ -4,7 +4,7 @@
 
 ### What is that?
 *Searcher* is a framework-agnostic search query builder. Search queries are written using criterias and can be run against MySQL, MongoDB, ElasticSearch, files or whatever else you like.
-Supported PHP versions: >=5.4, 7 and HHVM. **Now tested also with [Humbug](https://github.com/padraic/humbug)**
+**Latest version is supporting only PHP 7**. **Now tested also with [Humbug](https://github.com/padraic/humbug)**
 
 ### See [this presentation](https://krzysztof-gzocha.github.io/searcher/) to understand better
 
@@ -51,7 +51,7 @@ class AgeRangeCriteria implements CriteriaInterface
     * Only required method.
     * If will return true, then it will be passed to some of the CriteriaBuilder(s)
     */
-    public function shouldBeApplied()
+    public function shouldBeApplied(): bool
     {
         return null !== $this->minimalAge && null !== $this->maximalAge;
     }
@@ -80,7 +80,8 @@ class AgeRangeCriteriaBuilder implements CriteriaBuilderInterface
 
     public function allowsCriteria(
         CriteriaInterface $criteria
-    ) {
+    ): bool
+    {
         return $criteria instanceof AgeRangeCriteria;
     }
 
@@ -89,7 +90,8 @@ class AgeRangeCriteriaBuilder implements CriteriaBuilderInterface
     */
     public function supportsSearchingContext(
         SearchingContextInterface $searchingContext
-    ) {
+    ): bool
+    {
         return $searchingContext instanceof QueryBuilderSearchingContext;
     }
 }

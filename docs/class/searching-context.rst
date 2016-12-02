@@ -67,7 +67,7 @@ It will allow all criteria builders (that are supporting this context) to use Fi
         /**
         * @return Finder
         */
-        public function getQueryBuilder()
+        public function getQueryBuilder(): Finder
         {
             return $this->finder;
         }
@@ -75,7 +75,7 @@ It will allow all criteria builders (that are supporting this context) to use Fi
         /**
         * @return Iterator
         */
-        public function getResults()
+        public function getResults(): \Iterator
         {
             // I assumed that you want Iterator as a result
             return $this->finder->getIterator();

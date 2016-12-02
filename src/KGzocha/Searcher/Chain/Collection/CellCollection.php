@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Chain\Collection;
 
@@ -18,15 +19,15 @@ class CellCollection extends AbstractCollection implements CellCollectionInterfa
     /**
      * @inheritDoc
      */
-    protected function isItemValid($item)
+    protected function isItemValid($item): bool
     {
         return $item instanceof CellInterface;
     }
 
     /**
-     * @return \ArrayIterator
+     * @inheritdoc
      */
-    public function getIterator()
+    public function getIterator(): \Iterator
     {
         $this->validateNumberOfCells();
 
@@ -34,7 +35,7 @@ class CellCollection extends AbstractCollection implements CellCollectionInterfa
     }
 
     /**
-     * @return CellInterface[]
+     * @inheritdoc
      */
     public function getCells()
     {
@@ -44,32 +45,25 @@ class CellCollection extends AbstractCollection implements CellCollectionInterfa
     }
 
     /**
-     * @param string $name
-     *
-     * @return CellInterface|null
+     * @inheritdoc
      */
-    public function getNamedCell($name)
+    public function getNamedCell(string $name)
     {
         return $this->getNamedItem($name);
     }
 
     /**
-     * @param CellInterface $item
-     *
-     * @return $this
+     * @inheritdoc
      */
-    public function addCell(CellInterface $item)
+    public function addCell(CellInterface $item): CellCollectionInterface
     {
         return $this->addItem($item);
     }
 
     /**
-     * @param string        $name
-     * @param CellInterface $cell
-     *
-     * @return $this
+     * @inheritdoc
      */
-    public function addNamedCell($name, CellInterface $cell)
+    public function addNamedCell(string $name, CellInterface $cell): CellCollectionInterface
     {
         return $this->addNamedItem($name, $cell);
     }

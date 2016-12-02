@@ -40,10 +40,6 @@ class IntegerCriteriaTest extends AbstractCriteriaTestCase
     {
         return [
             [10, true],
-            ['1a', true],
-            [10.12, true],
-            ['10.12', true],
-
             [null, false],
         ];
     }

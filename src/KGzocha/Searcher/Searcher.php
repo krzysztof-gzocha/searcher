@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher;
 
@@ -6,6 +7,7 @@ use KGzocha\Searcher\Context\SearchingContextInterface;
 use KGzocha\Searcher\CriteriaBuilder\Collection\CriteriaBuilderCollectionInterface;
 use KGzocha\Searcher\Criteria\Collection\CriteriaCollectionInterface;
 use KGzocha\Searcher\Criteria\CriteriaInterface;
+use KGzocha\Searcher\CriteriaBuilder\CriteriaBuilderInterface;
 
 /**
  * Main class responsible for performing actual searching.
@@ -63,6 +65,7 @@ class Searcher implements SearcherInterface
         SearchingContextInterface $searchingContext,
         CriteriaBuilderCollectionInterface $builders
     ) {
+        /** @var CriteriaBuilderInterface $builder */
         foreach ($builders as $builder) {
             if ($builder->allowsCriteria($criteria)) {
                 $builder->buildCriteria($criteria, $searchingContext);

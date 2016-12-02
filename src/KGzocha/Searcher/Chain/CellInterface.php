@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Chain;
+
+use KGzocha\Searcher\SearcherInterface;
 
 /**
  * It represents single cell in the chain. It holds sub-searcher and it's transformer, which will
@@ -12,17 +15,17 @@ namespace KGzocha\Searcher\Chain;
 interface CellInterface
 {
     /**
-     * @return \KGzocha\Searcher\SearcherInterface
+     * @return SearcherInterface
      */
-    public function getSearcher();
+    public function getSearcher(): SearcherInterface;
 
     /**
      * @return TransformerInterface
      */
-    public function getTransformer();
+    public function getTransformer(): TransformerInterface;
 
     /**
      * @return bool
      */
-    public function hasTransformer();
+    public function hasTransformer(): bool;
 }

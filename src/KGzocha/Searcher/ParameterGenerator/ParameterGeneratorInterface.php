@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\ParameterGenerator;
 
@@ -18,5 +19,5 @@ interface ParameterGeneratorInterface
      *
      * @return string
      */
-    public function getParameterName();
+    public function getParameterName(): string;
 }

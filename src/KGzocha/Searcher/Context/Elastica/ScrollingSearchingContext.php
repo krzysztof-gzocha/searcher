@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Context\Elastica;
 
 use Elastica\Query;
+use Elastica\Scroll;
 use Elastica\Search;
 
 /**
@@ -18,16 +20,16 @@ class ScrollingSearchingContext extends QuerySearchingContext
     /**
      * @inheritDoc
      */
-    public function __construct(Search $search, Query $query = null, $expiryTime = '1m')
+    public function __construct(Search $search, Query $query = null, string $expiryTime = '1m')
     {
         parent::__construct($search, $query);
         $this->expiryTime = $expiryTime;
     }
 
     /**
-     * @return \Elastica\Scroll
+     * @return Scroll|\Iterator
      */
-    public function getResults()
+    public function getResults(): \Iterator
     {
         $this
             ->getSearch()

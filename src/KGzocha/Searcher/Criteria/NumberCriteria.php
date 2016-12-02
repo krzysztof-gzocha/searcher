@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria;
 
@@ -15,13 +16,13 @@ class NumberCriteria implements CriteriaInterface
     /**
      * @param float $number
      */
-    public function __construct($number = null)
+    public function __construct(float $number = null)
     {
         $this->number = $number;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
     public function getNumber()
     {
@@ -31,17 +32,16 @@ class NumberCriteria implements CriteriaInterface
     /**
      * @param float $number
      */
-    public function setNumber($number)
+    public function setNumber(float $number = null)
     {
-        $this->number = (float) $number;
+        $this->number = $number;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function shouldBeApplied()
+    public function shouldBeApplied(): bool
     {
-        return $this->number !== null
-            && is_numeric($this->number);
+        return $this->number !== null;
     }
 }

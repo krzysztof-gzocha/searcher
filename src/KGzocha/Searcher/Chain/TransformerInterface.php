@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Chain;
 
@@ -21,7 +22,7 @@ interface TransformerInterface
      *
      * @return CriteriaCollectionInterface
      */
-    public function transform($results, CriteriaCollectionInterface $criteria);
+    public function transform($results, CriteriaCollectionInterface $criteria): CriteriaCollectionInterface;
 
     /**
      * Important! Results might be null when cell will be used as first one.
@@ -30,5 +31,5 @@ interface TransformerInterface
      *
      * @return bool
      */
-    public function skip($results);
+    public function skip($results): bool;
 }

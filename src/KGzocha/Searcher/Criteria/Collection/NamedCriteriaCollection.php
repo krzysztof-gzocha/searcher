@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria\Collection;
 
@@ -14,7 +15,7 @@ class NamedCriteriaCollection extends CriteriaCollection implements NamedCriteri
      *
      * @return null|CriteriaInterface
      */
-    public function __get($name)
+    public function __get(string $name)
     {
         return $this->getNamedCriteria($name);
     }
@@ -23,7 +24,7 @@ class NamedCriteriaCollection extends CriteriaCollection implements NamedCriteri
      * @param string            $name
      * @param CriteriaInterface $value
      */
-    public function __set($name, CriteriaInterface $value)
+    public function __set(string $name, CriteriaInterface $value)
     {
         $this->addNamedCriteria($name, $value);
     }
@@ -32,9 +33,9 @@ class NamedCriteriaCollection extends CriteriaCollection implements NamedCriteri
      * @param string            $name
      * @param CriteriaInterface $criteria
      *
-     * @return $this
+     * @return NamedCriteriaCollectionInterface
      */
-    public function addNamedCriteria($name, CriteriaInterface $criteria)
+    public function addNamedCriteria(string $name, CriteriaInterface $criteria): NamedCriteriaCollectionInterface
     {
         return $this->addNamedItem($name, $criteria);
     }

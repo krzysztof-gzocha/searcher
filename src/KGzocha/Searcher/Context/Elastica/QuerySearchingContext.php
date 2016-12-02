@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Context\Elastica;
 
@@ -38,7 +39,7 @@ class QuerySearchingContext extends AbstractSearchingContext
     /**
      * @return Query
      */
-    public function getQueryBuilder()
+    public function getQueryBuilder(): Query
     {
         return parent::getQueryBuilder();
     }
@@ -46,15 +47,15 @@ class QuerySearchingContext extends AbstractSearchingContext
     /**
      * @return Search
      */
-    public function getSearch()
+    public function getSearch(): Search
     {
         return $this->search;
     }
 
     /**
-     * @return ResultSet
+     * @return ResultSet|\Iterator
      */
-    public function getResults()
+    public function getResults(): \Iterator
     {
         $this->getSearch()->setQuery($this->getQueryBuilder());
 

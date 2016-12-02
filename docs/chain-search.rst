@@ -51,7 +51,7 @@ injected into the ``$statisticSearcher``:
         /**
          * @param mixed $results
          */
-        public function transform($results, CriteriaCollectionInterface $criteria)
+        public function transform($results, CriteriaCollectionInterface $criteria): CriteriaCollectionInterface
         {
             // Assuming that UserIdsCriteria will holds an array of user IDs
             $userIdsCriteria = new UserIdsCriteria(array_map(
@@ -72,7 +72,7 @@ injected into the ``$statisticSearcher``:
          * @param mixed $results
          * @return bool
          */
-        public function skip($results)
+        public function skip($results): bool
         {
             return false;
         }

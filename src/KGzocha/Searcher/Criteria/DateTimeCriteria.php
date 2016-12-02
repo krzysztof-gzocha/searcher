@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria;
 
@@ -21,7 +22,7 @@ class DateTimeCriteria implements CriteriaInterface
     }
 
     /**
-     * @return \DateTime
+     * @return null|\DateTime
      */
     public function getDateTime()
     {
@@ -30,8 +31,6 @@ class DateTimeCriteria implements CriteriaInterface
 
     /**
      * @param \DateTime|null $dateTime
-     *
-     * @return DateTimeCriteria
      */
     public function setDateTime(\DateTime $dateTime = null)
     {
@@ -41,7 +40,7 @@ class DateTimeCriteria implements CriteriaInterface
     /**
      * {@inheritdoc}
      */
-    public function shouldBeApplied()
+    public function shouldBeApplied(): bool
     {
         return $this->dateTime instanceof \DateTime;
     }

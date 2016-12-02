@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\CriteriaBuilder\Doctrine;
 
@@ -23,7 +24,7 @@ abstract class AbstractORMCriteriaBuilder implements CriteriaBuilderInterface
      */
     public function supportsSearchingContext(
         SearchingContextInterface $searchingContext
-    ) {
+    ): bool {
         return $searchingContext instanceof QueryBuilderSearchingContext;
     }
 
@@ -40,8 +41,12 @@ abstract class AbstractORMCriteriaBuilder implements CriteriaBuilderInterface
      *
      * @return QueryBuilder
      */
-    protected function join(QueryBuilder $queryBuilder, $join, $alias, $joinType)
-    {
+    protected function join(
+        QueryBuilder $queryBuilder,
+        string $join,
+        string $alias,
+        string $joinType
+    ): QueryBuilder {
         list($entity) = explode('.', $join);
 
         $joinParts = $queryBuilder->getDQLPart('join');
@@ -69,11 +74,11 @@ abstract class AbstractORMCriteriaBuilder implements CriteriaBuilderInterface
      */
     protected function filterExistingJoins(
         QueryBuilder $queryBuilder,
-        $joinParts,
-        $alias,
-        $join,
-        $joinType
-    ) {
+        array $joinParts,
+        string $alias,
+        string $join,
+        string $joinType
+    ): QueryBuilder {
         $existingJoin = array_filter(
             $joinParts,
             function (Join $joinObj) use ($alias, $join, $joinType) {

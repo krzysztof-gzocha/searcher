@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Chain;
 
@@ -36,25 +37,25 @@ class Cell implements CellInterface
     }
 
     /**
-     * @return \KGzocha\Searcher\SearcherInterface
+     * @inheritdoc
      */
-    public function getSearcher()
+    public function getSearcher(): SearcherInterface
     {
         return $this->searcher;
     }
 
     /**
-     * @return TransformerInterface
+     * @inheritdoc
      */
-    public function getTransformer()
+    public function getTransformer(): TransformerInterface
     {
         return $this->transformer;
     }
 
     /**
-     * @return bool
+     * @inheritdoc
      */
-    public function hasTransformer()
+    public function hasTransformer(): bool
     {
         return !$this->transformer instanceof EndTransformer;
     }

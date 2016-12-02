@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Chain;
 
@@ -15,7 +16,7 @@ final class EndTransformer implements TransformerInterface
     /**
      * {@inheritdoc}
      */
-    public function transform($results, CriteriaCollectionInterface $criteria)
+    public function transform($results, CriteriaCollectionInterface $criteria): CriteriaCollectionInterface
     {
         throw new \RuntimeException(
             'Transform method on EmptyTransformer should never be called.'
@@ -25,7 +26,7 @@ final class EndTransformer implements TransformerInterface
     /**
      * {@inheritdoc}
      */
-    public function skip($results)
+    public function skip($results): bool
     {
         return false;
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Context;
 
@@ -22,7 +23,7 @@ class FinderSearchingContext extends AbstractSearchingContext
     /**
      * @return Finder
      */
-    public function getQueryBuilder()
+    public function getQueryBuilder(): Finder
     {
         return parent::getQueryBuilder();
     }
@@ -30,7 +31,7 @@ class FinderSearchingContext extends AbstractSearchingContext
     /**
      * @return \Iterator
      */
-    public function getResults()
+    public function getResults(): \Iterator
     {
         return $this->getQueryBuilder()->getIterator();
     }
@@ -38,7 +39,7 @@ class FinderSearchingContext extends AbstractSearchingContext
     /**
      * @return FinderSearchingContext
      */
-    public static function buildDefault()
+    public static function buildDefault(): FinderSearchingContext
     {
         return new self(new Finder());
     }

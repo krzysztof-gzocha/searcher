@@ -25,7 +25,7 @@ class ORMCriteriaBuilderStub extends AbstractORMCriteriaBuilder
     /**
      * {@inheritdoc}
      */
-    public function allowsCriteria(CriteriaInterface $criteria)
+    public function allowsCriteria(CriteriaInterface $criteria): bool
     {
         return true;
     }
@@ -33,7 +33,7 @@ class ORMCriteriaBuilderStub extends AbstractORMCriteriaBuilder
     /**
      * {@inheritdoc}
      */
-    public function join(QueryBuilder $queryBuilder, $join, $alias, $joinType)
+    public function join(QueryBuilder $queryBuilder, string $join, string $alias, string $joinType): QueryBuilder
     {
         return parent::join($queryBuilder, $join, $alias, $joinType);
     }
@@ -43,11 +43,12 @@ class ORMCriteriaBuilderStub extends AbstractORMCriteriaBuilder
      */
     public function filterExistingJoins(
         QueryBuilder $queryBuilder,
-        $joinParts,
-        $alias,
-        $join,
-        $joinType
-    ) {
+        array $joinParts,
+        string $alias,
+        string $join,
+        string $joinType
+    ): QueryBuilder
+    {
         return parent::filterExistingJoins(
             $queryBuilder,
             $joinParts,

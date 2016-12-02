@@ -9,7 +9,7 @@ What?
 -----------------
 *Searcher* is a framework-agnostic search query builder.
 Search queries are written using Criterias and can be run against MySQL, MongoDB or even files.
-Supported PHP versions: >=5.4, 7 and HHVM.
+**Latest version is supporting only PHP 7.**
 You can find searcher in two most important places:
 
 - GitHub repository: https://github.com/krzysztof-gzocha/searcher

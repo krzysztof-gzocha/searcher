@@ -60,8 +60,7 @@ class CoordinatesCriteriaTest extends AbstractCriteriaTestCase
     {
         return [
             [12.123, 23.233, 12.123, 23.233],
-            ['12.123', '23.233', 12.123, 23.233],
-            [null, '', 0.0, 0.0],
+            [null, null, 0.0, 0.0],
         ];
     }
 

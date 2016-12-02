@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria;
 
@@ -18,17 +19,17 @@ class IntegerRangeCriteria implements CriteriaInterface
     private $max;
 
     /**
-     * @param int $min
-     * @param int $max
+     * @param int|null $min
+     * @param int|null $max
      */
-    public function __construct($min = null, $max = null)
+    public function __construct(int $min = null, int $max = null)
     {
         $this->min = $min;
         $this->max = $max;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getMin()
     {
@@ -38,9 +39,9 @@ class IntegerRangeCriteria implements CriteriaInterface
     /**
      * @param int $min
      */
-    public function setMin($min)
+    public function setMin(int $min = null)
     {
-        $this->min = (int) $min;
+        $this->min = $min;
     }
 
     /**
@@ -54,15 +55,15 @@ class IntegerRangeCriteria implements CriteriaInterface
     /**
      * @param int $max
      */
-    public function setMax($max)
+    public function setMax(int $max = null)
     {
-        $this->max = (int) $max;
+        $this->max = $max;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function shouldBeApplied()
+    public function shouldBeApplied(): bool
     {
         return $this->min !== null && $this->max !== null;
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\CriteriaBuilder\Collection;
 
@@ -20,7 +21,7 @@ interface CriteriaBuilderCollectionInterface extends \Countable, \IteratorAggreg
      */
     public function addCriteriaBuilder(
         CriteriaBuilderInterface $criteriaBuilder
-    );
+    ): CriteriaBuilderCollectionInterface;
 
     /**
      * @return CriteriaBuilderInterface[]
@@ -34,5 +35,5 @@ interface CriteriaBuilderCollectionInterface extends \Countable, \IteratorAggreg
      */
     public function getCriteriaBuildersForContext(
         SearchingContextInterface $searchingContext
-    );
+    ): CriteriaBuilderCollectionInterface;
 }

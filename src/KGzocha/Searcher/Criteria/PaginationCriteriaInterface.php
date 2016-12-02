@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria;
 
@@ -20,10 +21,10 @@ interface PaginationCriteriaInterface extends CriteriaInterface
     /**
      * @param int $page
      */
-    public function setPage($page);
+    public function setPage(int $page = null);
 
     /**
      * @param int $itemsPerPage
      */
-    public function setItemsPerPage($itemsPerPage);
+    public function setItemsPerPage(int $itemsPerPage = null);
 }

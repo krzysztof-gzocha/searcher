@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria\Collection;
 
@@ -22,7 +23,7 @@ class CriteriaCollection extends AbstractCollection implements CriteriaCollectio
     /**
      * {@inheritdoc}
      */
-    public function getApplicableCriteria()
+    public function getApplicableCriteria(): CriteriaCollectionInterface
     {
         return new self(array_filter(
             $this->getItems(),
@@ -43,7 +44,7 @@ class CriteriaCollection extends AbstractCollection implements CriteriaCollectio
     /**
      * {@inheritdoc}
      */
-    public function addCriteria(CriteriaInterface $criteria)
+    public function addCriteria(CriteriaInterface $criteria): CriteriaCollectionInterface
     {
         return $this->addItem($criteria);
     }
@@ -51,7 +52,7 @@ class CriteriaCollection extends AbstractCollection implements CriteriaCollectio
     /**
      * {@inheritdoc}
      */
-    protected function isItemValid($item)
+    protected function isItemValid($item): bool
     {
         return $item instanceof CriteriaInterface;
     }

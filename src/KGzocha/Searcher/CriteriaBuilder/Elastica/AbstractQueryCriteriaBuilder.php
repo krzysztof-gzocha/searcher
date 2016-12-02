@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\CriteriaBuilder\Elastica;
 
@@ -19,7 +20,7 @@ abstract class AbstractQueryCriteriaBuilder implements CriteriaBuilderInterface
      */
     public function supportsSearchingContext(
         SearchingContextInterface $searchingContext
-    ) {
+    ): bool {
         return $searchingContext instanceof QuerySearchingContext;
     }
 }

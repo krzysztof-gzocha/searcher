@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria;
 
@@ -15,7 +16,7 @@ class OrderByCriteria implements OrderByCriteriaInterface
     /**
      * @param null|string $orderBy
      */
-    public function __construct($orderBy = null)
+    public function __construct(string $orderBy = null)
     {
         $this->orderBy = $orderBy;
     }
@@ -31,7 +32,7 @@ class OrderByCriteria implements OrderByCriteriaInterface
     /**
      * @param null|string $orderBy
      */
-    public function setOrderBy($orderBy)
+    public function setOrderBy(string $orderBy = null)
     {
         $this->orderBy = $orderBy;
     }
@@ -39,7 +40,7 @@ class OrderByCriteria implements OrderByCriteriaInterface
     /**
      * {@inheritdoc}
      */
-    public function shouldBeApplied()
+    public function shouldBeApplied(): bool
     {
         return $this->orderBy !== null && !empty($this->orderBy);
     }

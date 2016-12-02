@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria\Adapter;
 
@@ -28,7 +29,7 @@ class ImmutablePaginationAdapter implements PaginationCriteriaInterface
     /**
      * {@inheritdoc}
      */
-    public function getPage()
+    public function getPage(): int
     {
         return $this->pagination->getPage();
     }
@@ -36,7 +37,7 @@ class ImmutablePaginationAdapter implements PaginationCriteriaInterface
     /**
      * {@inheritdoc}
      */
-    public function getItemsPerPage()
+    public function getItemsPerPage(): int
     {
         return $this->pagination->getItemsPerPage();
     }
@@ -44,7 +45,7 @@ class ImmutablePaginationAdapter implements PaginationCriteriaInterface
     /**
      * {@inheritdoc}
      */
-    public function setPage($page)
+    public function setPage(int $page = null)
     {
         return $this->pagination->setPage($page);
     }
@@ -55,7 +56,7 @@ class ImmutablePaginationAdapter implements PaginationCriteriaInterface
      *
      * {@inheritdoc}
      */
-    public function setItemsPerPage($itemsPerPage)
+    public function setItemsPerPage(int $itemsPerPage = null)
     {
         return $this
             ->pagination
@@ -67,7 +68,7 @@ class ImmutablePaginationAdapter implements PaginationCriteriaInterface
     /**
      * {@inheritdoc}
      */
-    public function shouldBeApplied()
+    public function shouldBeApplied(): bool
     {
         return $this->pagination->shouldBeApplied();
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\CriteriaBuilder\Collection;
 
@@ -22,7 +23,7 @@ class CriteriaBuilderCollection extends AbstractCollection implements CriteriaBu
     /**
      * {@inheritdoc}
      */
-    public function addCriteriaBuilder(CriteriaBuilderInterface $criteriaBuilder)
+    public function addCriteriaBuilder(CriteriaBuilderInterface $criteriaBuilder): CriteriaBuilderCollectionInterface
     {
         return $this->addItem($criteriaBuilder);
     }
@@ -40,7 +41,7 @@ class CriteriaBuilderCollection extends AbstractCollection implements CriteriaBu
      */
     public function getCriteriaBuildersForContext(
         SearchingContextInterface $searchingContext
-    ) {
+    ): CriteriaBuilderCollectionInterface {
         return new self(array_filter(
             $this->getItems(),
             function (CriteriaBuilderInterface $criteriaBuilder) use ($searchingContext) {
@@ -52,7 +53,7 @@ class CriteriaBuilderCollection extends AbstractCollection implements CriteriaBu
     /**
      * {@inheritdoc}
      */
-    protected function isItemValid($item)
+    protected function isItemValid($item): bool
     {
         return $item instanceof CriteriaBuilderInterface;
     }

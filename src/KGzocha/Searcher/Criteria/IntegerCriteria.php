@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria;
 
@@ -15,13 +16,13 @@ class IntegerCriteria implements CriteriaInterface
     /**
      * @param int $integer
      */
-    public function __construct($integer = null)
+    public function __construct(int $integer = null)
     {
         $this->integer = $integer;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getInteger()
     {
@@ -31,15 +32,15 @@ class IntegerCriteria implements CriteriaInterface
     /**
      * @param int $integer
      */
-    public function setInteger($integer)
+    public function setInteger(int $integer = null)
     {
-        $this->integer = (int) $integer;
+        $this->integer = $integer;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function shouldBeApplied()
+    public function shouldBeApplied(): bool
     {
         return $this->integer !== null;
     }

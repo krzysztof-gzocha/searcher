@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Result;
 
@@ -18,7 +19,7 @@ class ResultCollection extends AbstractCollection implements ResultCollectionInt
     /**
      * @inheritDoc
      */
-    public function addNamedItem($name, $item)
+    public function addNamedItem(string $name, $item): AbstractCollection
     {
         return parent::addNamedItem($name, $item);
     }
@@ -42,7 +43,7 @@ class ResultCollection extends AbstractCollection implements ResultCollectionInt
     /**
      * @inheritDoc
      */
-    protected function isItemValid($item)
+    protected function isItemValid($item): bool
     {
         return true;
     }

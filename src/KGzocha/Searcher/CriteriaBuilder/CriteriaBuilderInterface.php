@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\CriteriaBuilder;
 
@@ -34,14 +35,12 @@ interface CriteriaBuilderInterface
      *
      * @return bool
      */
-    public function allowsCriteria(CriteriaInterface $criteria);
+    public function allowsCriteria(CriteriaInterface $criteria): bool;
 
     /**
      * @param SearchingContextInterface $searchingContext
      *
      * @return bool
      */
-    public function supportsSearchingContext(
-        SearchingContextInterface $searchingContext
-    );
+    public function supportsSearchingContext(SearchingContextInterface $searchingContext): bool;
 }

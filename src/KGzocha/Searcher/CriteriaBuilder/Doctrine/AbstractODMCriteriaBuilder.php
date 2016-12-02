@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\CriteriaBuilder\Doctrine;
 
@@ -22,7 +23,7 @@ abstract class AbstractODMCriteriaBuilder implements CriteriaBuilderInterface
      */
     public function supportsSearchingContext(
         SearchingContextInterface $searchingContext
-    ) {
+    ): bool {
         return $searchingContext instanceof ODMBuilderSearchingContext;
     }
 }

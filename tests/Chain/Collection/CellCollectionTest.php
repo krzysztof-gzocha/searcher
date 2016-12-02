@@ -70,6 +70,6 @@ class CellCollectionTest extends \PHPUnit_Framework_TestCase
      */
     private function getCell()
     {
-        return $this->getMock('KGzocha\Searcher\Chain\CellInterface');
+        return $this->getMockBuilder(CellInterface::class)->getMock();
     }
 }

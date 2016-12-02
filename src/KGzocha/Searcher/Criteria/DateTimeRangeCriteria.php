@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria;
 
@@ -30,7 +31,7 @@ class DateTimeRangeCriteria implements CriteriaInterface
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getStartingDateTime()
     {
@@ -39,8 +40,6 @@ class DateTimeRangeCriteria implements CriteriaInterface
 
     /**
      * @param \DateTime|null $startingDateTime
-     *
-     * @return DateTimeRangeCriteria
      */
     public function setStartingDateTime(
         \DateTime $startingDateTime = null
@@ -49,7 +48,7 @@ class DateTimeRangeCriteria implements CriteriaInterface
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function getEndingDateTime()
     {
@@ -58,8 +57,6 @@ class DateTimeRangeCriteria implements CriteriaInterface
 
     /**
      * @param \DateTime|null $endingDateTime
-     *
-     * @return DateTimeRangeCriteria
      */
     public function setEndingDateTime(
         \DateTime $endingDateTime = null
@@ -70,7 +67,7 @@ class DateTimeRangeCriteria implements CriteriaInterface
     /**
      * {@inheritdoc}
      */
-    public function shouldBeApplied()
+    public function shouldBeApplied(): bool
     {
         return $this->startingDateTime instanceof \DateTime
             || $this->endingDateTime instanceof \DateTime;

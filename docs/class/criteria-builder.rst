@@ -37,7 +37,7 @@ will support Doctrine's searching context which is ``\KGzocha\Searcher\Context\D
 
     class SpecificAgeCriteriaBuilder extends AbstractORMCriteriaBuilder
     {
-        public function allowsCriteria(CriteriaInterface $criteria)
+        public function allowsCriteria(CriteriaInterface $criteria): bool
         {
             return $criteria instanceof SpecificAgeCriteria;
         }

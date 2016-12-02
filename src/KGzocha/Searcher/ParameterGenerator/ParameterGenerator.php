@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\ParameterGenerator;
 
@@ -23,7 +24,7 @@ class ParameterGenerator implements ParameterGeneratorInterface
     /**
      * @param string $prefix
      */
-    public function __construct($prefix = 'searchParam')
+    public function __construct(string $prefix = 'searchParam')
     {
         $this->counter = 0;
         $this->prefix = $prefix;
@@ -32,7 +33,7 @@ class ParameterGenerator implements ParameterGeneratorInterface
     /**
      * {@inheritdoc}
      */
-    public function getParameterName()
+    public function getParameterName(): string
     {
         $this->counter += 1;
 

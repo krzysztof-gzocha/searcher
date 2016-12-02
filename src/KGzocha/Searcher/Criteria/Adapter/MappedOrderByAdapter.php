@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria\Adapter;
 
@@ -49,7 +50,7 @@ class MappedOrderByAdapter implements OrderByCriteriaInterface
             return $this->fieldsMap[$this->getOrderBy()];
         }
 
-        return;
+        return null;
     }
 
     /**
@@ -71,7 +72,7 @@ class MappedOrderByAdapter implements OrderByCriteriaInterface
     /**
      * {@inheritdoc}
      */
-    public function setOrderBy($orderBy)
+    public function setOrderBy(string $orderBy = null)
     {
         return $this->orderBy->setOrderBy($orderBy);
     }
@@ -79,7 +80,7 @@ class MappedOrderByAdapter implements OrderByCriteriaInterface
     /**
      * {@inheritdoc}
      */
-    public function shouldBeApplied()
+    public function shouldBeApplied(): bool
     {
         return $this->orderBy->shouldBeApplied() && $this->rawValueExistsInFieldsMap();
     }
@@ -104,7 +105,7 @@ class MappedOrderByAdapter implements OrderByCriteriaInterface
     /**
      * @return bool
      */
-    private function rawValueExistsInFieldsMap()
+    private function rawValueExistsInFieldsMap(): bool
     {
         return array_key_exists($this->getOrderBy(), $this->fieldsMap);
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Chain;
 
@@ -42,7 +43,7 @@ class ChainSearch implements SearcherInterface
      */
     public function search(
         CriteriaCollectionInterface $criteriaCollection
-    ) {
+    ): ResultCollection {
         $previousCriteria = $criteriaCollection;
         $previousResults = null;
         $result = new ResultCollection();
@@ -60,7 +61,7 @@ class ChainSearch implements SearcherInterface
                 $previousResults
             );
 
-            $result->addNamedItem($name, $previousResults);
+            $result->addNamedItem((string) $name, $previousResults);
         }
 
         return $result;
@@ -80,7 +81,7 @@ class ChainSearch implements SearcherInterface
         CellInterface $cell,
         CriteriaCollectionInterface $criteria,
         $results
-    ) {
+    ): CriteriaCollectionInterface {
         if (!$cell->hasTransformer()) {
             return $criteria;
         }

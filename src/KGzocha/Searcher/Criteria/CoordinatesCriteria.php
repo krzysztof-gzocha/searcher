@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher\Criteria;
 
@@ -21,14 +22,14 @@ class CoordinatesCriteria implements CriteriaInterface
      * @param float $latitude
      * @param float $longitude
      */
-    public function __construct($latitude = null, $longitude = null)
+    public function __construct(float $latitude = null, float $longitude = null)
     {
         $this->latitude = $latitude;
         $this->longitude = $longitude;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
     public function getLatitude()
     {
@@ -38,13 +39,13 @@ class CoordinatesCriteria implements CriteriaInterface
     /**
      * @param float $latitude
      */
-    public function setLatitude($latitude)
+    public function setLatitude(float $latitude = null)
     {
-        $this->latitude = (float) $latitude;
+        $this->latitude = $latitude;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
     public function getLongitude()
     {
@@ -54,15 +55,15 @@ class CoordinatesCriteria implements CriteriaInterface
     /**
      * @param float $longitude
      */
-    public function setLongitude($longitude)
+    public function setLongitude(float $longitude = null)
     {
-        $this->longitude = (float) $longitude;
+        $this->longitude = $longitude;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function shouldBeApplied()
+    public function shouldBeApplied(): bool
     {
         return $this->latitude !== null
             && $this->longitude !== null;

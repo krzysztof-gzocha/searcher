@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace KGzocha\Searcher;
 
@@ -29,14 +30,16 @@ abstract class AbstractCollection implements \Countable, \IteratorAggregate
      *
      * @return bool
      */
-    abstract protected function isItemValid($item);
+    abstract protected function isItemValid($item): bool;
 
     /**
      * {@inheritdoc}
      */
-    public function getIterator()
+    public function getIterator(): \Iterator
     {
-        return new \ArrayIterator($this->items);
+        foreach ($this->items as $key => $item) {
+            yield $key => $item;
+        }
     }
 
     /**
@@ -50,9 +53,9 @@ abstract class AbstractCollection implements \Countable, \IteratorAggregate
     /**
      * @param mixed $item
      *
-     * @return $this
+     * @return self
      */
-    protected function addItem($item)
+    protected function addItem($item): AbstractCollection
     {
         $this->items[] = $item;
 
@@ -63,9 +66,9 @@ abstract class AbstractCollection implements \Countable, \IteratorAggregate
      * @param string $name
      * @param mixed  $item
      *
-     * @return $this
+     * @return self
      */
-    protected function addNamedItem($name, $item)
+    protected function addNamedItem(string $name, $item): AbstractCollection
     {
         $this->items[$name] = $item;
 
@@ -85,7 +88,7 @@ abstract class AbstractCollection implements \Countable, \IteratorAggregate
      *
      * @return mixed|null
      */
-    protected function getNamedItem($name)
+    protected function getNamedItem(string $name)
     {
         if (array_key_exists($name, $this->items)) {
             return $this->items[$name];

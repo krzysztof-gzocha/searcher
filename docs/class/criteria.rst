@@ -30,12 +30,12 @@ In order to to do you can create very simple class:
     {
         private $age;
 
-        public function getAge()
+        public function getAge(): int
         {
             return $this->age;
         }
 
-        public function setAge($age)
+        public function setAge(int $age)
         {
             $this->age = $age;
         }
@@ -44,7 +44,7 @@ In order to to do you can create very simple class:
         * Only required method.
         * If will return true, then it will be passed to some of the CriteriaBuilder(s)
         */
-        public function shouldBeApplied()
+        public function shouldBeApplied(): bool
         {
             return null !== $this->age;
         }
@@ -72,22 +72,22 @@ you should keep your ``Criteria`` as small as possible. It should be readable an
         private $minimumAge;
         private $maximumAge;
 
-        public function getMinimumAge()
+        public function getMinimumAge(): int
         {
             return $this->minimumAge;
         }
 
-        public function setMinimumAge($age)
+        public function setMinimumAge(int $age)
         {
             $this->minimumAge = $age;
         }
 
-        public function getMaximumAge()
+        public function getMaximumAge(): int
         {
             return $this->maximumAge;
         }
 
-        public function setMaximumAge($age)
+        public function setMaximumAge(int $age)
         {
             $this->maximumAge = $age;
         }
@@ -95,7 +95,7 @@ you should keep your ``Criteria`` as small as possible. It should be readable an
         /**
         * Please notice that there is OR condition inside
         */
-        public function shouldBeApplied()
+        public function shouldBeApplied(): bool
         {
             return null !== $this->minimumAge || null !== $this->maximumAge;
         }

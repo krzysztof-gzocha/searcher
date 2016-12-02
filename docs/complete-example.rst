@@ -26,7 +26,7 @@ in the criteria. We do not care about the pagination, nor order of the results.
         /**
          * @param null|float $height
          */
-        public function __construct($height = null)
+        public function __construct(float $height = null)
         {
             $this->height = $height;
         }
@@ -42,15 +42,15 @@ in the criteria. We do not care about the pagination, nor order of the results.
         /**
          * @param float $height
          */
-        public function setHeight($height)
+        public function setHeight(float $height)
         {
-            $this->height = (float) $height;
+            $this->height = $height;
         }
 
         /**
          * @inheritDoc
          */
-        public function shouldBeApplied()
+        public function shouldBeApplied(): bool
         {
             return $this->height != null;
         }
@@ -75,7 +75,7 @@ in the criteria. We do not care about the pagination, nor order of the results.
         /**
          * @inheritDoc
          */
-        public function allowsCriteria(CriteriaInterface $criteria)
+        public function allowsCriteria(CriteriaInterface $criteria): bool
         {
             return $criteria instanceof HeightCriteria;
         }
@@ -85,7 +85,8 @@ in the criteria. We do not care about the pagination, nor order of the results.
          */
         public function supportsSearchingContext(
             SearchingContextInterface $searchingContext
-        ) {
+        ): bool
+        {
             return $searchingContext instanceof QueryBuilderSearchingContext;
         }
     }
