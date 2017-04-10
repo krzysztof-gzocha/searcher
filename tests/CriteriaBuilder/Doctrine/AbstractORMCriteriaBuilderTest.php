@@ -14,12 +14,12 @@ class AbstractORMCriteriaBuilderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @param SearchingContextInterface $searchingContext
-     * @param                           $expected
+     * @param bool                      $expected
      * @dataProvider supportedContextDataProvider
      */
     public function testSupportSearchingContext(
         SearchingContextInterface $searchingContext,
-        $expected
+        bool $expected
     ) {
         /** @var AbstractORMCriteriaBuilder $criteriaBuilder */
         $criteriaBuilder = $this
@@ -44,14 +44,14 @@ class AbstractORMCriteriaBuilderTest extends \PHPUnit_Framework_TestCase
      * @param bool $sameJoinType
      * @param bool $sameAlias
      * @param bool $sameJoin
-     * @param bool $shouldJoinBeColled
+     * @param bool $shouldJoinBeCalled
      * @dataProvider filterExistingJoinDataProvider
      */
     public function testFilterExistingJoins(
         $sameJoinType = true,
         $sameAlias = true,
         $sameJoin = true,
-        $shouldJoinBeColled = false
+        $shouldJoinBeCalled = false
     ) {
         $builder = new ORMCriteriaBuilderStub();
         $joinType = Join::INNER_JOIN;
@@ -62,8 +62,14 @@ class AbstractORMCriteriaBuilderTest extends \PHPUnit_Framework_TestCase
             new Join($joinType, $join, $alias),
         ];
 
+        if ($sameJoinType) {
+            $mock = $this->getQueryBuilderMock($shouldJoinBeCalled);
+        } else {
+            $mock = $this->getQueryBuilderMock(false, $shouldJoinBeCalled);
+        }
+
         $builder->filterExistingJoins(
-            $this->getQueryBuilderMock($shouldJoinBeColled),
+            $mock,
             $joinParts,
             $sameAlias ? $alias : 'differentAlias',
             $sameJoin ? $join : 'otherEntity.otherEntityName',
@@ -74,7 +80,7 @@ class AbstractORMCriteriaBuilderTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function filterExistingJoinDataProvider()
+    public function filterExistingJoinDataProvider(): array
     {
         return [
             [true, true, true, false],
@@ -102,14 +108,14 @@ class AbstractORMCriteriaBuilderTest extends \PHPUnit_Framework_TestCase
         ];
 
         $builder->join(
-            $this->getQueryBuilderMock($joinWillBeCalled, $alreadyDefinedJoins),
+            $this->getQueryBuilderMock(false, $joinWillBeCalled, $alreadyDefinedJoins),
             $sameEntityName ? 'entityName.newEntityName' : 'newEntity.newerEntity',
             'alias',
             Join::LEFT_JOIN
         );
     }
 
-    public function joinMethodDataProvider()
+    public function joinMethodDataProvider(): array
     {
         return [
             [true, false],
@@ -119,12 +125,14 @@ class AbstractORMCriteriaBuilderTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param bool  $joinWillBeCalled
+     * @param bool  $leftJoinWillBeCalled
      * @param array $joinParts
      *
      * @return QueryBuilder|\PHPUnit_Framework_MockObject_MockObject
      */
     private function getQueryBuilderMock(
-        $joinWillBeCalled = false,
+        bool $joinWillBeCalled = false,
+        bool $leftJoinWillBeCalled = false,
         array $joinParts = []
     ) {
         $mock = $this
@@ -135,6 +143,11 @@ class AbstractORMCriteriaBuilderTest extends \PHPUnit_Framework_TestCase
         $mock
             ->expects($joinWillBeCalled ? $this->once() : $this->never())
             ->method('join')
+            ->willReturnSelf();
+
+        $mock
+            ->expects($leftJoinWillBeCalled ? $this->once() : $this->never())
+            ->method('leftJoin')
             ->willReturnSelf();
 
         $mock
