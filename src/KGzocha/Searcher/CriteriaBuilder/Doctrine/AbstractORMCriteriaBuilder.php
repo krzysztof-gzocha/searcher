@@ -47,6 +47,9 @@ abstract class AbstractORMCriteriaBuilder implements
 
         $joinParts = $queryBuilder->getDQLPart('join');
         if (!array_key_exists($entity, $joinParts)) {
+            if (Join::LEFT_JOIN === $joinType) {
+                return $queryBuilder->leftJoin($join, $alias);
+            }
             return $queryBuilder->join($join, $alias);
         }
 
@@ -66,7 +69,7 @@ abstract class AbstractORMCriteriaBuilder implements
      * @param string       $join
      * @param string       $joinType
      *
-     * @return QueryBuilder|static
+     * @return QueryBuilder
      */
     protected function filterExistingJoins(
         QueryBuilder $queryBuilder,
@@ -86,6 +89,10 @@ abstract class AbstractORMCriteriaBuilder implements
 
         if ([] != $existingJoin) {
             return $queryBuilder;
+        }
+
+        if (Join::LEFT_JOIN === $joinType) {
+            return $queryBuilder->leftJoin($join, $alias);
         }
 
         return $queryBuilder->join($join, $alias);
