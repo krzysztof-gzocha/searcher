@@ -15,7 +15,7 @@ use KGzocha\Searcher\CriteriaBuilder\CriteriaBuilderInterface;
  * Extra feature is join() method which will add another join only
  * if there is not such join already.
  *
- *@author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
+ * @author Krzysztof Gzocha <krzysztof@propertyfinder.ae>
  */
 abstract class AbstractORMCriteriaBuilder implements CriteriaBuilderInterface
 {
@@ -51,10 +51,7 @@ abstract class AbstractORMCriteriaBuilder implements CriteriaBuilderInterface
 
         $joinParts = $queryBuilder->getDQLPart('join');
         if (!array_key_exists($entity, $joinParts)) {
-            if (Join::LEFT_JOIN === $joinType) {
-                return $queryBuilder->leftJoin($join, $alias);
-            }
-            return $queryBuilder->join($join, $alias);
+            return $this->makeJoin($queryBuilder, $join, $alias, $joinType);
         }
 
         return $this->filterExistingJoins(
@@ -95,6 +92,18 @@ abstract class AbstractORMCriteriaBuilder implements CriteriaBuilderInterface
             return $queryBuilder;
         }
 
+        return $this->makeJoin($queryBuilder, $join, $alias, $joinType);
+    }
+
+    /**
+     * @param QueryBuilder $queryBuilder
+     * @param string $join
+     * @param string $alias
+     * @param string $joinType
+     * @return QueryBuilder
+     */
+    private function makeJoin(QueryBuilder $queryBuilder, string $join, string $alias, string $joinType): QueryBuilder
+    {
         if (Join::LEFT_JOIN === $joinType) {
             return $queryBuilder->leftJoin($join, $alias);
         }
