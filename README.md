@@ -158,7 +158,7 @@ You can use this example code:
 $criteria = new ImmutablePaginationAdapter(
   new PaginationCriteria($page = 1, $itemsPerPage = 50)
 );
-// $criteria->setItemsPerPage(250);    <- use can try to change it
+// $criteria->setItemsPerPage(250);    <- user can try to change it
 // $criteria->getItemsPerPage() = 50   <- but he can't actualy do it
 // $criteria->getPage() = 1
 ```
