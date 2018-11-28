@@ -41,7 +41,7 @@ You can read more about this command in `here <https://getcomposer.org/doc/03-cl
 
 Troubleshooting
 ----------------
-Searcher has just one requirement (PHP language version >=5.4), but it has several development requirements,
+Searcher has just one requirement (PHP language version >=7.0), but it has several development requirements,
 which can require some PHP extensions, like ``ext-mongo``. If you do not have this extension installed on your system,
 but you still want to test this library without installing it you can use flag ``--ignore-platform-reqs`` to tell composer
 that it should not check for PHP extensions on your system. Whole installation command in this case will look like this:
